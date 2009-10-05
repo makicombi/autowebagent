@@ -584,8 +584,31 @@ namespace WatiN.Core
 		{
 		}
 
+        public IE(object iwebBrowser2, IntPtr handle)
+            : this(iwebBrowser2, true, handle)
+        {
+        }
+
         private IE(object iwebBrowser2, bool finishInitialization)
         {
+            CheckThreadApartmentStateIsSTA();
+
+            var internetExplorer = iwebBrowser2 as IWebBrowser2;
+
+            if (internetExplorer == null)
+            {
+                throw new ArgumentException("iwebBrowser2 needs to implement shdocvw.IWebBrowser2");
+            }
+
+            ie = internetExplorer;
+
+            if (finishInitialization)
+                FinishInitialization(null);
+        }
+
+        private IE(object iwebBrowser2, bool finishInitialization, IntPtr handle)
+        {
+            controlHandle = handle;
             CheckThreadApartmentStateIsSTA();
 
             var internetExplorer = iwebBrowser2 as IWebBrowser2;
@@ -1074,10 +1097,21 @@ namespace WatiN.Core
 		{
 		    return new HtmlDialogCollection(hWnd, waitForComplete);
 		}
-
+        private IntPtr controlHandle;
 		public override IntPtr hWnd
 		{
-			get { return new IntPtr(ie.HWND); }
+			get {
+                    try
+                    {
+                        var a = ie.HWND;
+                        return new IntPtr(ie.HWND); 
+                    }
+                    catch (Exception)
+                    {
+                        return controlHandle;
+                    }
+                
+            }
 		}
 
         public override INativeBrowser NativeBrowser
