@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebRecorder", "WebRecorder\WebRecorder.csproj", "{2CE57CDC-FC1D-454A-BBEA-0E6B1B02B281}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "awaDAL", "awaDAL\awaDAL.csproj", "{5DC5CF28-2A2E-48CC-8827-FDAFCA29C57B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CE57CDC-FC1D-454A-BBEA-0E6B1B02B281}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CE57CDC-FC1D-454A-BBEA-0E6B1B02B281}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CE57CDC-FC1D-454A-BBEA-0E6B1B02B281}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CE57CDC-FC1D-454A-BBEA-0E6B1B02B281}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DC5CF28-2A2E-48CC-8827-FDAFCA29C57B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DC5CF28-2A2E-48CC-8827-FDAFCA29C57B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DC5CF28-2A2E-48CC-8827-FDAFCA29C57B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DC5CF28-2A2E-48CC-8827-FDAFCA29C57B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
