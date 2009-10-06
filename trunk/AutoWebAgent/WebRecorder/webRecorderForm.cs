@@ -264,5 +264,12 @@ namespace WebRecorder
 
             }          
         }
+
+        void selectedElementListView_SubItemClicked(object sender, SubItemEventArgs e)
+        {
+            TextBox editBox = new TextBox();
+            this.Controls.Add(editBox);
+            selectedElementListView.StartEditing(editBox, e.Item, e.SubItem);
+        }
     }
 }
