@@ -28,11 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "a",
-            "1",
-            "2"}, -1);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.websiteNameTextBox = new System.Windows.Forms.TextBox();
+            this.labelWebsiteName = new System.Windows.Forms.Label();
+            this.clearButton = new System.Windows.Forms.Button();
+            this.selectedElementGroupBox = new System.Windows.Forms.GroupBox();
+            this.selectedElementListView = new WebRecorder.ListViewEx();
+            this.AttColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.valColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.priorityColumnHeader = new System.Windows.Forms.ColumnHeader();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -42,21 +47,12 @@
             this.urlLabel = new System.Windows.Forms.Label();
             this.urlTextBox = new System.Windows.Forms.TextBox();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
-            this.selectedElementGroupBox = new System.Windows.Forms.GroupBox();
-            this.clearButton = new System.Windows.Forms.Button();
-            this.labelWebsiteName = new System.Windows.Forms.Label();
-            this.websiteNameTextBox = new System.Windows.Forms.TextBox();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.selectedElementListView = new System.Windows.Forms.ListView();
-            this.AttColumnHeader = new System.Windows.Forms.ColumnHeader();
-            this.valColumnHeader = new System.Windows.Forms.ColumnHeader();
-            this.priorityColumnHeader = new System.Windows.Forms.ColumnHeader();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.selectedElementGroupBox.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.elementsDataGridView)).BeginInit();
-            this.selectedElementGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -85,6 +81,88 @@
             this.splitContainer1.Size = new System.Drawing.Size(1186, 740);
             this.splitContainer1.SplitterDistance = 333;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(1033, 154);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 9;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // websiteNameTextBox
+            // 
+            this.websiteNameTextBox.Location = new System.Drawing.Point(62, 38);
+            this.websiteNameTextBox.Name = "websiteNameTextBox";
+            this.websiteNameTextBox.Size = new System.Drawing.Size(965, 20);
+            this.websiteNameTextBox.TabIndex = 8;
+            this.websiteNameTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // labelWebsiteName
+            // 
+            this.labelWebsiteName.AutoSize = true;
+            this.labelWebsiteName.Location = new System.Drawing.Point(24, 41);
+            this.labelWebsiteName.Name = "labelWebsiteName";
+            this.labelWebsiteName.Size = new System.Drawing.Size(35, 13);
+            this.labelWebsiteName.TabIndex = 7;
+            this.labelWebsiteName.Text = "Name";
+            // 
+            // clearButton
+            // 
+            this.clearButton.Location = new System.Drawing.Point(711, 154);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(75, 23);
+            this.clearButton.TabIndex = 6;
+            this.clearButton.Text = "Clear";
+            this.clearButton.UseVisualStyleBackColor = true;
+            // 
+            // selectedElementGroupBox
+            // 
+            this.selectedElementGroupBox.Controls.Add(this.selectedElementListView);
+            this.selectedElementGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.selectedElementGroupBox.Location = new System.Drawing.Point(0, 188);
+            this.selectedElementGroupBox.Name = "selectedElementGroupBox";
+            this.selectedElementGroupBox.Size = new System.Drawing.Size(1186, 123);
+            this.selectedElementGroupBox.TabIndex = 5;
+            this.selectedElementGroupBox.TabStop = false;
+            this.selectedElementGroupBox.Text = "Selected Element";
+            // 
+            // selectedElementListView
+            // 
+            this.selectedElementListView.AllowColumnReorder = true;
+            this.selectedElementListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.AttColumnHeader,
+            this.valColumnHeader,
+            this.priorityColumnHeader});
+            this.selectedElementListView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.selectedElementListView.DoubleClickActivation = false;
+            this.selectedElementListView.GridLines = true;
+            this.selectedElementListView.LabelEdit = true;
+            this.selectedElementListView.Location = new System.Drawing.Point(3, 16);
+            this.selectedElementListView.MultiSelect = false;
+            this.selectedElementListView.Name = "selectedElementListView";
+            this.selectedElementListView.Size = new System.Drawing.Size(306, 104);
+            this.selectedElementListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.selectedElementListView.TabIndex = 0;
+            this.selectedElementListView.UseCompatibleStateImageBehavior = false;
+            this.selectedElementListView.View = System.Windows.Forms.View.Details;
+            this.selectedElementListView.DoubleClickActivation = true;
+            this.selectedElementListView.SubItemClicked += new SubItemEventHandler(selectedElementListView_SubItemClicked);
+            // 
+            // AttColumnHeader
+            // 
+            this.AttColumnHeader.Text = "Attribute";
+            // 
+            // valColumnHeader
+            // 
+            this.valColumnHeader.Text = "Value";
+            this.valColumnHeader.Width = 180;
+            // 
+            // priorityColumnHeader
+            // 
+            this.priorityColumnHeader.Text = "Priority";
             // 
             // statusStrip1
             // 
@@ -162,82 +240,6 @@
             this.webBrowser.TabIndex = 0;
             this.webBrowser.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.webBrowser_PreviewKeyDown);
             // 
-            // selectedElementGroupBox
-            // 
-            this.selectedElementGroupBox.Controls.Add(this.selectedElementListView);
-            this.selectedElementGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.selectedElementGroupBox.Location = new System.Drawing.Point(0, 188);
-            this.selectedElementGroupBox.Name = "selectedElementGroupBox";
-            this.selectedElementGroupBox.Size = new System.Drawing.Size(1186, 123);
-            this.selectedElementGroupBox.TabIndex = 5;
-            this.selectedElementGroupBox.TabStop = false;
-            this.selectedElementGroupBox.Text = "Selected Element";
-            // 
-            // clearButton
-            // 
-            this.clearButton.Location = new System.Drawing.Point(711, 154);
-            this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(75, 23);
-            this.clearButton.TabIndex = 6;
-            this.clearButton.Text = "Clear";
-            this.clearButton.UseVisualStyleBackColor = true;
-            // 
-            // labelWebsiteName
-            // 
-            this.labelWebsiteName.AutoSize = true;
-            this.labelWebsiteName.Location = new System.Drawing.Point(24, 41);
-            this.labelWebsiteName.Name = "labelWebsiteName";
-            this.labelWebsiteName.Size = new System.Drawing.Size(35, 13);
-            this.labelWebsiteName.TabIndex = 7;
-            this.labelWebsiteName.Text = "Name";
-            // 
-            // websiteNameTextBox
-            // 
-            this.websiteNameTextBox.Location = new System.Drawing.Point(62, 38);
-            this.websiteNameTextBox.Name = "websiteNameTextBox";
-            this.websiteNameTextBox.Size = new System.Drawing.Size(965, 20);
-            this.websiteNameTextBox.TabIndex = 8;
-            this.websiteNameTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // saveButton
-            // 
-            this.saveButton.Location = new System.Drawing.Point(1033, 154);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 9;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
-            // selectedElementListView
-            // 
-            this.selectedElementListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.AttColumnHeader,
-            this.valColumnHeader,
-            this.priorityColumnHeader});
-            this.selectedElementListView.Dock = System.Windows.Forms.DockStyle.Left;
-            this.selectedElementListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
-            this.selectedElementListView.Location = new System.Drawing.Point(3, 16);
-            this.selectedElementListView.Name = "selectedElementListView";
-            this.selectedElementListView.Size = new System.Drawing.Size(832, 104);
-            this.selectedElementListView.TabIndex = 0;
-            this.selectedElementListView.UseCompatibleStateImageBehavior = false;
-            this.selectedElementListView.View = System.Windows.Forms.View.Details;
-            // 
-            // AttColumnHeader
-            // 
-            this.AttColumnHeader.Text = "Attribute";
-            // 
-            // valColumnHeader
-            // 
-            this.valColumnHeader.Text = "Value";
-            this.valColumnHeader.Width = 709;
-            // 
-            // priorityColumnHeader
-            // 
-            this.priorityColumnHeader.Text = "Priority";
-            // 
             // webRecorderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -250,13 +252,15 @@
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
+            this.selectedElementGroupBox.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.elementsDataGridView)).EndInit();
-            this.selectedElementGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
+
+        
 
         #endregion
 
@@ -275,7 +279,7 @@
         private System.Windows.Forms.TextBox websiteNameTextBox;
         private System.Windows.Forms.Label labelWebsiteName;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.ListView selectedElementListView;
+        private ListViewEx selectedElementListView;
         private System.Windows.Forms.ColumnHeader AttColumnHeader;
         private System.Windows.Forms.ColumnHeader valColumnHeader;
         private System.Windows.Forms.ColumnHeader priorityColumnHeader;

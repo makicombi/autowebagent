@@ -60,6 +60,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="webRecorderForm.cs">
       <SubType>Form</SubType>
     </Compile>
