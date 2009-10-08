@@ -28,16 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.saveButton = new System.Windows.Forms.Button();
             this.websiteNameTextBox = new System.Windows.Forms.TextBox();
             this.labelWebsiteName = new System.Windows.Forms.Label();
-            this.clearButton = new System.Windows.Forms.Button();
             this.selectedElementGroupBox = new System.Windows.Forms.GroupBox();
-            this.selectedElementListView = new WebRecorder.ListViewEx();
-            this.AttColumnHeader = new System.Windows.Forms.ColumnHeader();
-            this.valColumnHeader = new System.Windows.Forms.ColumnHeader();
-            this.priorityColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.saveElementButton = new System.Windows.Forms.Button();
+            this.elementNameTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -47,12 +46,21 @@
             this.urlLabel = new System.Windows.Forms.Label();
             this.urlTextBox = new System.Windows.Forms.TextBox();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.recognitionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.selectedElementListView = new WebRecorder.ListViewEx();
+            this.AttColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.valColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.priorityColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.autoWebAgentDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label2 = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.selectedElementGroupBox.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.elementsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.recognitionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.autoWebAgentDBDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -64,10 +72,10 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.saveButton);
             this.splitContainer1.Panel1.Controls.Add(this.websiteNameTextBox);
             this.splitContainer1.Panel1.Controls.Add(this.labelWebsiteName);
-            this.splitContainer1.Panel1.Controls.Add(this.clearButton);
             this.splitContainer1.Panel1.Controls.Add(this.selectedElementGroupBox);
             this.splitContainer1.Panel1.Controls.Add(this.statusStrip1);
             this.splitContainer1.Panel1.Controls.Add(this.elementsDataGridView);
@@ -84,7 +92,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(1033, 154);
+            this.saveButton.Location = new System.Drawing.Point(1033, 36);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 9;
@@ -109,17 +117,11 @@
             this.labelWebsiteName.TabIndex = 7;
             this.labelWebsiteName.Text = "Name";
             // 
-            // clearButton
-            // 
-            this.clearButton.Location = new System.Drawing.Point(711, 154);
-            this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(75, 23);
-            this.clearButton.TabIndex = 6;
-            this.clearButton.Text = "Clear";
-            this.clearButton.UseVisualStyleBackColor = true;
-            // 
             // selectedElementGroupBox
             // 
+            this.selectedElementGroupBox.Controls.Add(this.saveElementButton);
+            this.selectedElementGroupBox.Controls.Add(this.elementNameTextBox);
+            this.selectedElementGroupBox.Controls.Add(this.label1);
             this.selectedElementGroupBox.Controls.Add(this.selectedElementListView);
             this.selectedElementGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.selectedElementGroupBox.Location = new System.Drawing.Point(0, 188);
@@ -129,40 +131,31 @@
             this.selectedElementGroupBox.TabStop = false;
             this.selectedElementGroupBox.Text = "Selected Element";
             // 
-            // selectedElementListView
+            // saveElementButton
             // 
-            this.selectedElementListView.AllowColumnReorder = true;
-            this.selectedElementListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.AttColumnHeader,
-            this.valColumnHeader,
-            this.priorityColumnHeader});
-            this.selectedElementListView.Dock = System.Windows.Forms.DockStyle.Left;
-            this.selectedElementListView.DoubleClickActivation = false;
-            this.selectedElementListView.GridLines = true;
-            this.selectedElementListView.LabelEdit = true;
-            this.selectedElementListView.Location = new System.Drawing.Point(3, 16);
-            this.selectedElementListView.MultiSelect = false;
-            this.selectedElementListView.Name = "selectedElementListView";
-            this.selectedElementListView.Size = new System.Drawing.Size(306, 104);
-            this.selectedElementListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.selectedElementListView.TabIndex = 0;
-            this.selectedElementListView.UseCompatibleStateImageBehavior = false;
-            this.selectedElementListView.View = System.Windows.Forms.View.Details;
-            this.selectedElementListView.DoubleClickActivation = true;
-            this.selectedElementListView.SubItemClicked += new SubItemEventHandler(selectedElementListView_SubItemClicked);
+            this.saveElementButton.Location = new System.Drawing.Point(711, 48);
+            this.saveElementButton.Name = "saveElementButton";
+            this.saveElementButton.Size = new System.Drawing.Size(75, 23);
+            this.saveElementButton.TabIndex = 10;
+            this.saveElementButton.Text = "Apply";
+            this.saveElementButton.UseVisualStyleBackColor = true;
+            this.saveElementButton.Click += new System.EventHandler(this.saveElementButton_Click);
             // 
-            // AttColumnHeader
+            // elementNameTextBox
             // 
-            this.AttColumnHeader.Text = "Attribute";
+            this.elementNameTextBox.Location = new System.Drawing.Point(418, 50);
+            this.elementNameTextBox.Name = "elementNameTextBox";
+            this.elementNameTextBox.Size = new System.Drawing.Size(287, 20);
+            this.elementNameTextBox.TabIndex = 2;
             // 
-            // valColumnHeader
+            // label1
             // 
-            this.valColumnHeader.Text = "Value";
-            this.valColumnHeader.Width = 180;
-            // 
-            // priorityColumnHeader
-            // 
-            this.priorityColumnHeader.Text = "Priority";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(333, 53);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Element Name";
             // 
             // statusStrip1
             // 
@@ -196,10 +189,12 @@
             // 
             // elementsDataGridView
             // 
+            this.elementsDataGridView.AutoGenerateColumns = false;
             this.elementsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.elementsDataGridView.Location = new System.Drawing.Point(62, 64);
+            this.elementsDataGridView.DataSource = this.autoWebAgentDBDataSetBindingSource;
+            this.elementsDataGridView.Location = new System.Drawing.Point(62, 89);
             this.elementsDataGridView.Name = "elementsDataGridView";
-            this.elementsDataGridView.Size = new System.Drawing.Size(643, 113);
+            this.elementsDataGridView.Size = new System.Drawing.Size(965, 93);
             this.elementsDataGridView.TabIndex = 3;
             // 
             // goButton
@@ -240,6 +235,61 @@
             this.webBrowser.TabIndex = 0;
             this.webBrowser.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.webBrowser_PreviewKeyDown);
             // 
+            // recognitionBindingSource
+            // 
+            this.recognitionBindingSource.DataMember = "recognition";
+            this.recognitionBindingSource.DataSource = this.autoWebAgentDBDataSetBindingSource;
+            // 
+            // selectedElementListView
+            // 
+            this.selectedElementListView.AllowColumnReorder = true;
+            this.selectedElementListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.AttColumnHeader,
+            this.valColumnHeader,
+            this.priorityColumnHeader});
+            this.selectedElementListView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.selectedElementListView.DoubleClickActivation = true;
+            this.selectedElementListView.FullRowSelect = true;
+            this.selectedElementListView.GridLines = true;
+            this.selectedElementListView.LabelEdit = true;
+            this.selectedElementListView.Location = new System.Drawing.Point(3, 16);
+            this.selectedElementListView.MultiSelect = false;
+            this.selectedElementListView.Name = "selectedElementListView";
+            this.selectedElementListView.Size = new System.Drawing.Size(306, 104);
+            this.selectedElementListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.selectedElementListView.TabIndex = 0;
+            this.selectedElementListView.UseCompatibleStateImageBehavior = false;
+            this.selectedElementListView.View = System.Windows.Forms.View.Details;
+            this.selectedElementListView.SubItemClicked += new WebRecorder.SubItemEventHandler(this.selectedElementListView_SubItemClicked);
+            // 
+            // AttColumnHeader
+            // 
+            this.AttColumnHeader.Text = "Attribute";
+            // 
+            // valColumnHeader
+            // 
+            this.valColumnHeader.Text = "Value";
+            this.valColumnHeader.Width = 180;
+            // 
+            // priorityColumnHeader
+            // 
+            this.priorityColumnHeader.Text = "Priority";
+            // 
+            // autoWebAgentDBDataSetBindingSource
+            // 
+            this.autoWebAgentDBDataSetBindingSource.DataSource = typeof(awaDAL.AutoWebAgentDBDataSet);
+            this.autoWebAgentDBDataSetBindingSource.Position = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label2.Location = new System.Drawing.Point(393, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(312, 20);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Website Elements - Recognition Properties";
+            // 
             // webRecorderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,9 +303,12 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             this.selectedElementGroupBox.ResumeLayout(false);
+            this.selectedElementGroupBox.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.elementsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.recognitionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.autoWebAgentDBDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -274,7 +327,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-        private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.GroupBox selectedElementGroupBox;
         private System.Windows.Forms.TextBox websiteNameTextBox;
         private System.Windows.Forms.Label labelWebsiteName;
@@ -283,6 +335,12 @@
         private System.Windows.Forms.ColumnHeader AttColumnHeader;
         private System.Windows.Forms.ColumnHeader valColumnHeader;
         private System.Windows.Forms.ColumnHeader priorityColumnHeader;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox elementNameTextBox;
+        private System.Windows.Forms.Button saveElementButton;
+        private System.Windows.Forms.BindingSource autoWebAgentDBDataSetBindingSource;
+        private System.Windows.Forms.BindingSource recognitionBindingSource;
+        private System.Windows.Forms.Label label2;
     }
 }
 

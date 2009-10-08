@@ -67,6 +67,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AutoWebAgentDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataHelpers.cs" />
     <Compile Include="DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
