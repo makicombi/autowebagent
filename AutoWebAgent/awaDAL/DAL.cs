@@ -99,14 +99,17 @@ namespace awaDAL
             usersAdapter.Connection=con;
             websiteAdapter.Connection = con;
 
+            usersAdapter.Fill(DB.users);
+            
+            recognitionAdapter.Fill(DB.recognition);
+            elementAdapter.Fill(DB.element);
+            websiteAdapter.Fill(DB.website);
+
             actionAdapter.Fill(DB.action);
             conditionAdapter.Fill(DB.condition);
-            elementAdapter.Fill(DB.element);
-            recognitionAdapter.Fill(DB.recognition);
-            scriptAdapter.Fill(DB.script);
             stepAdapter.Fill(DB.step);
-            usersAdapter.Fill(DB.users);
-            websiteAdapter.Fill(DB.website);
+            scriptAdapter.Fill(DB.script);
+            
             IsInitialized = true;
         }
 
@@ -148,18 +151,63 @@ namespace awaDAL
                 return -1;
             }
         }
+        public AutoWebAgentDBDataSet.websiteRow GetWebsiteRow(string url)
+        {
+            var query =
+                from sites in DB.website
+                where sites.url == url
+                select sites;
+            int count = query.Count<AutoWebAgentDBDataSet.websiteRow>();
+            if (count > 1)
+            {
+                throw new Exception("multiple url entries with same url detected");
+            }
+            else if (count == 1)
+            {
+                return query.ElementAt<AutoWebAgentDBDataSet.websiteRow>(0);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public AutoWebAgentDBDataSet.websiteRow GetWebsiteRow(string name,out bool found)
+        {
+            var query =
+                from sites in DB.website
+                where sites.name == name
+                select sites;
+            int count = query.Count<AutoWebAgentDBDataSet.websiteRow>();
+            if (count > 1)
+            {
+                found = false;
+                throw new Exception("multiple url entries with same url detected");
+            }
+            else if (count == 1)
+            {
+                found = true;
+                return query.ElementAt<AutoWebAgentDBDataSet.websiteRow>(0);
+            }
+            else
+            {
+                found = false;
+                return null;
+            }
+        }
         public void SaveChanges()
         {
             try
             {
-                websiteAdapter.Update(this.DB.website);
-                usersAdapter.Update(this.DB.users);
-                stepAdapter.Update(this.DB.step);
-                scriptAdapter.Update(this.DB.script);
-                recognitionAdapter.Update(this.DB.recognition);
-                elementAdapter.Update(this.DB.element);
-                conditionAdapter.Update(this.DB.condition);
-                actionAdapter.Update(this.DB.action);
+                //websiteAdapter.Update(this.DB.website);
+                //usersAdapter.Update(this.DB.users);
+                //stepAdapter.Update(this.DB.step);
+                //scriptAdapter.Update(this.DB.script);
+                //recognitionAdapter.Update(this.DB.recognition);
+                //elementAdapter.Update(this.DB.element);
+                //conditionAdapter.Update(this.DB.condition);
+                //actionAdapter.Update(this.DB.action);
+                SaveChanges("website", "users", "step", "script", "recognition", "element", "condition","action");
                 //DB.AcceptChanges();
             }
             catch (Exception)
@@ -195,9 +243,66 @@ namespace awaDAL
 
         }
 
-        ~DAL()
+        public int SetElement(AutoWebAgentDBDataSet.websiteRow WebsiteRow, string elementName, string elementType, List<RecognitionProperty> elementProperties )
         {
-            SaveChanges();
+            AutoWebAgentDBDataSet.elementRow eid;
+
+            // find(by name) if the element is already in the database
+            // assuming names are unique per websie
+            //var result = from elm in dal.DB.element
+            //             join ws in dal.DB.website on elm.website_id equals ws.id
+            //             where elm.name == elementNameTextBox.Text
+            //             select elm;
+            var result = from elm in DB.element
+                         from ws in DB.website
+                         where (elm.name == elementName) && (elm.website_id == ws.id)
+                         select elm;
+            if (result.Count() == 1) // need update
+            {
+                result.ElementAt(0).type = elementType;
+                eid = result.ElementAt(0);
+
+            }
+            else if (result.Count() == 0)// new row 
+            {
+                awaDAL.AutoWebAgentDBDataSet.elementRow row = DB.element.AddelementRow(elementName, WebsiteRow, elementType);
+                SaveChanges("element");
+                result = from elm in DB.element
+                         from ws in DB.website
+                         where (elm.name == elementName) && (elm.website_id == ws.id)
+                         select elm;
+                eid = result.ElementAt(0);
+                
+
+            }
+            else // multiple elements in site with same name detected
+            {
+                throw new Exception("multiple elements in site with same name detected");
+            }
+
+            // update recognition table by droping element's properties and re-adding them
+            var recResult = from row in DB.recognition
+                            where (row.element_id == eid.id)
+                            select row;
+
+            foreach (var item in recResult)
+            {
+                item.Delete();
+            }
+
+            int rowsAffected;//= dal.SaveChanges("recognition");
+            foreach (var item in elementProperties)
+            {
+                AutoWebAgentDBDataSet.recognitionRow row = DB.recognition.AddrecognitionRow(item.Attribute, item.Priority, item.Value, eid);
+
+            }
+
+            // rowsAffected = dal.SaveChanges("element");
+            rowsAffected = SaveChanges("recognition");
+            return 0;
         }
+
+
+        
 }
 }
