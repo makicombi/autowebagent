@@ -205,10 +205,12 @@ namespace WebRecorder
             statusStrip1.Items[1].Text = selectionState.ToString();    
             
         }
-
+        /// <summary>
+        /// called when double shift-key press is detected
+        /// </summary>
+        /// <param name="currentElement"></param>
         private void analyzeElement(HtmlElement currentElement)
         {
-
             string tag="", type="";
             elementNameTextBox.Text = "";
             selectedElementListView.Items.Clear();
@@ -216,13 +218,8 @@ namespace WebRecorder
             WatiN.Core.Native.InternetExplorer.IEElement element = new WatiN.Core.Native.InternetExplorer.IEElement(currentElement.DomElement);
             mshtml.IHTMLDOMNode nd = (mshtml.IHTMLDOMNode)element.AsHtmlElement;
             mshtml.IHTMLAttributeCollection attribs = (mshtml.IHTMLAttributeCollection)nd.attributes;
-            //if ((currentElement.Name != null) && (currentElement.Name.Length > 0))
-            //{
-            //    props.Add(new DAL.RecognitionProperty("Name", currentElement.Name, 50));
-            //    ListViewItem item = selectedElementListView.Items.Add("Name");
-            //    item.SubItems.Add(currentElement.Name);
-            //    item.SubItems.Add("50").Tag = 50;
-            //}
+            
+            
             if ((currentElement.TagName != null) && (currentElement.TagName.Length > 0))
             {
                 props.Add(new DAL.RecognitionProperty("Tag", currentElement.TagName, 20));
@@ -231,13 +228,7 @@ namespace WebRecorder
                 item.SubItems.Add("20").Tag = 20;
                 tag = currentElement.TagName;
             }
-            //if ((currentElement.Id != null) && (currentElement.Id.Length > 0))
-            //{
-            //    props.Add(new DAL.RecognitionProperty("Id", currentElement.Id, 100));
-            //    ListViewItem item = selectedElementListView.Items.Add("Id");
-            //    item.SubItems.Add(currentElement.Id);
-            //    item.SubItems.Add("100").Tag = 100;
-            //}
+            
             if ((currentElement.OuterText!=null) && (currentElement.OuterText.Length > 0))
             {
                 props.Add(new DAL.RecognitionProperty("OuterText", currentElement.OuterText, 20));
@@ -266,11 +257,15 @@ namespace WebRecorder
                     item.SubItems.Add(att.value);
                     if (string.Compare(att.name,"name",true)==0)
                     {
-                        item.SubItems.Add("10").Tag = 50;
+                        item.SubItems.Add("50").Tag = 50;
                     }
                     else if (string.Compare(att.name, "id", true) == 0)
                     {
-                        item.SubItems.Add("100").Tag = 50;
+                        item.SubItems.Add("100").Tag = 100;
+                    }
+                    else if (string.Compare(att.name, "href", true) == 0)
+                    {
+                        item.SubItems.Add("45").Tag = 45;
                     }
                     else
                     {
@@ -282,7 +277,58 @@ namespace WebRecorder
                     }
 
                 }
+             
+            }
+            /**
+          * if element has no id/name
+          * 1. determined position in parent children by counting the depth of nextSibling loop
+          * 2. push count to stack
+          * 3. then check if parent have id attribute: if true then push id to stack else if parent=null stop else repeat 1-3 
+          * 4. serialize stack content and create a fake attribute: indirectID => [stack contents]
+          */
+            if ((currentElement.Name == "") && (currentElement.Id == null))
+            {
+                int position = -1;
+                StringBuilder stack = new StringBuilder();
+                var elm = currentElement;
+                do
+                {
+                    if (elm.Parent != null)
+                    {
+                        position = elm.Parent.Children.Count - 1;
+                        for (var i = elm; i != null; i = i.NextSibling)
+                        {
+                            position--;
+                        }
+                        if (position > -1)
+                        {
+                            stack.Insert(0,position.ToString()+" ");
+                            position = -1;
 
+                        }
+                        else
+                        {
+                            // ???
+                        }
+                        elm = elm.Parent;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                } while ((elm.Parent != null) && (elm.Parent.Id == null) && (elm.Parent.Name == ""));
+                if ((elm.Parent != null) && (elm.Parent.Id != null)) stack.Insert(0,"id:" + elm.Parent.Id+" ");
+                else
+                    if ((elm.Parent != null) && (elm.Parent.Name != "")) stack.Insert(0,"name:" + elm.Parent.Name+" ");
+                //MessageBox.Show(stack.ToString().TrimEnd(' '));
+                if (stack[0]>'9')
+                {
+                    props.Add(new DAL.RecognitionProperty("indirectPath", stack.ToString().TrimEnd(' '), 80));
+                    ListViewItem item = selectedElementListView.Items.Add("indirectPath");
+                    item.SubItems.Add(stack.ToString().TrimEnd(' '));
+                    item.SubItems.Add("80").Tag = 80; 
+                }
+               
             }
 
             if (string.Compare(tag, "input", true)==0)
@@ -293,12 +339,8 @@ namespace WebRecorder
             {
                 this.currentElementType = DAL.ElementType.NONE;
             }
-            
-            //IEnumerable<DAL.RecognitionProperty> a =  dal.GetElementRecogitionProperties();
-            //foreach (var item in a)
-            //{
-                
-            //}
+
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
