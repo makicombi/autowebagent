@@ -18,6 +18,7 @@ namespace WebRecorder
         private HtmlElement currentElement;
         private DAL.ElementType currentElementType= DAL.ElementType.NONE;
         public int WebsiteID { get; private set; }
+        public AutoWebAgentDBDataSet.websiteRow WebsiteRow { get; private set; }
         
         enum SelectionState
         {
@@ -85,7 +86,20 @@ namespace WebRecorder
         private void goButton_Click(object sender, EventArgs e)
         {
 
-            if ((!urlTextBox.Text.StartsWith("http://")) && (!urlTextBox.Text.StartsWith("https://")))
+            try
+            {
+                bool found;
+                var row = dal.GetWebsiteRow(websiteNameTextBox.Text, out found);
+                if (found) urlTextBox.Text = row.url;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+                return;
+            }
+            if ( (!urlTextBox.Text.StartsWith("http://")) && 
+                 (!urlTextBox.Text.StartsWith("https://")) && 
+                 (!urlTextBox.Text.StartsWith("file://")) )
             {
                 urlTextBox.Text = "http://" + urlTextBox.Text;
             }
@@ -103,6 +117,7 @@ namespace WebRecorder
                 try
                 {
                     WebsiteID = dal.GetWebsiteID(urlTextBox.Text);
+                    WebsiteRow = dal.GetWebsiteRow(urlTextBox.Text);
                 }
                 catch (Exception exc)
                 {
@@ -120,8 +135,11 @@ namespace WebRecorder
                     else
                     {
                         awaDAL.AutoWebAgentDBDataSet.websiteRow row = dal.DB.website.AddwebsiteRow(urlTextBox.Text, urlTextBox.Text);
-                        
                     }
+                    dal.SaveChanges("website");
+                    WebsiteID = dal.GetWebsiteID(urlTextBox.Text);
+                    WebsiteRow = dal.GetWebsiteRow(urlTextBox.Text);
+
                 }
                 //update website
                 else
@@ -343,47 +361,63 @@ namespace WebRecorder
             //             join ws in dal.DB.website on elm.website_id equals ws.id
             //             where elm.name == elementNameTextBox.Text
             //             select elm;
-            var result = from elm in dal.DB.element
-                         from ws in dal.DB.website 
-                         where (elm.name == elementNameTextBox.Text) && (elm.website_id==ws.id) 
-                         select elm;
-            if (result.Count() == 1) // need update
-            {
-                result.ElementAt(0).type = currentElementType.ToString();
-                eid = result.ElementAt(0).id;
+           // var result = from elm in dal.DB.element
+           //              from ws in dal.DB.website 
+           //              where (elm.name == elementNameTextBox.Text) && (elm.website_id==ws.id) 
+           //              select elm;
+           // if (result.Count() == 1) // need update
+           // {
+           //     result.ElementAt(0).type = currentElementType.ToString();
+           //     eid = result.ElementAt(0).id;
 
-            }
-            else if (result.Count() == 0)// new row 
-            {
-               awaDAL.AutoWebAgentDBDataSet.elementRow row = dal.DB.element.AddelementRow(elementNameTextBox.Text,WebsiteID,currentElementType.ToString());
-               eid = row.id;
+           // }
+           // else if (result.Count() == 0)// new row 
+           // {
+           //    awaDAL.AutoWebAgentDBDataSet.elementRow row = dal.DB.element.AddelementRow(elementNameTextBox.Text,WebsiteRow,currentElementType.ToString());
+           //    eid = row.id;
                
-            }
-            else // multiple elements in site with same name detected
-            {
-                throw new Exception("multiple elements in site with same name detected");
-            }
+           // }
+           // else // multiple elements in site with same name detected
+           // {
+           //     throw new Exception("multiple elements in site with same name detected");
+           // }
             
-            // update recognition table by droping element's properties and re-adding them
-            var recResult = from row in dal.DB.recognition
-                     where (row.element_id == eid)
-                     select row;
+           // // update recognition table by droping element's properties and re-adding them
+           // var recResult = from row in dal.DB.recognition
+           //          where (row.element_id == eid)
+           //          select row;
             
-            foreach (var item in recResult)
-            {
-                item.Delete();
-            }
+           // foreach (var item in recResult)
+           // {
+           //     item.Delete();
+           // }
             
-            int rowsAffected ;//= dal.SaveChanges("recognition");
-            foreach (ListViewItem item in selectedElementListView.Items)
+           // int rowsAffected ;//= dal.SaveChanges("recognition");
+           // foreach (ListViewItem item in selectedElementListView.Items)
+           // {
+           //    AutoWebAgentDBDataSet.recognitionRow row = dal.DB.recognition.AddrecognitionRow(item.SubItems[0].Text, int.Parse(item.SubItems[2].Text), item.SubItems[1].Text, eid);
+                
+           // }
+
+           //// rowsAffected = dal.SaveChanges("element");
+           // rowsAffected = dal.SaveChanges("element", "recognition");
+            List<DAL.RecognitionProperty> elementProperties = new List<DAL.RecognitionProperty>();
+             foreach (ListViewItem item in selectedElementListView.Items)
             {
-               AutoWebAgentDBDataSet.recognitionRow row = dal.DB.recognition.AddrecognitionRow(item.SubItems[0].Text, int.Parse(item.SubItems[2].Text), item.SubItems[1].Text, eid);
+               //AutoWebAgentDBDataSet.recognitionRow row = dal.DB.recognition.AddrecognitionRow(item.SubItems[0].Text, int.Parse(item.SubItems[2].Text), item.SubItems[1].Text, eid);
+               elementProperties.Add(new DAL.RecognitionProperty(item.SubItems[0].Text, item.SubItems[1].Text, int.Parse(item.SubItems[2].Text)));
                 
             }
+             try
+             {
+                 dal.SetElement(WebsiteRow, elementNameTextBox.Text, currentElementType.ToString(), elementProperties);
+                 updateGrid();
+             }
+             catch (Exception exc)
+             {
 
-           // rowsAffected = dal.SaveChanges("element");
-            rowsAffected = dal.SaveChanges("element", "recognition");
-
+                 MessageBox.Show("Internal Error:"+exc.Message);
+             }
 
         }
     }

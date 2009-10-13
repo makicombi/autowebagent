@@ -41,6 +41,10 @@ namespace awaDAL {
         
         private websiteDataTable tablewebsite;
         
+        private global::System.Data.DataRelation relationFK_element_recognition;
+        
+        private global::System.Data.DataRelation relationFK_website_element;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -342,6 +346,8 @@ namespace awaDAL {
                     this.tablewebsite.InitVars();
                 }
             }
+            this.relationFK_element_recognition = this.Relations["FK_element_recognition"];
+            this.relationFK_website_element = this.Relations["FK_website_element"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -367,6 +373,14 @@ namespace awaDAL {
             base.Tables.Add(this.tableusers);
             this.tablewebsite = new websiteDataTable();
             base.Tables.Add(this.tablewebsite);
+            this.relationFK_element_recognition = new global::System.Data.DataRelation("FK_element_recognition", new global::System.Data.DataColumn[] {
+                        this.tableelement.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablerecognition.element_idColumn}, false);
+            this.Relations.Add(this.relationFK_element_recognition);
+            this.relationFK_website_element = new global::System.Data.DataRelation("FK_website_element", new global::System.Data.DataColumn[] {
+                        this.tablewebsite.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableelement.website_idColumn}, false);
+            this.Relations.Add(this.relationFK_website_element);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1179,13 +1193,16 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public elementRow AddelementRow(string name, int website_id, string type) {
+            public elementRow AddelementRow(string name, websiteRow parentwebsiteRowByFK_website_element, string type) {
                 elementRow rowelementRow = ((elementRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         name,
-                        website_id,
+                        null,
                         type};
+                if ((parentwebsiteRowByFK_website_element != null)) {
+                    columnValuesArray[2] = parentwebsiteRowByFK_website_element[0];
+                }
                 rowelementRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowelementRow);
                 return rowelementRow;
@@ -1467,14 +1484,17 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public recognitionRow AddrecognitionRow(string attribute, int priority, string value, int element_id) {
+            public recognitionRow AddrecognitionRow(string attribute, int priority, string value, elementRow parentelementRowByFK_element_recognition) {
                 recognitionRow rowrecognitionRow = ((recognitionRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         attribute,
                         priority,
                         value,
-                        element_id};
+                        null};
+                if ((parentelementRowByFK_element_recognition != null)) {
+                    columnValuesArray[4] = parentelementRowByFK_element_recognition[0];
+                }
                 rowrecognitionRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowrecognitionRow);
                 return rowrecognitionRow;
@@ -3085,6 +3105,16 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public websiteRow websiteRow {
+                get {
+                    return ((websiteRow)(this.GetParentRow(this.Table.ParentRelations["FK_website_element"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_website_element"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool Iswebsite_idNull() {
                 return this.IsNull(this.tableelement.website_idColumn);
             }
@@ -3102,6 +3132,16 @@ namespace awaDAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SettypeNull() {
                 this[this.tableelement.typeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public recognitionRow[] GetrecognitionRows() {
+                if ((this.Table.ChildRelations["FK_element_recognition"] == null)) {
+                    return new recognitionRow[0];
+                }
+                else {
+                    return ((recognitionRow[])(base.GetChildRows(this.Table.ChildRelations["FK_element_recognition"])));
+                }
             }
         }
         
@@ -3176,6 +3216,16 @@ namespace awaDAL {
                 }
                 set {
                     this[this.tablerecognition.element_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public elementRow elementRow {
+                get {
+                    return ((elementRow)(this.GetParentRow(this.Table.ParentRelations["FK_element_recognition"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_element_recognition"]);
                 }
             }
             
@@ -3557,6 +3607,16 @@ namespace awaDAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SeturlNull() {
                 this[this.tablewebsite.urlColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public elementRow[] GetelementRows() {
+                if ((this.Table.ChildRelations["FK_website_element"] == null)) {
+                    return new elementRow[0];
+                }
+                else {
+                    return ((elementRow[])(base.GetChildRows(this.Table.ChildRelations["FK_website_element"])));
+                }
             }
         }
         
@@ -6283,6 +6343,210 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class QueriesTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.IDbCommand[] _commandCollection;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.IDbCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.IDbCommand[6];
+            this._commandCollection[0] = new global::System.Data.SqlServerCe.SqlCeCommand();
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[0])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[0])).CommandText = "DELETE FROM recognition\r\nWHERE  (element_id = @element_id)";
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[0])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@element_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "element_id", global::System.Data.DataRowVersion.Original, null));
+            this._commandCollection[1] = new global::System.Data.SqlServerCe.SqlCeCommand();
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[1])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[1])).CommandText = "DELETE FROM recognition";
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[1])).CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2] = new global::System.Data.SqlServerCe.SqlCeCommand();
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[2])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[2])).CommandText = "DELETE FROM element\r\nWHERE  (website_id = @website_id)";
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[2])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@website_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "website_id", global::System.Data.DataRowVersion.Original, null));
+            this._commandCollection[3] = new global::System.Data.SqlServerCe.SqlCeCommand();
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[3])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[3])).CommandText = "DELETE from element";
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[3])).CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4] = new global::System.Data.SqlServerCe.SqlCeCommand();
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[4])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[4])).CommandText = "DELETE from website where id=@id";
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[4])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[4])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
+            this._commandCollection[5] = new global::System.Data.SqlServerCe.SqlCeCommand();
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[5])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[5])).CommandText = "DELETE from website where name=@name";
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[5])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[5])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@name", global::System.Data.SqlDbType.NVarChar, 100, global::System.Data.ParameterDirection.Input, true, 0, 0, "name", global::System.Data.DataRowVersion.Original, null));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteRecognitionByElementId(int element_id) {
+            global::System.Data.SqlServerCe.SqlCeCommand command = ((global::System.Data.SqlServerCe.SqlCeCommand)(this.CommandCollection[0]));
+            command.Parameters[0].Value = ((int)(element_id));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteAllRecognition() {
+            global::System.Data.SqlServerCe.SqlCeCommand command = ((global::System.Data.SqlServerCe.SqlCeCommand)(this.CommandCollection[1]));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteElementsByWebsiteId(global::System.Nullable<int> website_id) {
+            global::System.Data.SqlServerCe.SqlCeCommand command = ((global::System.Data.SqlServerCe.SqlCeCommand)(this.CommandCollection[2]));
+            if ((website_id.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(website_id.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteAllElements() {
+            global::System.Data.SqlServerCe.SqlCeCommand command = ((global::System.Data.SqlServerCe.SqlCeCommand)(this.CommandCollection[3]));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteWebsiteByID(int id) {
+            global::System.Data.SqlServerCe.SqlCeCommand command = ((global::System.Data.SqlServerCe.SqlCeCommand)(this.CommandCollection[4]));
+            command.Parameters[0].Value = ((int)(id));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteWebsiteByName(string name) {
+            global::System.Data.SqlServerCe.SqlCeCommand command = ((global::System.Data.SqlServerCe.SqlCeCommand)(this.CommandCollection[5]));
+            if ((name == null)) {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[0].Value = ((string)(name));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
@@ -6524,66 +6788,12 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private int UpdateUpdatedRows(AutoWebAgentDBDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._stepTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.step.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._stepTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._scriptTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.script.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._scriptTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._websiteTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.website.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._websiteTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._usersTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.users.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._usersTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._conditionTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.condition.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._conditionTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._actionTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.action.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._actionTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._recognitionTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.recognition.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._recognitionTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -6596,6 +6806,60 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._stepTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.step.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._stepTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._usersTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.users.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._usersTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._actionTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.action.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._actionTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._conditionTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.condition.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._conditionTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._recognitionTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.recognition.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._recognitionTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._scriptTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.script.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._scriptTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -6605,27 +6869,27 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private int UpdateInsertedRows(AutoWebAgentDBDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._stepTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.step.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._stepTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._scriptTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.script.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._scriptTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._websiteTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.website.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._websiteTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._elementTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.element.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._elementTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._stepTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.step.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._stepTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -6637,19 +6901,19 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._conditionTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.condition.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._conditionTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._actionTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.action.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._actionTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._conditionTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.condition.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._conditionTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -6661,11 +6925,11 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._elementTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.element.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._scriptTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.script.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._elementTableAdapter.Update(addedRows));
+                    result = (result + this._scriptTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -6678,11 +6942,11 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private int UpdateDeletedRows(AutoWebAgentDBDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._elementTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.element.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._scriptTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.script.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._elementTableAdapter.Update(deletedRows));
+                    result = (result + this._scriptTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -6694,19 +6958,19 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._actionTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.action.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._actionTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._conditionTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.condition.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._conditionTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._actionTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.action.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._actionTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -6718,27 +6982,27 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._websiteTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.website.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._websiteTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._scriptTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.script.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._scriptTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._stepTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.step.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._stepTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._elementTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.element.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._elementTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._websiteTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.website.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._websiteTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

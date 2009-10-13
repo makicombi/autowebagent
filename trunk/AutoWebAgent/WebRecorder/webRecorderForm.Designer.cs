@@ -30,37 +30,36 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.saveButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.websiteNameTextBox = new System.Windows.Forms.TextBox();
             this.labelWebsiteName = new System.Windows.Forms.Label();
             this.selectedElementGroupBox = new System.Windows.Forms.GroupBox();
             this.saveElementButton = new System.Windows.Forms.Button();
             this.elementNameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.selectedElementListView = new WebRecorder.ListViewEx();
+            this.AttColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.valColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.priorityColumnHeader = new System.Windows.Forms.ColumnHeader();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.elementsDataGridView = new System.Windows.Forms.DataGridView();
+            this.autoWebAgentDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.goButton = new System.Windows.Forms.Button();
             this.urlLabel = new System.Windows.Forms.Label();
             this.urlTextBox = new System.Windows.Forms.TextBox();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.recognitionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.selectedElementListView = new WebRecorder.ListViewEx();
-            this.AttColumnHeader = new System.Windows.Forms.ColumnHeader();
-            this.valColumnHeader = new System.Windows.Forms.ColumnHeader();
-            this.priorityColumnHeader = new System.Windows.Forms.ColumnHeader();
-            this.autoWebAgentDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label2 = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.selectedElementGroupBox.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.elementsDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.recognitionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoWebAgentDBDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.recognitionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -73,7 +72,6 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.label2);
-            this.splitContainer1.Panel1.Controls.Add(this.saveButton);
             this.splitContainer1.Panel1.Controls.Add(this.websiteNameTextBox);
             this.splitContainer1.Panel1.Controls.Add(this.labelWebsiteName);
             this.splitContainer1.Panel1.Controls.Add(this.selectedElementGroupBox);
@@ -90,15 +88,15 @@
             this.splitContainer1.SplitterDistance = 333;
             this.splitContainer1.TabIndex = 0;
             // 
-            // saveButton
+            // label2
             // 
-            this.saveButton.Location = new System.Drawing.Point(1033, 36);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 9;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label2.Location = new System.Drawing.Point(393, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(312, 20);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Website Elements - Recognition Properties";
             // 
             // websiteNameTextBox
             // 
@@ -157,6 +155,41 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Element Name";
             // 
+            // selectedElementListView
+            // 
+            this.selectedElementListView.AllowColumnReorder = true;
+            this.selectedElementListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.AttColumnHeader,
+            this.valColumnHeader,
+            this.priorityColumnHeader});
+            this.selectedElementListView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.selectedElementListView.DoubleClickActivation = true;
+            this.selectedElementListView.FullRowSelect = true;
+            this.selectedElementListView.GridLines = true;
+            this.selectedElementListView.LabelEdit = true;
+            this.selectedElementListView.Location = new System.Drawing.Point(3, 16);
+            this.selectedElementListView.MultiSelect = false;
+            this.selectedElementListView.Name = "selectedElementListView";
+            this.selectedElementListView.Size = new System.Drawing.Size(306, 104);
+            this.selectedElementListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.selectedElementListView.TabIndex = 0;
+            this.selectedElementListView.UseCompatibleStateImageBehavior = false;
+            this.selectedElementListView.View = System.Windows.Forms.View.Details;
+            this.selectedElementListView.SubItemClicked += new WebRecorder.SubItemEventHandler(this.selectedElementListView_SubItemClicked);
+            // 
+            // AttColumnHeader
+            // 
+            this.AttColumnHeader.Text = "Attribute";
+            // 
+            // valColumnHeader
+            // 
+            this.valColumnHeader.Text = "Value";
+            this.valColumnHeader.Width = 180;
+            // 
+            // priorityColumnHeader
+            // 
+            this.priorityColumnHeader.Text = "Priority";
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -196,6 +229,11 @@
             this.elementsDataGridView.Name = "elementsDataGridView";
             this.elementsDataGridView.Size = new System.Drawing.Size(965, 93);
             this.elementsDataGridView.TabIndex = 3;
+            // 
+            // autoWebAgentDBDataSetBindingSource
+            // 
+            this.autoWebAgentDBDataSetBindingSource.DataSource = typeof(awaDAL.AutoWebAgentDBDataSet);
+            this.autoWebAgentDBDataSetBindingSource.Position = 0;
             // 
             // goButton
             // 
@@ -240,56 +278,6 @@
             this.recognitionBindingSource.DataMember = "recognition";
             this.recognitionBindingSource.DataSource = this.autoWebAgentDBDataSetBindingSource;
             // 
-            // selectedElementListView
-            // 
-            this.selectedElementListView.AllowColumnReorder = true;
-            this.selectedElementListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.AttColumnHeader,
-            this.valColumnHeader,
-            this.priorityColumnHeader});
-            this.selectedElementListView.Dock = System.Windows.Forms.DockStyle.Left;
-            this.selectedElementListView.DoubleClickActivation = true;
-            this.selectedElementListView.FullRowSelect = true;
-            this.selectedElementListView.GridLines = true;
-            this.selectedElementListView.LabelEdit = true;
-            this.selectedElementListView.Location = new System.Drawing.Point(3, 16);
-            this.selectedElementListView.MultiSelect = false;
-            this.selectedElementListView.Name = "selectedElementListView";
-            this.selectedElementListView.Size = new System.Drawing.Size(306, 104);
-            this.selectedElementListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.selectedElementListView.TabIndex = 0;
-            this.selectedElementListView.UseCompatibleStateImageBehavior = false;
-            this.selectedElementListView.View = System.Windows.Forms.View.Details;
-            this.selectedElementListView.SubItemClicked += new WebRecorder.SubItemEventHandler(this.selectedElementListView_SubItemClicked);
-            // 
-            // AttColumnHeader
-            // 
-            this.AttColumnHeader.Text = "Attribute";
-            // 
-            // valColumnHeader
-            // 
-            this.valColumnHeader.Text = "Value";
-            this.valColumnHeader.Width = 180;
-            // 
-            // priorityColumnHeader
-            // 
-            this.priorityColumnHeader.Text = "Priority";
-            // 
-            // autoWebAgentDBDataSetBindingSource
-            // 
-            this.autoWebAgentDBDataSetBindingSource.DataSource = typeof(awaDAL.AutoWebAgentDBDataSet);
-            this.autoWebAgentDBDataSetBindingSource.Position = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label2.Location = new System.Drawing.Point(393, 66);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(312, 20);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Website Elements - Recognition Properties";
-            // 
             // webRecorderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,8 +295,8 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.elementsDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.recognitionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoWebAgentDBDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.recognitionBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -330,7 +318,6 @@
         private System.Windows.Forms.GroupBox selectedElementGroupBox;
         private System.Windows.Forms.TextBox websiteNameTextBox;
         private System.Windows.Forms.Label labelWebsiteName;
-        private System.Windows.Forms.Button saveButton;
         private ListViewEx selectedElementListView;
         private System.Windows.Forms.ColumnHeader AttColumnHeader;
         private System.Windows.Forms.ColumnHeader valColumnHeader;
