@@ -569,7 +569,7 @@ WHERE  (website_id = @website_id)</CommandText>
               <xs:element name="value" msprop:Generator_UserColumnName="value" msprop:Generator_ColumnVarNameInTable="columnvalue" msprop:Generator_ColumnPropNameInRow="value" msprop:Generator_ColumnPropNameInTable="valueColumn" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
+                    <xs:maxLength value="2048" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

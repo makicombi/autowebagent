@@ -52,6 +52,7 @@
             this.urlTextBox = new System.Windows.Forms.TextBox();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.recognitionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.clearSiteButton = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -71,6 +72,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.clearSiteButton);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.websiteNameTextBox);
             this.splitContainer1.Panel1.Controls.Add(this.labelWebsiteName);
@@ -278,6 +280,16 @@
             this.recognitionBindingSource.DataMember = "recognition";
             this.recognitionBindingSource.DataSource = this.autoWebAgentDBDataSetBindingSource;
             // 
+            // clearSiteButton
+            // 
+            this.clearSiteButton.Location = new System.Drawing.Point(1033, 89);
+            this.clearSiteButton.Name = "clearSiteButton";
+            this.clearSiteButton.Size = new System.Drawing.Size(75, 23);
+            this.clearSiteButton.TabIndex = 11;
+            this.clearSiteButton.Text = "Clear Site";
+            this.clearSiteButton.UseVisualStyleBackColor = true;
+            this.clearSiteButton.Click += new System.EventHandler(this.clearSiteButton_Click);
+            // 
             // webRecorderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -328,6 +340,7 @@
         private System.Windows.Forms.BindingSource autoWebAgentDBDataSetBindingSource;
         private System.Windows.Forms.BindingSource recognitionBindingSource;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button clearSiteButton;
     }
 }
 
