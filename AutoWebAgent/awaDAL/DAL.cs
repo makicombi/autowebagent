@@ -66,6 +66,7 @@ namespace awaDAL
         stepTableAdapter stepAdapter;
         usersTableAdapter usersAdapter;
         websiteTableAdapter websiteAdapter;
+        QueriesTableAdapter queries;
         
 
         public bool IsInitialized { get; private set; }
@@ -80,8 +81,8 @@ namespace awaDAL
             scriptAdapter = new scriptTableAdapter();
             stepAdapter = new stepTableAdapter();
             usersAdapter = new usersTableAdapter();
-            websiteAdapter = new websiteTableAdapter();       
-
+            websiteAdapter = new websiteTableAdapter();
+            queries = new QueriesTableAdapter();
             DB = new AutoWebAgentDBDataSet();
 
             
@@ -302,7 +303,22 @@ namespace awaDAL
             return 0;
         }
 
+        public void ClearWebsiteData(int wid)
+        {
+            var element_ids = from elm in DB.element
+                           where (elm.website_id == wid)
+                           select elm.id;
+            foreach (var eid in element_ids)
+            {
+                queries.DeleteRecognitionByElementId(eid);
+                SaveChanges("recognition");
+            }
+            queries.DeleteElementsByWebsiteId(wid);
+            SaveChanges("element");
+            queries.DeleteWebsiteByID(wid);
+            //SaveChanges("website"); /*<- this is strange because it is removed from the DB before the save took place so I remove it*/
 
+        }
         
 }
 }
