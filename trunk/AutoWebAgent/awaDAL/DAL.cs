@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using System.Data.SqlServerCe;
 using System.Reflection;
 using System.Reflection.Emit;
 using awaDAL.AutoWebAgentDBDataSetTableAdapters;
@@ -242,6 +243,15 @@ namespace awaDAL
                               select new { Name = elm.name, Property = rec.attribute, Value = rec.value, Priority = rec.priority };
             return view.CopyToDataTable();
 
+        }
+        private void CreateDB(string name)
+        {
+            string filename="../../../"+name;
+            SqlCeEngine engine = new SqlCeEngine("Data Source=../../../" + name + ";Password=koby3274;Persist Security Info=True");
+            engine.CreateDatabase();
+            
+            AutoWebAgentDBDataSet template = new AutoWebAgentDBDataSet();
+            
         }
 
         public int SetElement(AutoWebAgentDBDataSet.websiteRow WebsiteRow, string elementName, string elementType, List<RecognitionProperty> elementProperties )

@@ -66,6 +66,10 @@ namespace WebRecorder
                 this.elementStyles.Add(element, style);
                 element.Style = style + "; border-style: solid; border-color: red;";
                 statusStrip1.Items[0].Text ="ID:" + (element.Id ?? "(no id)");
+                if (e.ToElement.Id=="pswd")
+                {
+                    
+                }
             }
             // prevent opening new window via target="_blank"
             //if ((att.name == "target") && (att.value == "_blank")) att.value = "_self"; 
@@ -78,6 +82,12 @@ namespace WebRecorder
         {
             webBrowser.Document.MouseOver += new HtmlElementEventHandler(Document_MouseOver);
             webBrowser.Document.MouseLeave += new HtmlElementEventHandler(Document_MouseLeave);
+            HtmlWindowCollection frames = webBrowser.Document.Window.Frames;
+            foreach (HtmlWindow frame in frames)
+            {
+                frame.Document.MouseOver += new HtmlElementEventHandler(Document_MouseOver);
+                frame.Document.MouseLeave += new HtmlElementEventHandler(Document_MouseLeave);
+            }
             
         }
 
@@ -235,6 +245,14 @@ namespace WebRecorder
                 ListViewItem item = selectedElementListView.Items.Add("OuterText");
                 item.SubItems.Add(currentElement.OuterText);
                 item.SubItems.Add("20").Tag = 20;
+            }
+            // add containing frame property
+            if (currentElement.Document.Window.WindowFrameElement != null)
+            {
+                props.Add(new DAL.RecognitionProperty("FrameContainer", currentElement.Document.Window.WindowFrameElement.Name, 20));
+                ListViewItem xitem = selectedElementListView.Items.Add("FrameContainer");
+                xitem.SubItems.Add(currentElement.Document.Window.WindowFrameElement.Name);
+                xitem.SubItems.Add("20").Tag = 20;
             }
             if ((currentElement.InnerText!=null) && (currentElement.InnerText.Length > 0))
             {
