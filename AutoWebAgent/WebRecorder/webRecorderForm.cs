@@ -302,42 +302,40 @@ namespace WebRecorder
           * 1. determined position in parent children by counting the depth of nextSibling loop
           * 2. push count to stack
           * 3. then check if parent have id attribute: if true then push id to stack else if parent=null stop else repeat 1-3 
-          * 4. serialize stack content and create a fake attribute: indirectID => [stack contents]
+          * 4. serialize stack content and create a fake attribute: indirectPath => [stack contents] with the format
+          *    <id:<id>|<name:<name>> <children indexes seperated by space> 
           */
             if ((currentElement.Name == "") && (currentElement.Id == null))
             {
-                int position = -1;
+                //int position = -1;
                 StringBuilder stack = new StringBuilder();
                 var elm = currentElement;
                 do
                 {
                     if (elm.Parent != null)
                     {
-                        position = elm.Parent.Children.Count - 1;
-                        for (var i = elm; i != null; i = i.NextSibling)
+                        
+                        for (var i = 0; i < elm.Parent.Children.Count; i++)
                         {
-                            position--;
+                        
+                            if (elm.Parent.Children[i].Equals(elm))
+                            {
+                                stack.Insert(0,i.ToString()+" ");
+                                break;
+                            }
                         }
-                        if (position > -1)
-                        {
-                            stack.Insert(0,position.ToString()+" ");
-                            position = -1;
-
-                        }
-                        else
-                        {
-                            // ???
-                        }
+                        
                         elm = elm.Parent;
                     }
                     else
                     {
                         break;
                     }
-                } while ((elm.Parent != null) && (elm.Parent.Id == null) && (elm.Parent.Name == ""));
-                if ((elm.Parent != null) && (elm.Parent.Id != null)) stack.Insert(0,"id:" + elm.Parent.Id+" ");
+                    
+                } while ((elm != null) && (elm.Id == null) && (elm.Name == ""));
+                if ((elm != null) && (elm.Id != null)) stack.Insert(0,"id:" + elm.Id+" ");
                 else
-                    if ((elm.Parent != null) && (elm.Parent.Name != "")) stack.Insert(0,"name:" + elm.Parent.Name+" ");
+                    if ((elm != null) && (elm.Name != "")) stack.Insert(0,"name:" + elm.Name+" ");
                 //MessageBox.Show(stack.ToString().TrimEnd(' '));
                 if (stack[0]>'9')
                 {
@@ -389,7 +387,7 @@ namespace WebRecorder
 
         private void saveElementButton_Click(object sender, EventArgs e)
         {
-            int eid = -1;
+            //int eid = -1;
             if (elementNameTextBox.Text.Length == 0)
             {
                 var q = from ListViewItem item in selectedElementListView.Items
