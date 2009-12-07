@@ -120,19 +120,34 @@ namespace awaDAL
             
             var query =
                 from elm in DB.element
-                join rec in DB.recognition on elm.id equals rec.id
-                join web in DB.website on rec.id equals web.id
+                join rec in DB.recognition on elm.id equals rec.element_id
+                join web in DB.website on elm.website_id equals web.id
                 where (elm.website_id == web.id) && (web.id==wid) && (elm.id==eid)
-                select new
-                {
-                    Attribute = rec.attribute,
-                    Value = rec.value,
-                    Priority = rec.priority
-                };
-            return query.Cast <RecognitionProperty>();
+                select new RecognitionProperty(rec.attribute, rec.value, rec.priority)
+                ;
+            return query;
            
 
         }
+
+        public IEnumerable<RecognitionProperty> GetElementRecogitionProperties(string wName, string eName)
+        {
+            int wid=this.GetWebsiteIDByName(wName);
+            var query =
+                from elm in DB.element
+                where (elm.website_id == wid) && (elm.name == eName)
+                select elm.id;
+            int eid=-1;
+            if (query.Count()==1)
+            {
+                eid = query.ElementAt<int>(0);
+            }
+            return GetElementRecogitionProperties(wid, eid);
+            
+
+
+        }
+
         public int GetWebsiteID(string url)
         {
             var query =
@@ -153,6 +168,28 @@ namespace awaDAL
                 return -1;
             }
         }
+
+        public int GetWebsiteIDByName(string name)
+        {
+            var query =
+                from sites in DB.website
+                where sites.name == name
+                select sites.id;
+            int count = query.Count<int>();
+            if (count > 1)
+            {
+                throw new Exception("multiple url entries with same url detected");
+            }
+            else if (count == 1)
+            {
+                return query.ElementAt<int>(0);
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
         public AutoWebAgentDBDataSet.websiteRow GetWebsiteRow(string url)
         {
             var query =
@@ -312,6 +349,8 @@ namespace awaDAL
             rowsAffected = SaveChanges("recognition");
             return 0;
         }
+
+
 
         public void ClearWebsiteData(int wid)
         {

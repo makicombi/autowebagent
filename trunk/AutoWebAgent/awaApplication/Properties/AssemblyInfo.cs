@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WebRecorder")]
+[assembly: AssemblyTitle("awaApplication")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WebRecorder")]
+[assembly: AssemblyProduct("awaApplication")]
 [assembly: AssemblyCopyright("Copyright ©  2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("fe08cb95-ab4f-4fbf-bb52-040716c6db7f")]
+[assembly: Guid("b36fac08-b732-46fa-b5f4-8aefeca3c2de")]
 
 // Version information for an assembly consists of the following four values:
 //
