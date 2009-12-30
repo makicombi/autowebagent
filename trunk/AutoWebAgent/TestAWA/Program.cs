@@ -11,8 +11,11 @@ namespace TestAWA
         [STAThread]
         static void Main(string[] args)
         {
-            TestSiteObject tso = new TestSiteObject();
-            tso.TestBind();
+            //TestSiteObject tso = new TestSiteObject();
+            //tso.TestBind();
+            TestStepConditionAction tsca = new TestStepConditionAction();
+            tsca.PopulateSteps();
+            tsca.ExecuteSteps();
         }
     }
 }

@@ -27,6 +27,8 @@ namespace awaDAL
             RESET,
             SUBMIT,
             TEXT,
+            AREA,
+            SELECT,
             NONE
         }
         static private Dictionary<string, ElementType> elementTypeMap = new Dictionary<string, ElementType>() {
@@ -40,7 +42,9 @@ namespace awaDAL
                                                                             {"RADIO",ElementType.RADIO},
                                                                             {"RESET",ElementType.RESET},
                                                                             {"SUBMIT",ElementType.SUBMIT},
-                                                                            {"TEXT",ElementType.TEXT}
+                                                                            {"TEXT",ElementType.TEXT},
+                                                                            {"AREA",ElementType.AREA},
+                                                                            {"SELECT",ElementType.SELECT}
                                                                         };
         public static ElementType StringToElementType(string s)
         {
@@ -189,7 +193,26 @@ namespace awaDAL
                 return -1;
             }
         }
-
+        public string GetWebSiteUrlByName(string wName)
+        {
+            var q =
+                from sites in DB.website
+                where sites.name == wName
+                select sites.url;
+            int count = q.Count<string>();
+            if (count > 1)
+            {
+                throw new Exception("multiple url entries with same name detected");
+            }
+            else if (count == 1)
+            {
+                return q.ElementAt<string>(0);
+            }
+            else
+            {
+                throw new Exception("Website Not Found In DB");
+            }
+        }
         public AutoWebAgentDBDataSet.websiteRow GetWebsiteRow(string url)
         {
             var query =

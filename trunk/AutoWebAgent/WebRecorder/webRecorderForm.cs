@@ -113,7 +113,7 @@ namespace WebRecorder
             {
                 urlTextBox.Text = "http://" + urlTextBox.Text;
             }
-            if (Uri.IsWellFormedUriString(urlTextBox.Text, UriKind.RelativeOrAbsolute))
+            if ((Uri.IsWellFormedUriString(urlTextBox.Text, UriKind.RelativeOrAbsolute)) || urlTextBox.Text.StartsWith("file://"))
             {
                 try
                 {
@@ -350,6 +350,14 @@ namespace WebRecorder
             if (string.Compare(tag, "input", true)==0)
             {
                 this.currentElementType = type=="" ? DAL.ElementType.TEXT : DAL.StringToElementType(type);
+            }
+            else if (string.Compare(tag, "textarea", true)==0)
+            {
+                this.currentElementType = DAL.ElementType.AREA;
+            }
+            else if (string.Compare(tag, "select", true) == 0)
+            {
+                this.currentElementType = DAL.ElementType.SELECT;
             }
             else
             {

@@ -508,6 +508,8 @@ namespace awaDAL {
             
             private global::System.Data.DataColumn columnindex;
             
+            private global::System.Data.DataColumn columntarget;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public actionDataTable() {
                 this.TableName = "action";
@@ -567,6 +569,13 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn targetColumn {
+                get {
+                    return this.columntarget;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -595,13 +604,14 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public actionRow AddactionRow(string type, string value, int index) {
+            public actionRow AddactionRow(string type, string value, int index, string target) {
                 actionRow rowactionRow = ((actionRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         type,
                         value,
-                        index};
+                        index,
+                        target};
                 rowactionRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowactionRow);
                 return rowactionRow;
@@ -631,6 +641,7 @@ namespace awaDAL {
                 this.columntype = base.Columns["type"];
                 this.columnvalue = base.Columns["value"];
                 this.columnindex = base.Columns["index"];
+                this.columntarget = base.Columns["target"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -643,6 +654,8 @@ namespace awaDAL {
                 base.Columns.Add(this.columnvalue);
                 this.columnindex = new global::System.Data.DataColumn("index", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnindex);
+                this.columntarget = new global::System.Data.DataColumn("target", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntarget);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AutoIncrement = true;
@@ -2647,7 +2660,7 @@ namespace awaDAL {
                 this.columnid.ReadOnly = true;
                 this.columnid.Unique = true;
                 this.columnname.MaxLength = 100;
-                this.columnurl.MaxLength = 100;
+                this.columnurl.MaxLength = 4000;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2835,6 +2848,21 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string target {
+                get {
+                    try {
+                        return ((string)(this[this.tableaction.targetColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'target\' in table \'action\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableaction.targetColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IstypeNull() {
                 return this.IsNull(this.tableaction.typeColumn);
             }
@@ -2862,6 +2890,16 @@ namespace awaDAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetindexNull() {
                 this[this.tableaction.indexColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IstargetNull() {
+                return this.IsNull(this.tableaction.targetColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SettargetNull() {
+                this[this.tableaction.targetColumn] = global::System.Convert.DBNull;
             }
         }
         
