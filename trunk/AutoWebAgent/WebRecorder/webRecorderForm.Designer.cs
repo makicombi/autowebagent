@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.clearSiteButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.websiteNameTextBox = new System.Windows.Forms.TextBox();
             this.labelWebsiteName = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@
             this.urlTextBox = new System.Windows.Forms.TextBox();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.recognitionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.clearSiteButton = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -89,6 +89,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(1186, 740);
             this.splitContainer1.SplitterDistance = 333;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // clearSiteButton
+            // 
+            this.clearSiteButton.Location = new System.Drawing.Point(1033, 89);
+            this.clearSiteButton.Name = "clearSiteButton";
+            this.clearSiteButton.Size = new System.Drawing.Size(75, 23);
+            this.clearSiteButton.TabIndex = 11;
+            this.clearSiteButton.Text = "Clear Site";
+            this.clearSiteButton.UseVisualStyleBackColor = true;
+            this.clearSiteButton.Click += new System.EventHandler(this.clearSiteButton_Click);
             // 
             // label2
             // 
@@ -263,6 +273,7 @@
             this.urlTextBox.Size = new System.Drawing.Size(965, 20);
             this.urlTextBox.TabIndex = 0;
             this.urlTextBox.Text = "www.google.com";
+            this.urlTextBox.TextChanged += new System.EventHandler(this.urlTextBox_TextChanged);
             this.urlTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.urlTextBox_KeyUp);
             // 
             // webBrowser
@@ -279,16 +290,6 @@
             // 
             this.recognitionBindingSource.DataMember = "recognition";
             this.recognitionBindingSource.DataSource = this.autoWebAgentDBDataSetBindingSource;
-            // 
-            // clearSiteButton
-            // 
-            this.clearSiteButton.Location = new System.Drawing.Point(1033, 89);
-            this.clearSiteButton.Name = "clearSiteButton";
-            this.clearSiteButton.Size = new System.Drawing.Size(75, 23);
-            this.clearSiteButton.TabIndex = 11;
-            this.clearSiteButton.Text = "Clear Site";
-            this.clearSiteButton.UseVisualStyleBackColor = true;
-            this.clearSiteButton.Click += new System.EventHandler(this.clearSiteButton_Click);
             // 
             // webRecorderForm
             // 

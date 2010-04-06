@@ -68,6 +68,15 @@
       <DependentUpon>awaAboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Condition.cs" />
+    <Compile Include="ListViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +87,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="awaAboutBox.resx">
       <DependentUpon>awaAboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -91,6 +103,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -109,10 +122,6 @@
     <ProjectReference Include="..\awaDAL\awaDAL.csproj">
       <Project>{5DC5CF28-2A2E-48CC-8827-FDAFCA29C57B}</Project>
       <Name>awaDAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebRecorder\WebRecorder.csproj">
-      <Project>{2CE57CDC-FC1D-454A-BBEA-0E6B1B02B281}</Project>
-      <Name>WebRecorder</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -81,6 +81,34 @@ namespace awaApplication
 
         }
     }
+
+    public class NotifyAction : ActionBase
+    {
+        public enum NotifyMethod
+        {
+            EMAIL=1,POPUP=2,LOG=4
+        }
+        NotifyMethod notifyMethod;
+        public NotifyAction(NotifyMethod method, awaDAL.DAL dal, WatiN.Core.IE ie, SiteObject target)
+            : base(dal, ie, target)
+        {
+            this.notifyMethod = method;
+        }
+        public override void Execute()
+        {
+            switch (notifyMethod)
+            {
+                case NotifyMethod.EMAIL:
+                    break;
+                case NotifyMethod.POPUP:
+                    break;
+                case NotifyMethod.LOG:
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
     /// <summary>
     /// This Class Represent a typing in a text input field action
     /// </summary>

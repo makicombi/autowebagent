@@ -14,6 +14,7 @@ namespace TestAWA
         private StepCollection steps;
         private ConditionCollection conds;
         private ActionCollection actions;
+        private Script script;
         public TestStepConditionAction()
         {
             //browser = new IE("http://www.google.com");
@@ -53,6 +54,21 @@ namespace TestAWA
                 step.Execute();
             }
         }
-        
+        public void CreateScript()
+        {
+            script = new Script();
+            script.Name = "test";
+            script.Author = "koby hershkovitz";
+            script.LastModifiedTime = DateTime.Now;
+            script.Steps = steps;
+        }
+        public void RunScript()
+        {
+            script.Run();
+        }
+        public void Cleanup()
+        {
+            browser.Close();
+        }
     }
 }

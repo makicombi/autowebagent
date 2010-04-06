@@ -45,6 +45,12 @@ namespace awaDAL {
         
         private global::System.Data.DataRelation relationFK_website_element;
         
+        private global::System.Data.DataRelation relationstep_script;
+        
+        private global::System.Data.DataRelation relationcondition_step;
+        
+        private global::System.Data.DataRelation relationaction_step;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -348,6 +354,9 @@ namespace awaDAL {
             }
             this.relationFK_element_recognition = this.Relations["FK_element_recognition"];
             this.relationFK_website_element = this.Relations["FK_website_element"];
+            this.relationstep_script = this.Relations["step_script"];
+            this.relationcondition_step = this.Relations["condition_step"];
+            this.relationaction_step = this.Relations["action_step"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -381,6 +390,18 @@ namespace awaDAL {
                         this.tablewebsite.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableelement.website_idColumn}, false);
             this.Relations.Add(this.relationFK_website_element);
+            this.relationstep_script = new global::System.Data.DataRelation("step_script", new global::System.Data.DataColumn[] {
+                        this.tablestep.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablescript.idColumn}, false);
+            this.Relations.Add(this.relationstep_script);
+            this.relationcondition_step = new global::System.Data.DataRelation("condition_step", new global::System.Data.DataColumn[] {
+                        this.tablecondition.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablestep.step_numberColumn}, false);
+            this.Relations.Add(this.relationcondition_step);
+            this.relationaction_step = new global::System.Data.DataRelation("action_step", new global::System.Data.DataColumn[] {
+                        this.tableaction.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablestep.step_numberColumn}, false);
+            this.Relations.Add(this.relationaction_step);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2070,14 +2091,17 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public stepRow AddstepRow(int script_id, int condition_id, int action_id, int step_number) {
+            public stepRow AddstepRow(int script_id, int condition_id, int action_id, conditionRow parentconditionRowBycondition_step) {
                 stepRow rowstepRow = ((stepRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         script_id,
                         condition_id,
                         action_id,
-                        step_number};
+                        null};
+                if ((parentconditionRowBycondition_step != null)) {
+                    columnValuesArray[4] = parentconditionRowBycondition_step[0];
+                }
                 rowstepRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowstepRow);
                 return rowstepRow;
@@ -2901,6 +2925,16 @@ namespace awaDAL {
             public void SettargetNull() {
                 this[this.tableaction.targetColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public stepRow[] GetstepRows() {
+                if ((this.Table.ChildRelations["action_step"] == null)) {
+                    return new stepRow[0];
+                }
+                else {
+                    return ((stepRow[])(base.GetChildRows(this.Table.ChildRelations["action_step"])));
+                }
+            }
         }
         
         /// <summary>
@@ -3075,6 +3109,16 @@ namespace awaDAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void Setrhs_element_attrNull() {
                 this[this.tablecondition.rhs_element_attrColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public stepRow[] GetstepRows() {
+                if ((this.Table.ChildRelations["condition_step"] == null)) {
+                    return new stepRow[0];
+                }
+                else {
+                    return ((stepRow[])(base.GetChildRows(this.Table.ChildRelations["condition_step"])));
+                }
             }
         }
         
@@ -3358,6 +3402,16 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public stepRow stepRow {
+                get {
+                    return ((stepRow)(this.GetParentRow(this.Table.ParentRelations["step_script"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["step_script"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IsnameNull() {
                 return this.IsNull(this.tablescript.nameColumn);
             }
@@ -3473,6 +3527,26 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public conditionRow conditionRow {
+                get {
+                    return ((conditionRow)(this.GetParentRow(this.Table.ParentRelations["condition_step"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["condition_step"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public actionRow actionRow {
+                get {
+                    return ((actionRow)(this.GetParentRow(this.Table.ParentRelations["action_step"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["action_step"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool Isscript_idNull() {
                 return this.IsNull(this.tablestep.script_idColumn);
             }
@@ -3510,6 +3584,16 @@ namespace awaDAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void Setstep_numberNull() {
                 this[this.tablestep.step_numberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public scriptRow[] GetscriptRows() {
+                if ((this.Table.ChildRelations["step_script"] == null)) {
+                    return new scriptRow[0];
+                }
+                else {
+                    return ((scriptRow[])(base.GetChildRows(this.Table.ChildRelations["step_script"])));
+                }
             }
         }
         
@@ -6835,30 +6919,12 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._elementTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.element.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._conditionTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.condition.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._elementTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._stepTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.step.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._stepTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._usersTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.users.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._usersTableAdapter.Update(updatedRows));
+                    result = (result + this._conditionTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -6871,12 +6937,21 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._conditionTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.condition.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._stepTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.step.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._conditionTableAdapter.Update(updatedRows));
+                    result = (result + this._stepTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._elementTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.element.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._elementTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -6886,6 +6961,15 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._recognitionTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._usersTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.users.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._usersTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -6915,27 +6999,11 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._elementTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.element.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._conditionTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.condition.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._elementTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._stepTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.step.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._stepTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._usersTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.users.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._usersTableAdapter.Update(addedRows));
+                    result = (result + this._conditionTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -6947,11 +7015,19 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._conditionTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.condition.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._stepTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.step.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._conditionTableAdapter.Update(addedRows));
+                    result = (result + this._stepTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._elementTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.element.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._elementTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -6960,6 +7036,14 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._recognitionTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._usersTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.users.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._usersTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -6988,6 +7072,14 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._usersTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.users.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._usersTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._recognitionTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.recognition.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -6996,27 +7088,11 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._conditionTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.condition.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._elementTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.element.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._conditionTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._actionTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.action.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._actionTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._usersTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.users.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._usersTableAdapter.Update(deletedRows));
+                    result = (result + this._elementTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -7028,11 +7104,19 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._elementTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.element.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._actionTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.action.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._elementTableAdapter.Update(deletedRows));
+                    result = (result + this._actionTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._conditionTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.condition.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._conditionTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

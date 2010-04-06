@@ -15,7 +15,10 @@ namespace TestAWA
             //tso.TestBind();
             TestStepConditionAction tsca = new TestStepConditionAction();
             tsca.PopulateSteps();
-            tsca.ExecuteSteps();
+            //tsca.ExecuteSteps();
+            tsca.CreateScript();
+            tsca.RunScript();
+            tsca.Cleanup();
         }
     }
 }
