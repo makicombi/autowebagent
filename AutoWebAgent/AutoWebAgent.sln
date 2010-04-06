@@ -10,14 +10,17 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{13CC787F-1A1F-4360-8272-215DE4738D35}"
 	ProjectSection(SolutionItems) = preProject
 		AutoWebAgent.vsmdi = AutoWebAgent.vsmdi
+		AutoWebAgent1.vsmdi = AutoWebAgent1.vsmdi
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAWA", "TestAWA\TestAWA.csproj", "{1B6336BF-82BC-49BD-B699-6B3F6A55A0F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testDAL", "testDAL\testDAL.csproj", "{5BBBF6D6-C49A-4F59-A9A4-46738049B69A}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = AutoWebAgent.vsmdi
+		CategoryFile = AutoWebAgent1.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +43,10 @@ Global
 		{1B6336BF-82BC-49BD-B699-6B3F6A55A0F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B6336BF-82BC-49BD-B699-6B3F6A55A0F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B6336BF-82BC-49BD-B699-6B3F6A55A0F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BBBF6D6-C49A-4F59-A9A4-46738049B69A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BBBF6D6-C49A-4F59-A9A4-46738049B69A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BBBF6D6-C49A-4F59-A9A4-46738049B69A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BBBF6D6-C49A-4F59-A9A4-46738049B69A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

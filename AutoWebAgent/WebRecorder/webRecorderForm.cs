@@ -448,5 +448,10 @@ namespace WebRecorder
             WebsiteID = -1; // complete the deletion of the website and return to initial state
             updateGrid();
         }
+
+        private void urlTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
