@@ -99,12 +99,17 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="TextEntryForm.resx">
+      <DependentUpon>TextEntryForm.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\DataSources\awaDAL.AutoWebAgentDBDataSet+scriptDataTable.datasource" />
+    <None Include="Properties\DataSources\awaDAL.AutoWebAgentDBDataSetTableAdapters.scriptTableAdapter.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -117,6 +122,12 @@
     <Compile Include="Script.cs" />
     <Compile Include="SiteObject.cs" />
     <Compile Include="Step.cs" />
+    <Compile Include="TextEntryForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TextEntryForm.Designer.cs">
+      <DependentUpon>TextEntryForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\awaDAL\awaDAL.csproj">
