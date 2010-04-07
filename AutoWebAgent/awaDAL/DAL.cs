@@ -119,6 +119,20 @@ namespace awaDAL
             IsInitialized = true;
         }
 
+        public int Login(string user, string password)
+        {
+            var query =
+                from u in DB.users
+                where (u.name == user) && (u.password == password)
+                select u.id;
+            if (query.Count() == 1)
+                return query.First();
+            else
+            {
+                return -1;
+            }
+        }
+
         public IEnumerable<RecognitionProperty> GetElementRecogitionProperties(int wid, int eid)
         {
             
@@ -390,6 +404,14 @@ namespace awaDAL
             queries.DeleteWebsiteByID(wid);
             //SaveChanges("website"); /*<- this is strange because it is removed from the DB before the save took place so I remove it*/
 
+        }
+
+        public IEnumerable<string> GetUserScripts(int uid)
+        {
+            var q = from scr in DB.script
+                    where scr.user_id == uid
+                    select scr.name;
+            return q.AsEnumerable<string>();
         }
        
         

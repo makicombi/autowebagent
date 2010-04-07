@@ -58,6 +58,10 @@
             this.saveElementButton = new System.Windows.Forms.Button();
             this.elementNameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.selectedElementListView = new awaApplication.ListViewEx();
+            this.AttColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.valColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.priorityColumnHeader = new System.Windows.Forms.ColumnHeader();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -69,62 +73,63 @@
             this.urlTextBox = new System.Windows.Forms.TextBox();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.tabScript = new System.Windows.Forms.TabPage();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonStepDown = new System.Windows.Forms.Button();
+            this.buttonStepUp = new System.Windows.Forms.Button();
+            this.buttonRemoveScript = new System.Windows.Forms.Button();
+            this.buttonAddScript = new System.Windows.Forms.Button();
+            this.buttonRemoveStep = new System.Windows.Forms.Button();
+            this.buttonAddStep = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.listBox13 = new System.Windows.Forms.ListBox();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.listBox14 = new System.Windows.Forms.ListBox();
-            this.listBox11 = new System.Windows.Forms.ListBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.listBox12 = new System.Windows.Forms.ListBox();
-            this.listBox9 = new System.Windows.Forms.ListBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.listBox10 = new System.Windows.Forms.ListBox();
-            this.listBox8 = new System.Windows.Forms.ListBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.listBox7 = new System.Windows.Forms.ListBox();
+            this.listBoxActionNotifyMethod4 = new System.Windows.Forms.ListBox();
+            this.textBoxActionValue4 = new System.Windows.Forms.TextBox();
+            this.textBoxActionSource4 = new System.Windows.Forms.TextBox();
+            this.listBoxActionType4 = new System.Windows.Forms.ListBox();
+            this.listBoxActionNotifyMethod3 = new System.Windows.Forms.ListBox();
+            this.textBoxActionValue3 = new System.Windows.Forms.TextBox();
+            this.textBoxActionSource3 = new System.Windows.Forms.TextBox();
+            this.listBoxActionType3 = new System.Windows.Forms.ListBox();
+            this.listBoxActionNotifyMethod2 = new System.Windows.Forms.ListBox();
+            this.textBoxActionValue2 = new System.Windows.Forms.TextBox();
+            this.textBoxActionSource2 = new System.Windows.Forms.TextBox();
+            this.listBoxActionType2 = new System.Windows.Forms.ListBox();
+            this.listBoxActionNotifyMethod1 = new System.Windows.Forms.ListBox();
+            this.textBoxActionValue1 = new System.Windows.Forms.TextBox();
+            this.textBoxActionSource1 = new System.Windows.Forms.TextBox();
+            this.listBoxActionType1 = new System.Windows.Forms.ListBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.listBox6 = new System.Windows.Forms.ListBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.listBox5 = new System.Windows.Forms.ListBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.listBox4 = new System.Windows.Forms.ListBox();
+            this.textBoxConditionAttribute4 = new System.Windows.Forms.TextBox();
+            this.textBoxConditionTarget4 = new System.Windows.Forms.TextBox();
+            this.textBoxContionSource4 = new System.Windows.Forms.TextBox();
+            this.listBoxConditionType4 = new System.Windows.Forms.ListBox();
+            this.textBoxConditionAttribute3 = new System.Windows.Forms.TextBox();
+            this.textBoxConditionTarget3 = new System.Windows.Forms.TextBox();
+            this.textBoxContionSourc3 = new System.Windows.Forms.TextBox();
+            this.listBoxConditionType3 = new System.Windows.Forms.ListBox();
+            this.textBoxConditionAttribute2 = new System.Windows.Forms.TextBox();
+            this.textBoxConditionTarget2 = new System.Windows.Forms.TextBox();
+            this.textBoxContionSource2 = new System.Windows.Forms.TextBox();
+            this.listBoxConditionType2 = new System.Windows.Forms.ListBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBoxConditionAttribute1 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxConditionTarget1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxContionSource1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.listBox3 = new System.Windows.Forms.ListBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.listBoxConditionType1 = new System.Windows.Forms.ListBox();
+            this.buttonUpdateStep = new System.Windows.Forms.Button();
+            this.textBoxStepName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBoxSteps = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxScripts = new System.Windows.Forms.ListBox();
+            this.scriptBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabSchedule = new System.Windows.Forms.TabPage();
             this.textBox22 = new System.Windows.Forms.TextBox();
             this.listBox16 = new System.Windows.Forms.ListBox();
@@ -141,11 +146,9 @@
             this.textBox23 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.scriptDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.recognitionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.selectedElementListView = new awaApplication.ListViewEx();
-            this.AttColumnHeader = new System.Windows.Forms.ColumnHeader();
-            this.valColumnHeader = new System.Windows.Forms.ColumnHeader();
-            this.priorityColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.scriptTableAdapterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabContainer.SuspendLayout();
@@ -161,11 +164,14 @@
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scriptBindingSource)).BeginInit();
             this.tabSchedule.SuspendLayout();
             this.tabActivation.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scriptDataTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recognitionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scriptTableAdapterBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -221,7 +227,6 @@
             this.scriptToolStripMenuItem.Name = "scriptToolStripMenuItem";
             this.scriptToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.scriptToolStripMenuItem.Text = "S&cript";
-            this.scriptToolStripMenuItem.Click += new System.EventHandler(this.scriptToolStripMenuItem_Click);
             // 
             // mapToolStripMenuItem
             // 
@@ -436,6 +441,40 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Element Name";
             // 
+            // selectedElementListView
+            // 
+            this.selectedElementListView.AllowColumnReorder = true;
+            this.selectedElementListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.AttColumnHeader,
+            this.valColumnHeader,
+            this.priorityColumnHeader});
+            this.selectedElementListView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.selectedElementListView.DoubleClickActivation = true;
+            this.selectedElementListView.FullRowSelect = true;
+            this.selectedElementListView.GridLines = true;
+            this.selectedElementListView.LabelEdit = true;
+            this.selectedElementListView.Location = new System.Drawing.Point(3, 16);
+            this.selectedElementListView.MultiSelect = false;
+            this.selectedElementListView.Name = "selectedElementListView";
+            this.selectedElementListView.Size = new System.Drawing.Size(306, 104);
+            this.selectedElementListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.selectedElementListView.TabIndex = 0;
+            this.selectedElementListView.UseCompatibleStateImageBehavior = false;
+            this.selectedElementListView.View = System.Windows.Forms.View.Details;
+            // 
+            // AttColumnHeader
+            // 
+            this.AttColumnHeader.Text = "Attribute";
+            // 
+            // valColumnHeader
+            // 
+            this.valColumnHeader.Text = "Value";
+            this.valColumnHeader.Width = 180;
+            // 
+            // priorityColumnHeader
+            // 
+            this.priorityColumnHeader.Text = "Priority";
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -522,17 +561,17 @@
             // 
             // tabScript
             // 
-            this.tabScript.Controls.Add(this.button7);
-            this.tabScript.Controls.Add(this.button6);
-            this.tabScript.Controls.Add(this.button4);
-            this.tabScript.Controls.Add(this.button3);
-            this.tabScript.Controls.Add(this.button2);
-            this.tabScript.Controls.Add(this.button1);
+            this.tabScript.Controls.Add(this.buttonStepDown);
+            this.tabScript.Controls.Add(this.buttonStepUp);
+            this.tabScript.Controls.Add(this.buttonRemoveScript);
+            this.tabScript.Controls.Add(this.buttonAddScript);
+            this.tabScript.Controls.Add(this.buttonRemoveStep);
+            this.tabScript.Controls.Add(this.buttonAddStep);
             this.tabScript.Controls.Add(this.groupBox1);
             this.tabScript.Controls.Add(this.label4);
-            this.tabScript.Controls.Add(this.listBox2);
+            this.tabScript.Controls.Add(this.listBoxSteps);
             this.tabScript.Controls.Add(this.label3);
-            this.tabScript.Controls.Add(this.listBox1);
+            this.tabScript.Controls.Add(this.listBoxScripts);
             this.tabScript.Location = new System.Drawing.Point(4, 22);
             this.tabScript.Name = "tabScript";
             this.tabScript.Padding = new System.Windows.Forms.Padding(3);
@@ -541,66 +580,67 @@
             this.tabScript.Text = "Script";
             this.tabScript.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // buttonStepDown
             // 
-            this.button7.Location = new System.Drawing.Point(362, 197);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(78, 23);
-            this.button7.TabIndex = 10;
-            this.button7.Text = "move down";
-            this.button7.UseVisualStyleBackColor = true;
+            this.buttonStepDown.Location = new System.Drawing.Point(362, 197);
+            this.buttonStepDown.Name = "buttonStepDown";
+            this.buttonStepDown.Size = new System.Drawing.Size(78, 23);
+            this.buttonStepDown.TabIndex = 10;
+            this.buttonStepDown.Text = "move down";
+            this.buttonStepDown.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // buttonStepUp
             // 
-            this.button6.Location = new System.Drawing.Point(362, 168);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(78, 23);
-            this.button6.TabIndex = 9;
-            this.button6.Text = "move up";
-            this.button6.UseVisualStyleBackColor = true;
+            this.buttonStepUp.Location = new System.Drawing.Point(362, 168);
+            this.buttonStepUp.Name = "buttonStepUp";
+            this.buttonStepUp.Size = new System.Drawing.Size(78, 23);
+            this.buttonStepUp.TabIndex = 9;
+            this.buttonStepUp.Text = "move up";
+            this.buttonStepUp.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // buttonRemoveScript
             // 
-            this.button4.Location = new System.Drawing.Point(18, 418);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(182, 23);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "remove script";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonRemoveScript.Location = new System.Drawing.Point(18, 418);
+            this.buttonRemoveScript.Name = "buttonRemoveScript";
+            this.buttonRemoveScript.Size = new System.Drawing.Size(182, 23);
+            this.buttonRemoveScript.TabIndex = 8;
+            this.buttonRemoveScript.Text = "remove script";
+            this.buttonRemoveScript.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonAddScript
             // 
-            this.button3.Location = new System.Drawing.Point(18, 389);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(182, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "add script";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonAddScript.Location = new System.Drawing.Point(18, 389);
+            this.buttonAddScript.Name = "buttonAddScript";
+            this.buttonAddScript.Size = new System.Drawing.Size(182, 23);
+            this.buttonAddScript.TabIndex = 7;
+            this.buttonAddScript.Text = "add script";
+            this.buttonAddScript.UseVisualStyleBackColor = true;
+            this.buttonAddScript.Click += new System.EventHandler(this.buttonAddScript_Click);
             // 
-            // button2
+            // buttonRemoveStep
             // 
-            this.button2.Location = new System.Drawing.Point(211, 419);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(145, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "remove step";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonRemoveStep.Location = new System.Drawing.Point(211, 419);
+            this.buttonRemoveStep.Name = "buttonRemoveStep";
+            this.buttonRemoveStep.Size = new System.Drawing.Size(145, 23);
+            this.buttonRemoveStep.TabIndex = 6;
+            this.buttonRemoveStep.Text = "remove step";
+            this.buttonRemoveStep.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // buttonAddStep
             // 
-            this.button1.Location = new System.Drawing.Point(211, 390);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(145, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "add step";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonAddStep.Location = new System.Drawing.Point(211, 390);
+            this.buttonAddStep.Name = "buttonAddStep";
+            this.buttonAddStep.Size = new System.Drawing.Size(145, 23);
+            this.buttonAddStep.TabIndex = 5;
+            this.buttonAddStep.Text = "add step";
+            this.buttonAddStep.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.buttonUpdateStep);
+            this.groupBox1.Controls.Add(this.textBoxStepName);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(446, 41);
             this.groupBox1.Name = "groupBox1";
@@ -611,22 +651,22 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.listBox13);
-            this.groupBox3.Controls.Add(this.textBox20);
-            this.groupBox3.Controls.Add(this.textBox21);
-            this.groupBox3.Controls.Add(this.listBox14);
-            this.groupBox3.Controls.Add(this.listBox11);
-            this.groupBox3.Controls.Add(this.textBox18);
-            this.groupBox3.Controls.Add(this.textBox19);
-            this.groupBox3.Controls.Add(this.listBox12);
-            this.groupBox3.Controls.Add(this.listBox9);
-            this.groupBox3.Controls.Add(this.textBox14);
-            this.groupBox3.Controls.Add(this.textBox17);
-            this.groupBox3.Controls.Add(this.listBox10);
-            this.groupBox3.Controls.Add(this.listBox8);
-            this.groupBox3.Controls.Add(this.textBox15);
-            this.groupBox3.Controls.Add(this.textBox16);
-            this.groupBox3.Controls.Add(this.listBox7);
+            this.groupBox3.Controls.Add(this.listBoxActionNotifyMethod4);
+            this.groupBox3.Controls.Add(this.textBoxActionValue4);
+            this.groupBox3.Controls.Add(this.textBoxActionSource4);
+            this.groupBox3.Controls.Add(this.listBoxActionType4);
+            this.groupBox3.Controls.Add(this.listBoxActionNotifyMethod3);
+            this.groupBox3.Controls.Add(this.textBoxActionValue3);
+            this.groupBox3.Controls.Add(this.textBoxActionSource3);
+            this.groupBox3.Controls.Add(this.listBoxActionType3);
+            this.groupBox3.Controls.Add(this.listBoxActionNotifyMethod2);
+            this.groupBox3.Controls.Add(this.textBoxActionValue2);
+            this.groupBox3.Controls.Add(this.textBoxActionSource2);
+            this.groupBox3.Controls.Add(this.listBoxActionType2);
+            this.groupBox3.Controls.Add(this.listBoxActionNotifyMethod1);
+            this.groupBox3.Controls.Add(this.textBoxActionValue1);
+            this.groupBox3.Controls.Add(this.textBoxActionSource1);
+            this.groupBox3.Controls.Add(this.listBoxActionType1);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label12);
@@ -638,165 +678,165 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Actions";
             // 
-            // listBox13
+            // listBoxActionNotifyMethod4
             // 
-            this.listBox13.FormattingEnabled = true;
-            this.listBox13.Items.AddRange(new object[] {
+            this.listBoxActionNotifyMethod4.FormattingEnabled = true;
+            this.listBoxActionNotifyMethod4.Items.AddRange(new object[] {
             "Email",
             "Log",
             "Popup"});
-            this.listBox13.Location = new System.Drawing.Point(339, 110);
-            this.listBox13.Name = "listBox13";
-            this.listBox13.Size = new System.Drawing.Size(104, 17);
-            this.listBox13.TabIndex = 27;
+            this.listBoxActionNotifyMethod4.Location = new System.Drawing.Point(339, 110);
+            this.listBoxActionNotifyMethod4.Name = "listBoxActionNotifyMethod4";
+            this.listBoxActionNotifyMethod4.Size = new System.Drawing.Size(104, 17);
+            this.listBoxActionNotifyMethod4.TabIndex = 27;
             // 
-            // textBox20
+            // textBoxActionValue4
             // 
-            this.textBox20.Location = new System.Drawing.Point(229, 110);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(104, 20);
-            this.textBox20.TabIndex = 26;
+            this.textBoxActionValue4.Location = new System.Drawing.Point(229, 110);
+            this.textBoxActionValue4.Name = "textBoxActionValue4";
+            this.textBoxActionValue4.Size = new System.Drawing.Size(104, 20);
+            this.textBoxActionValue4.TabIndex = 26;
             // 
-            // textBox21
+            // textBoxActionSource4
             // 
-            this.textBox21.Location = new System.Drawing.Point(119, 110);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(104, 20);
-            this.textBox21.TabIndex = 25;
+            this.textBoxActionSource4.Location = new System.Drawing.Point(119, 110);
+            this.textBoxActionSource4.Name = "textBoxActionSource4";
+            this.textBoxActionSource4.Size = new System.Drawing.Size(104, 20);
+            this.textBoxActionSource4.TabIndex = 25;
             // 
-            // listBox14
+            // listBoxActionType4
             // 
-            this.listBox14.FormattingEnabled = true;
-            this.listBox14.Items.AddRange(new object[] {
+            this.listBoxActionType4.FormattingEnabled = true;
+            this.listBoxActionType4.Items.AddRange(new object[] {
             "Select",
             "Check",
             "Uncheck",
             "Type Text",
             "Notify"});
-            this.listBox14.Location = new System.Drawing.Point(9, 110);
-            this.listBox14.Name = "listBox14";
-            this.listBox14.Size = new System.Drawing.Size(104, 17);
-            this.listBox14.TabIndex = 24;
+            this.listBoxActionType4.Location = new System.Drawing.Point(9, 110);
+            this.listBoxActionType4.Name = "listBoxActionType4";
+            this.listBoxActionType4.Size = new System.Drawing.Size(104, 17);
+            this.listBoxActionType4.TabIndex = 24;
             // 
-            // listBox11
+            // listBoxActionNotifyMethod3
             // 
-            this.listBox11.FormattingEnabled = true;
-            this.listBox11.Items.AddRange(new object[] {
+            this.listBoxActionNotifyMethod3.FormattingEnabled = true;
+            this.listBoxActionNotifyMethod3.Items.AddRange(new object[] {
             "Email",
             "Log",
             "Popup"});
-            this.listBox11.Location = new System.Drawing.Point(339, 87);
-            this.listBox11.Name = "listBox11";
-            this.listBox11.Size = new System.Drawing.Size(104, 17);
-            this.listBox11.TabIndex = 23;
+            this.listBoxActionNotifyMethod3.Location = new System.Drawing.Point(339, 87);
+            this.listBoxActionNotifyMethod3.Name = "listBoxActionNotifyMethod3";
+            this.listBoxActionNotifyMethod3.Size = new System.Drawing.Size(104, 17);
+            this.listBoxActionNotifyMethod3.TabIndex = 23;
             // 
-            // textBox18
+            // textBoxActionValue3
             // 
-            this.textBox18.Location = new System.Drawing.Point(229, 87);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(104, 20);
-            this.textBox18.TabIndex = 22;
+            this.textBoxActionValue3.Location = new System.Drawing.Point(229, 87);
+            this.textBoxActionValue3.Name = "textBoxActionValue3";
+            this.textBoxActionValue3.Size = new System.Drawing.Size(104, 20);
+            this.textBoxActionValue3.TabIndex = 22;
             // 
-            // textBox19
+            // textBoxActionSource3
             // 
-            this.textBox19.Location = new System.Drawing.Point(119, 87);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(104, 20);
-            this.textBox19.TabIndex = 21;
+            this.textBoxActionSource3.Location = new System.Drawing.Point(119, 87);
+            this.textBoxActionSource3.Name = "textBoxActionSource3";
+            this.textBoxActionSource3.Size = new System.Drawing.Size(104, 20);
+            this.textBoxActionSource3.TabIndex = 21;
             // 
-            // listBox12
+            // listBoxActionType3
             // 
-            this.listBox12.FormattingEnabled = true;
-            this.listBox12.Items.AddRange(new object[] {
+            this.listBoxActionType3.FormattingEnabled = true;
+            this.listBoxActionType3.Items.AddRange(new object[] {
             "Select",
             "Check",
             "Uncheck",
             "Type Text",
             "Notify"});
-            this.listBox12.Location = new System.Drawing.Point(9, 87);
-            this.listBox12.Name = "listBox12";
-            this.listBox12.Size = new System.Drawing.Size(104, 17);
-            this.listBox12.TabIndex = 20;
+            this.listBoxActionType3.Location = new System.Drawing.Point(9, 87);
+            this.listBoxActionType3.Name = "listBoxActionType3";
+            this.listBoxActionType3.Size = new System.Drawing.Size(104, 17);
+            this.listBoxActionType3.TabIndex = 20;
             // 
-            // listBox9
+            // listBoxActionNotifyMethod2
             // 
-            this.listBox9.FormattingEnabled = true;
-            this.listBox9.Items.AddRange(new object[] {
+            this.listBoxActionNotifyMethod2.FormattingEnabled = true;
+            this.listBoxActionNotifyMethod2.Items.AddRange(new object[] {
             "Email",
             "Log",
             "Popup"});
-            this.listBox9.Location = new System.Drawing.Point(339, 64);
-            this.listBox9.Name = "listBox9";
-            this.listBox9.Size = new System.Drawing.Size(104, 17);
-            this.listBox9.TabIndex = 19;
+            this.listBoxActionNotifyMethod2.Location = new System.Drawing.Point(339, 64);
+            this.listBoxActionNotifyMethod2.Name = "listBoxActionNotifyMethod2";
+            this.listBoxActionNotifyMethod2.Size = new System.Drawing.Size(104, 17);
+            this.listBoxActionNotifyMethod2.TabIndex = 19;
             // 
-            // textBox14
+            // textBoxActionValue2
             // 
-            this.textBox14.Location = new System.Drawing.Point(229, 64);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(104, 20);
-            this.textBox14.TabIndex = 18;
+            this.textBoxActionValue2.Location = new System.Drawing.Point(229, 64);
+            this.textBoxActionValue2.Name = "textBoxActionValue2";
+            this.textBoxActionValue2.Size = new System.Drawing.Size(104, 20);
+            this.textBoxActionValue2.TabIndex = 18;
             // 
-            // textBox17
+            // textBoxActionSource2
             // 
-            this.textBox17.Location = new System.Drawing.Point(119, 64);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(104, 20);
-            this.textBox17.TabIndex = 17;
+            this.textBoxActionSource2.Location = new System.Drawing.Point(119, 64);
+            this.textBoxActionSource2.Name = "textBoxActionSource2";
+            this.textBoxActionSource2.Size = new System.Drawing.Size(104, 20);
+            this.textBoxActionSource2.TabIndex = 17;
             // 
-            // listBox10
+            // listBoxActionType2
             // 
-            this.listBox10.FormattingEnabled = true;
-            this.listBox10.Items.AddRange(new object[] {
+            this.listBoxActionType2.FormattingEnabled = true;
+            this.listBoxActionType2.Items.AddRange(new object[] {
             "Select",
             "Check",
             "Uncheck",
             "Type Text",
             "Notify"});
-            this.listBox10.Location = new System.Drawing.Point(9, 64);
-            this.listBox10.Name = "listBox10";
-            this.listBox10.Size = new System.Drawing.Size(104, 17);
-            this.listBox10.TabIndex = 16;
+            this.listBoxActionType2.Location = new System.Drawing.Point(9, 64);
+            this.listBoxActionType2.Name = "listBoxActionType2";
+            this.listBoxActionType2.Size = new System.Drawing.Size(104, 17);
+            this.listBoxActionType2.TabIndex = 16;
             // 
-            // listBox8
+            // listBoxActionNotifyMethod1
             // 
-            this.listBox8.FormattingEnabled = true;
-            this.listBox8.Items.AddRange(new object[] {
+            this.listBoxActionNotifyMethod1.FormattingEnabled = true;
+            this.listBoxActionNotifyMethod1.Items.AddRange(new object[] {
             "Email",
             "Log",
             "Popup"});
-            this.listBox8.Location = new System.Drawing.Point(339, 41);
-            this.listBox8.Name = "listBox8";
-            this.listBox8.Size = new System.Drawing.Size(104, 17);
-            this.listBox8.TabIndex = 15;
+            this.listBoxActionNotifyMethod1.Location = new System.Drawing.Point(339, 41);
+            this.listBoxActionNotifyMethod1.Name = "listBoxActionNotifyMethod1";
+            this.listBoxActionNotifyMethod1.Size = new System.Drawing.Size(104, 17);
+            this.listBoxActionNotifyMethod1.TabIndex = 15;
             // 
-            // textBox15
+            // textBoxActionValue1
             // 
-            this.textBox15.Location = new System.Drawing.Point(229, 41);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(104, 20);
-            this.textBox15.TabIndex = 14;
+            this.textBoxActionValue1.Location = new System.Drawing.Point(229, 41);
+            this.textBoxActionValue1.Name = "textBoxActionValue1";
+            this.textBoxActionValue1.Size = new System.Drawing.Size(104, 20);
+            this.textBoxActionValue1.TabIndex = 14;
             // 
-            // textBox16
+            // textBoxActionSource1
             // 
-            this.textBox16.Location = new System.Drawing.Point(119, 41);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(104, 20);
-            this.textBox16.TabIndex = 13;
+            this.textBoxActionSource1.Location = new System.Drawing.Point(119, 41);
+            this.textBoxActionSource1.Name = "textBoxActionSource1";
+            this.textBoxActionSource1.Size = new System.Drawing.Size(104, 20);
+            this.textBoxActionSource1.TabIndex = 13;
             // 
-            // listBox7
+            // listBoxActionType1
             // 
-            this.listBox7.FormattingEnabled = true;
-            this.listBox7.Items.AddRange(new object[] {
+            this.listBoxActionType1.FormattingEnabled = true;
+            this.listBoxActionType1.Items.AddRange(new object[] {
             "Select",
             "Check",
             "Uncheck",
             "Type Text",
             "Notify"});
-            this.listBox7.Location = new System.Drawing.Point(9, 41);
-            this.listBox7.Name = "listBox7";
-            this.listBox7.Size = new System.Drawing.Size(104, 17);
-            this.listBox7.TabIndex = 12;
+            this.listBoxActionType1.Location = new System.Drawing.Point(9, 41);
+            this.listBoxActionType1.Name = "listBoxActionType1";
+            this.listBoxActionType1.Size = new System.Drawing.Size(104, 17);
+            this.listBoxActionType1.TabIndex = 12;
             // 
             // label10
             // 
@@ -836,26 +876,26 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox11);
-            this.groupBox2.Controls.Add(this.textBox12);
-            this.groupBox2.Controls.Add(this.textBox13);
-            this.groupBox2.Controls.Add(this.listBox6);
-            this.groupBox2.Controls.Add(this.textBox8);
-            this.groupBox2.Controls.Add(this.textBox9);
-            this.groupBox2.Controls.Add(this.textBox10);
-            this.groupBox2.Controls.Add(this.listBox5);
-            this.groupBox2.Controls.Add(this.textBox5);
-            this.groupBox2.Controls.Add(this.textBox6);
-            this.groupBox2.Controls.Add(this.textBox7);
-            this.groupBox2.Controls.Add(this.listBox4);
+            this.groupBox2.Controls.Add(this.textBoxConditionAttribute4);
+            this.groupBox2.Controls.Add(this.textBoxConditionTarget4);
+            this.groupBox2.Controls.Add(this.textBoxContionSource4);
+            this.groupBox2.Controls.Add(this.listBoxConditionType4);
+            this.groupBox2.Controls.Add(this.textBoxConditionAttribute3);
+            this.groupBox2.Controls.Add(this.textBoxConditionTarget3);
+            this.groupBox2.Controls.Add(this.textBoxContionSourc3);
+            this.groupBox2.Controls.Add(this.listBoxConditionType3);
+            this.groupBox2.Controls.Add(this.textBoxConditionAttribute2);
+            this.groupBox2.Controls.Add(this.textBoxConditionTarget2);
+            this.groupBox2.Controls.Add(this.textBoxContionSource2);
+            this.groupBox2.Controls.Add(this.listBoxConditionType2);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.textBox4);
+            this.groupBox2.Controls.Add(this.textBoxConditionAttribute1);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.textBoxConditionTarget1);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.textBoxContionSource1);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.listBox3);
+            this.groupBox2.Controls.Add(this.listBoxConditionType1);
             this.groupBox2.Location = new System.Drawing.Point(6, 46);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(538, 146);
@@ -863,113 +903,113 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Conditions";
             // 
-            // textBox11
+            // textBoxConditionAttribute4
             // 
-            this.textBox11.Location = new System.Drawing.Point(336, 103);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(104, 20);
-            this.textBox11.TabIndex = 19;
+            this.textBoxConditionAttribute4.Location = new System.Drawing.Point(336, 103);
+            this.textBoxConditionAttribute4.Name = "textBoxConditionAttribute4";
+            this.textBoxConditionAttribute4.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionAttribute4.TabIndex = 19;
             // 
-            // textBox12
+            // textBoxConditionTarget4
             // 
-            this.textBox12.Location = new System.Drawing.Point(226, 103);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(104, 20);
-            this.textBox12.TabIndex = 18;
+            this.textBoxConditionTarget4.Location = new System.Drawing.Point(226, 103);
+            this.textBoxConditionTarget4.Name = "textBoxConditionTarget4";
+            this.textBoxConditionTarget4.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionTarget4.TabIndex = 18;
             // 
-            // textBox13
+            // textBoxContionSource4
             // 
-            this.textBox13.Location = new System.Drawing.Point(116, 103);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(104, 20);
-            this.textBox13.TabIndex = 17;
+            this.textBoxContionSource4.Location = new System.Drawing.Point(116, 103);
+            this.textBoxContionSource4.Name = "textBoxContionSource4";
+            this.textBoxContionSource4.Size = new System.Drawing.Size(104, 20);
+            this.textBoxContionSource4.TabIndex = 17;
             // 
-            // listBox6
+            // listBoxConditionType4
             // 
-            this.listBox6.FormattingEnabled = true;
-            this.listBox6.Items.AddRange(new object[] {
+            this.listBoxConditionType4.FormattingEnabled = true;
+            this.listBoxConditionType4.Items.AddRange(new object[] {
             "True",
             "Value",
             "Equal",
             "False",
             "Checked",
             "Selected"});
-            this.listBox6.Location = new System.Drawing.Point(6, 103);
-            this.listBox6.Name = "listBox6";
-            this.listBox6.Size = new System.Drawing.Size(104, 17);
-            this.listBox6.TabIndex = 16;
+            this.listBoxConditionType4.Location = new System.Drawing.Point(6, 103);
+            this.listBoxConditionType4.Name = "listBoxConditionType4";
+            this.listBoxConditionType4.Size = new System.Drawing.Size(104, 17);
+            this.listBoxConditionType4.TabIndex = 16;
             // 
-            // textBox8
+            // textBoxConditionAttribute3
             // 
-            this.textBox8.Location = new System.Drawing.Point(336, 80);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(104, 20);
-            this.textBox8.TabIndex = 15;
+            this.textBoxConditionAttribute3.Location = new System.Drawing.Point(336, 80);
+            this.textBoxConditionAttribute3.Name = "textBoxConditionAttribute3";
+            this.textBoxConditionAttribute3.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionAttribute3.TabIndex = 15;
             // 
-            // textBox9
+            // textBoxConditionTarget3
             // 
-            this.textBox9.Location = new System.Drawing.Point(226, 80);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(104, 20);
-            this.textBox9.TabIndex = 14;
+            this.textBoxConditionTarget3.Location = new System.Drawing.Point(226, 80);
+            this.textBoxConditionTarget3.Name = "textBoxConditionTarget3";
+            this.textBoxConditionTarget3.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionTarget3.TabIndex = 14;
             // 
-            // textBox10
+            // textBoxContionSourc3
             // 
-            this.textBox10.Location = new System.Drawing.Point(116, 80);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(104, 20);
-            this.textBox10.TabIndex = 13;
+            this.textBoxContionSourc3.Location = new System.Drawing.Point(116, 80);
+            this.textBoxContionSourc3.Name = "textBoxContionSourc3";
+            this.textBoxContionSourc3.Size = new System.Drawing.Size(104, 20);
+            this.textBoxContionSourc3.TabIndex = 13;
             // 
-            // listBox5
+            // listBoxConditionType3
             // 
-            this.listBox5.FormattingEnabled = true;
-            this.listBox5.Items.AddRange(new object[] {
+            this.listBoxConditionType3.FormattingEnabled = true;
+            this.listBoxConditionType3.Items.AddRange(new object[] {
             "True",
             "Value",
             "Equal",
             "False",
             "Checked",
             "Selected"});
-            this.listBox5.Location = new System.Drawing.Point(6, 80);
-            this.listBox5.Name = "listBox5";
-            this.listBox5.Size = new System.Drawing.Size(104, 17);
-            this.listBox5.TabIndex = 12;
+            this.listBoxConditionType3.Location = new System.Drawing.Point(6, 80);
+            this.listBoxConditionType3.Name = "listBoxConditionType3";
+            this.listBoxConditionType3.Size = new System.Drawing.Size(104, 17);
+            this.listBoxConditionType3.TabIndex = 12;
             // 
-            // textBox5
+            // textBoxConditionAttribute2
             // 
-            this.textBox5.Location = new System.Drawing.Point(336, 57);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(104, 20);
-            this.textBox5.TabIndex = 11;
+            this.textBoxConditionAttribute2.Location = new System.Drawing.Point(336, 57);
+            this.textBoxConditionAttribute2.Name = "textBoxConditionAttribute2";
+            this.textBoxConditionAttribute2.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionAttribute2.TabIndex = 11;
             // 
-            // textBox6
+            // textBoxConditionTarget2
             // 
-            this.textBox6.Location = new System.Drawing.Point(226, 57);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(104, 20);
-            this.textBox6.TabIndex = 10;
+            this.textBoxConditionTarget2.Location = new System.Drawing.Point(226, 57);
+            this.textBoxConditionTarget2.Name = "textBoxConditionTarget2";
+            this.textBoxConditionTarget2.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionTarget2.TabIndex = 10;
             // 
-            // textBox7
+            // textBoxContionSource2
             // 
-            this.textBox7.Location = new System.Drawing.Point(116, 57);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(104, 20);
-            this.textBox7.TabIndex = 9;
+            this.textBoxContionSource2.Location = new System.Drawing.Point(116, 57);
+            this.textBoxContionSource2.Name = "textBoxContionSource2";
+            this.textBoxContionSource2.Size = new System.Drawing.Size(104, 20);
+            this.textBoxContionSource2.TabIndex = 9;
             // 
-            // listBox4
+            // listBoxConditionType2
             // 
-            this.listBox4.FormattingEnabled = true;
-            this.listBox4.Items.AddRange(new object[] {
+            this.listBoxConditionType2.FormattingEnabled = true;
+            this.listBoxConditionType2.Items.AddRange(new object[] {
             "True",
             "Value",
             "Equal",
             "False",
             "Checked",
             "Selected"});
-            this.listBox4.Location = new System.Drawing.Point(6, 57);
-            this.listBox4.Name = "listBox4";
-            this.listBox4.Size = new System.Drawing.Size(104, 17);
-            this.listBox4.TabIndex = 8;
+            this.listBoxConditionType2.Location = new System.Drawing.Point(6, 57);
+            this.listBoxConditionType2.Name = "listBoxConditionType2";
+            this.listBoxConditionType2.Size = new System.Drawing.Size(104, 17);
+            this.listBoxConditionType2.TabIndex = 8;
             // 
             // label9
             // 
@@ -980,12 +1020,12 @@
             this.label9.TabIndex = 7;
             this.label9.Text = "Attribute";
             // 
-            // textBox4
+            // textBoxConditionAttribute1
             // 
-            this.textBox4.Location = new System.Drawing.Point(336, 34);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(104, 20);
-            this.textBox4.TabIndex = 6;
+            this.textBoxConditionAttribute1.Location = new System.Drawing.Point(336, 34);
+            this.textBoxConditionAttribute1.Name = "textBoxConditionAttribute1";
+            this.textBoxConditionAttribute1.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionAttribute1.TabIndex = 6;
             // 
             // label8
             // 
@@ -996,12 +1036,12 @@
             this.label8.TabIndex = 5;
             this.label8.Text = "Target/Value";
             // 
-            // textBox3
+            // textBoxConditionTarget1
             // 
-            this.textBox3.Location = new System.Drawing.Point(226, 34);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(104, 20);
-            this.textBox3.TabIndex = 4;
+            this.textBoxConditionTarget1.Location = new System.Drawing.Point(226, 34);
+            this.textBoxConditionTarget1.Name = "textBoxConditionTarget1";
+            this.textBoxConditionTarget1.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionTarget1.TabIndex = 4;
             // 
             // label7
             // 
@@ -1012,12 +1052,12 @@
             this.label7.TabIndex = 3;
             this.label7.Text = "Source";
             // 
-            // textBox2
+            // textBoxContionSource1
             // 
-            this.textBox2.Location = new System.Drawing.Point(116, 34);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(104, 20);
-            this.textBox2.TabIndex = 2;
+            this.textBoxContionSource1.Location = new System.Drawing.Point(116, 34);
+            this.textBoxContionSource1.Name = "textBoxContionSource1";
+            this.textBoxContionSource1.Size = new System.Drawing.Size(104, 20);
+            this.textBoxContionSource1.TabIndex = 2;
             // 
             // label6
             // 
@@ -1028,36 +1068,36 @@
             this.label6.TabIndex = 1;
             this.label6.Text = "Type";
             // 
-            // listBox3
+            // listBoxConditionType1
             // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.Items.AddRange(new object[] {
+            this.listBoxConditionType1.FormattingEnabled = true;
+            this.listBoxConditionType1.Items.AddRange(new object[] {
             "True",
             "Value",
             "Equal",
             "False",
             "Checked",
             "Selected"});
-            this.listBox3.Location = new System.Drawing.Point(6, 34);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(104, 17);
-            this.listBox3.TabIndex = 0;
+            this.listBoxConditionType1.Location = new System.Drawing.Point(6, 34);
+            this.listBoxConditionType1.Name = "listBoxConditionType1";
+            this.listBoxConditionType1.Size = new System.Drawing.Size(104, 17);
+            this.listBoxConditionType1.TabIndex = 0;
             // 
-            // button5
+            // buttonUpdateStep
             // 
-            this.button5.Location = new System.Drawing.Point(414, 377);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(130, 23);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "update step";
-            this.button5.UseVisualStyleBackColor = true;
+            this.buttonUpdateStep.Location = new System.Drawing.Point(414, 377);
+            this.buttonUpdateStep.Name = "buttonUpdateStep";
+            this.buttonUpdateStep.Size = new System.Drawing.Size(130, 23);
+            this.buttonUpdateStep.TabIndex = 2;
+            this.buttonUpdateStep.Text = "update step";
+            this.buttonUpdateStep.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // textBoxStepName
             // 
-            this.textBox1.Location = new System.Drawing.Point(69, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(237, 20);
-            this.textBox1.TabIndex = 1;
+            this.textBoxStepName.Location = new System.Drawing.Point(69, 20);
+            this.textBoxStepName.Name = "textBoxStepName";
+            this.textBoxStepName.Size = new System.Drawing.Size(237, 20);
+            this.textBoxStepName.TabIndex = 1;
             // 
             // label5
             // 
@@ -1077,18 +1117,18 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Steps";
             // 
-            // listBox2
+            // listBoxSteps
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Items.AddRange(new object[] {
+            this.listBoxSteps.FormattingEnabled = true;
+            this.listBoxSteps.Items.AddRange(new object[] {
             "enter loans",
             "login",
             "extend all loans",
             "report via email"});
-            this.listBox2.Location = new System.Drawing.Point(211, 42);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(145, 342);
-            this.listBox2.TabIndex = 2;
+            this.listBoxSteps.Location = new System.Drawing.Point(211, 42);
+            this.listBoxSteps.Name = "listBoxSteps";
+            this.listBoxSteps.Size = new System.Drawing.Size(145, 342);
+            this.listBoxSteps.TabIndex = 2;
             // 
             // label3
             // 
@@ -1099,17 +1139,21 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "Scripts";
             // 
-            // listBox1
+            // listBoxScripts
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Items.AddRange(new object[] {
-            "mysite google ranking check",
-            "afeka library loan extension",
-            "monitor movie tickets"});
-            this.listBox1.Location = new System.Drawing.Point(18, 41);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(182, 342);
-            this.listBox1.TabIndex = 0;
+            this.listBoxScripts.DataSource = this.scriptBindingSource;
+            this.listBoxScripts.DisplayMember = "name";
+            this.listBoxScripts.FormattingEnabled = true;
+            this.listBoxScripts.Location = new System.Drawing.Point(18, 41);
+            this.listBoxScripts.Name = "listBoxScripts";
+            this.listBoxScripts.Size = new System.Drawing.Size(182, 342);
+            this.listBoxScripts.TabIndex = 0;
+            this.listBoxScripts.ValueMember = "id";
+            // 
+            // scriptBindingSource
+            // 
+            this.scriptBindingSource.DataMember = "script";
+            this.scriptBindingSource.DataSource = this.autoWebAgentDBDataSetBindingSource;
             // 
             // tabSchedule
             // 
@@ -1278,44 +1322,18 @@
             this.checkedListBox1.Size = new System.Drawing.Size(1041, 244);
             this.checkedListBox1.TabIndex = 0;
             // 
+            // scriptDataTableBindingSource
+            // 
+            this.scriptDataTableBindingSource.DataSource = typeof(awaDAL.AutoWebAgentDBDataSet.scriptDataTable);
+            // 
             // recognitionBindingSource
             // 
             this.recognitionBindingSource.DataMember = "recognition";
             this.recognitionBindingSource.DataSource = this.autoWebAgentDBDataSetBindingSource;
             // 
-            // selectedElementListView
+            // scriptTableAdapterBindingSource
             // 
-            this.selectedElementListView.AllowColumnReorder = true;
-            this.selectedElementListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.AttColumnHeader,
-            this.valColumnHeader,
-            this.priorityColumnHeader});
-            this.selectedElementListView.Dock = System.Windows.Forms.DockStyle.Left;
-            this.selectedElementListView.DoubleClickActivation = true;
-            this.selectedElementListView.FullRowSelect = true;
-            this.selectedElementListView.GridLines = true;
-            this.selectedElementListView.LabelEdit = true;
-            this.selectedElementListView.Location = new System.Drawing.Point(3, 16);
-            this.selectedElementListView.MultiSelect = false;
-            this.selectedElementListView.Name = "selectedElementListView";
-            this.selectedElementListView.Size = new System.Drawing.Size(306, 104);
-            this.selectedElementListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.selectedElementListView.TabIndex = 0;
-            this.selectedElementListView.UseCompatibleStateImageBehavior = false;
-            this.selectedElementListView.View = System.Windows.Forms.View.Details;
-            // 
-            // AttColumnHeader
-            // 
-            this.AttColumnHeader.Text = "Attribute";
-            // 
-            // valColumnHeader
-            // 
-            this.valColumnHeader.Text = "Value";
-            this.valColumnHeader.Width = 180;
-            // 
-            // priorityColumnHeader
-            // 
-            this.priorityColumnHeader.Text = "Priority";
+            this.scriptTableAdapterBindingSource.DataSource = typeof(awaDAL.AutoWebAgentDBDataSetTableAdapters.scriptTableAdapter);
             // 
             // MainForm
             // 
@@ -1325,6 +1343,7 @@
             this.Controls.Add(this.tabContainer);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.IsMdiContainer = true;
             this.Name = "MainForm";
             this.Text = "Auto Web Agent";
             this.menuStrip1.ResumeLayout(false);
@@ -1351,13 +1370,16 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scriptBindingSource)).EndInit();
             this.tabSchedule.ResumeLayout(false);
             this.tabSchedule.PerformLayout();
             this.tabActivation.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.scriptDataTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recognitionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scriptTableAdapterBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1412,61 +1434,61 @@
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox listBoxSteps;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox listBoxScripts;
+        private System.Windows.Forms.Button buttonRemoveScript;
+        private System.Windows.Forms.Button buttonAddScript;
+        private System.Windows.Forms.Button buttonRemoveStep;
+        private System.Windows.Forms.Button buttonAddStep;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxStepName;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button buttonStepUp;
+        private System.Windows.Forms.Button buttonUpdateStep;
+        private System.Windows.Forms.Button buttonStepDown;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListBox listBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ListBox listBoxConditionType1;
+        private System.Windows.Forms.TextBox textBoxContionSource1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxConditionTarget1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.ListBox listBox6;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.ListBox listBox5;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.ListBox listBox4;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.ListBox listBox7;
+        private System.Windows.Forms.TextBox textBoxConditionAttribute1;
+        private System.Windows.Forms.TextBox textBoxConditionAttribute4;
+        private System.Windows.Forms.TextBox textBoxConditionTarget4;
+        private System.Windows.Forms.TextBox textBoxContionSource4;
+        private System.Windows.Forms.ListBox listBoxConditionType4;
+        private System.Windows.Forms.TextBox textBoxConditionAttribute3;
+        private System.Windows.Forms.TextBox textBoxConditionTarget3;
+        private System.Windows.Forms.TextBox textBoxContionSourc3;
+        private System.Windows.Forms.ListBox listBoxConditionType3;
+        private System.Windows.Forms.TextBox textBoxConditionAttribute2;
+        private System.Windows.Forms.TextBox textBoxConditionTarget2;
+        private System.Windows.Forms.TextBox textBoxContionSource2;
+        private System.Windows.Forms.ListBox listBoxConditionType2;
+        private System.Windows.Forms.TextBox textBoxActionValue1;
+        private System.Windows.Forms.TextBox textBoxActionSource1;
+        private System.Windows.Forms.ListBox listBoxActionType1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ListBox listBox8;
-        private System.Windows.Forms.ListBox listBox13;
-        private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.TextBox textBox21;
-        private System.Windows.Forms.ListBox listBox14;
-        private System.Windows.Forms.ListBox listBox11;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.ListBox listBox12;
-        private System.Windows.Forms.ListBox listBox9;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.ListBox listBox10;
+        private System.Windows.Forms.ListBox listBoxActionNotifyMethod1;
+        private System.Windows.Forms.ListBox listBoxActionNotifyMethod4;
+        private System.Windows.Forms.TextBox textBoxActionValue4;
+        private System.Windows.Forms.TextBox textBoxActionSource4;
+        private System.Windows.Forms.ListBox listBoxActionType4;
+        private System.Windows.Forms.ListBox listBoxActionNotifyMethod3;
+        private System.Windows.Forms.TextBox textBoxActionValue3;
+        private System.Windows.Forms.TextBox textBoxActionSource3;
+        private System.Windows.Forms.ListBox listBoxActionType3;
+        private System.Windows.Forms.ListBox listBoxActionNotifyMethod2;
+        private System.Windows.Forms.TextBox textBoxActionValue2;
+        private System.Windows.Forms.TextBox textBoxActionSource2;
+        private System.Windows.Forms.ListBox listBoxActionType2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ListBox listBox15;
@@ -1481,6 +1503,9 @@
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox textBox23;
+        private System.Windows.Forms.BindingSource scriptDataTableBindingSource;
+        private System.Windows.Forms.BindingSource scriptBindingSource;
+        private System.Windows.Forms.BindingSource scriptTableAdapterBindingSource;
 
     }
 }

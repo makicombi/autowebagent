@@ -13,6 +13,8 @@ namespace awaApplication
     public partial class MainForm : Form
     {
         awaAboutBox aBox;
+        private Login loginForm;
+        private TextEntryForm scriptEntryForm, stepEntryForm;
         private DAL dal;
         private HtmlElement currentElement;
         private DAL.ElementType currentElementType = DAL.ElementType.NONE;
@@ -25,22 +27,42 @@ namespace awaApplication
         }
         private SelectionState selectionState = SelectionState.IDLE;
         private IDictionary<HtmlElement, string> elementStyles = new Dictionary<HtmlElement, string>();
+        
         public MainForm()
         {
             InitializeComponent();
+            
+            scriptEntryForm = new TextEntryForm("Please Enter New Script Name:");
+            
+            scriptEntryForm.Location = buttonAddScript.Location;
+            scriptEntryForm.BringToFront();
+            scriptEntryForm.Visible = false;
+            tabScript.Controls.Add(scriptEntryForm);
+
+            
             aBox = new awaAboutBox();
             aBox.Hide();
+            
             webBrowser.ObjectForScripting = this;
             webBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
 
             dal = new DAL();
             dal.Init(Properties.Settings.Default.awaDB);
+            loginForm = new Login(dal);
+            DialogResult res = loginForm.ShowDialog(this);
+            if (res == DialogResult.Abort)
+            {
+                Application.Exit();
+            }
+
+
+            listBoxScripts.DataSource = dal.GetUserScripts(loginForm.UserID).ToList();
+            
         }
 
-        private void scriptToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        
 
-        }
+        
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -464,6 +486,13 @@ namespace awaApplication
             dal.ClearWebsiteData(WebsiteID);
             WebsiteID = -1; // complete the deletion of the website and return to initial state
             updateGrid();
+        }
+
+        private void buttonAddScript_Click(object sender, EventArgs e)
+        {
+            scriptEntryForm.Visible = true;
+            scriptEntryForm.Clear();
+            scriptEntryForm.BringToFront();
         }
     }
 }
