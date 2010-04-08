@@ -31,9 +31,9 @@ namespace awaApplication
         public MainForm()
         {
             InitializeComponent();
-            
+            listBoxScripts.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnValidation;
             scriptEntryForm = new TextEntryForm("Please Enter New Script Name:");
-            
+            scriptEntryForm.Submitted += new EventHandler(scriptEntryForm_Submitted);
             scriptEntryForm.Location = buttonAddScript.Location;
             scriptEntryForm.BringToFront();
             scriptEntryForm.Visible = false;
@@ -56,8 +56,25 @@ namespace awaApplication
             }
 
 
-            listBoxScripts.DataSource = dal.GetUserScripts(loginForm.UserID).ToList();
+            scriptBindingSource.DataSource = dal.GetUserScripts(loginForm.UserID).ToList();
             
+        }
+
+        void scriptEntryForm_Submitted(object sender, EventArgs e)
+        {
+            TextEntryForm dialog = (TextEntryForm)sender;
+            foreach (var item in listBoxScripts.Items)
+            {
+                if (item.ToString() == dialog.Value)
+                {
+                    dialog.Visible = true;
+                    dialog.Controls["panelContainer"].Controls["labelError"].Text = "Script Name Already Exist";
+                    return;
+                }
+            }
+            dialog.Controls["panelContainer"].Controls["labelError"].Text = "";
+            dal.AddScript(dialog.Value,loginForm.UserID);
+            scriptBindingSource.DataSource = dal.GetUserScripts(loginForm.UserID).ToList();
         }
 
         
