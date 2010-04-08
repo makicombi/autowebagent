@@ -413,7 +413,18 @@ namespace awaDAL
                     select scr.name;
             return q.AsEnumerable<string>();
         }
-       
-        
-}
+
+
+
+        public void AddScript(string p,int user_id)
+        {
+            var row = DB.script.NewscriptRow();
+            row.name = p;
+            row.user_id = user_id;
+            row.modified = DateTime.Now;
+            DB.script.AddscriptRow(row);
+            
+            SaveChanges("script");
+        }
+    }
 }

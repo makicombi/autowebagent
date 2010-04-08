@@ -25,6 +25,7 @@ namespace awaApplication
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+            labelError.Text = string.Empty;
             Visible = false;
         }
 

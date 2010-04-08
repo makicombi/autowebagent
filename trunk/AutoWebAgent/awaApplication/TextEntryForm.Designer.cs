@@ -32,8 +32,9 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.textBoxField = new System.Windows.Forms.TextBox();
             this.labelFieldName = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.panelContainer = new System.Windows.Forms.Panel();
+            this.labelError = new System.Windows.Forms.Label();
+            this.panelContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonOK
@@ -72,29 +73,39 @@
             this.labelFieldName.TabIndex = 3;
             this.labelFieldName.Text = "label1";
             // 
-            // panel1
+            // panelContainer
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.buttonOK);
-            this.panel1.Controls.Add(this.labelFieldName);
-            this.panel1.Controls.Add(this.buttonCancel);
-            this.panel1.Controls.Add(this.textBoxField);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(323, 92);
-            this.panel1.TabIndex = 4;
+            this.panelContainer.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panelContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelContainer.Controls.Add(this.labelError);
+            this.panelContainer.Controls.Add(this.buttonOK);
+            this.panelContainer.Controls.Add(this.labelFieldName);
+            this.panelContainer.Controls.Add(this.buttonCancel);
+            this.panelContainer.Controls.Add(this.textBoxField);
+            this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContainer.Location = new System.Drawing.Point(0, 0);
+            this.panelContainer.Name = "panelContainer";
+            this.panelContainer.Size = new System.Drawing.Size(323, 92);
+            this.panelContainer.TabIndex = 4;
+            // 
+            // labelError
+            // 
+            this.labelError.AutoSize = true;
+            this.labelError.ForeColor = System.Drawing.Color.Red;
+            this.labelError.Location = new System.Drawing.Point(4, 74);
+            this.labelError.Name = "labelError";
+            this.labelError.Size = new System.Drawing.Size(0, 13);
+            this.labelError.TabIndex = 4;
             // 
             // TextEntryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelContainer);
             this.Name = "TextEntryForm";
             this.Size = new System.Drawing.Size(323, 92);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelContainer.ResumeLayout(false);
+            this.panelContainer.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -105,6 +116,7 @@
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.TextBox textBoxField;
         private System.Windows.Forms.Label labelFieldName;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelContainer;
+        private System.Windows.Forms.Label labelError;
     }
 }
