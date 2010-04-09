@@ -26,8 +26,9 @@ namespace awaDAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=..\\..\\..\\db\\AutoWebAgentDB.sdf;Password=koby3274;Persist Security Inf" +
-            "o=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=C:\\Documents and Settings\\User-1\\My Documents\\לימודים\\AutoWebAgentPro" +
+            "ject2009\\AutoWebAgent\\trunk\\AutoWebAgent\\db\\AutoWebAgentDB.sdf;Password=koby3274" +
+            ";Persist Security Info=True")]
         public string AutoWebAgentDBConnectionString {
             get {
                 return ((string)(this["AutoWebAgentDBConnectionString"]));
