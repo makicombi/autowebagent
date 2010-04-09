@@ -74,7 +74,7 @@ namespace awaApplication
             }
             dialog.Controls["panelContainer"].Controls["labelError"].Text = "";
             dal.AddScript(dialog.Value,loginForm.UserID);
-            scriptBindingSource.DataSource = dal.GetUserScripts(loginForm.UserID).ToList();
+            scriptBindingSource.DataSource = dal.GetUserScripts(loginForm.UserID);
         }
 
         
@@ -510,6 +510,16 @@ namespace awaApplication
             scriptEntryForm.Visible = true;
             scriptEntryForm.Clear();
             scriptEntryForm.BringToFront();
+        }
+
+        private void buttonRemoveScript_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(this,"Are you sure?","Confirmation",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button1);
+            if (result== DialogResult.Yes)
+            {
+                dal.DeleteScript((int)listBoxScripts.SelectedValue);
+                scriptBindingSource.DataSource = dal.GetUserScripts(loginForm.UserID);
+            }
         }
     }
 }

@@ -606,6 +606,7 @@
             this.buttonRemoveScript.TabIndex = 8;
             this.buttonRemoveScript.Text = "remove script";
             this.buttonRemoveScript.UseVisualStyleBackColor = true;
+            this.buttonRemoveScript.Click += new System.EventHandler(this.buttonRemoveScript_Click);
             // 
             // buttonAddScript
             // 

@@ -4140,7 +4140,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2;
+            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4455,7 +4455,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2;
+            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4796,7 +4796,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2;
+            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5104,7 +5104,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2;
+            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5410,7 +5410,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2;
+            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5718,7 +5718,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2;
+            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6030,7 +6030,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2;
+            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6318,7 +6318,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2;
+            this._connection.ConnectionString = global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6490,35 +6490,58 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.IDbCommand[6];
+            this._commandCollection = new global::System.Data.IDbCommand[10];
             this._commandCollection[0] = new global::System.Data.SqlServerCe.SqlCeCommand();
-            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[0])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[0])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString);
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[0])).CommandText = "DELETE FROM recognition\r\nWHERE  (element_id = @element_id)";
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[0])).CommandType = global::System.Data.CommandType.Text;
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@element_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "element_id", global::System.Data.DataRowVersion.Original, null));
             this._commandCollection[1] = new global::System.Data.SqlServerCe.SqlCeCommand();
-            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[1])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[1])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString);
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[1])).CommandText = "DELETE FROM recognition";
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[1])).CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::System.Data.SqlServerCe.SqlCeCommand();
-            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[2])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[2])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString);
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[2])).CommandText = "DELETE FROM element\r\nWHERE  (website_id = @website_id)";
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[2])).CommandType = global::System.Data.CommandType.Text;
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@website_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "website_id", global::System.Data.DataRowVersion.Original, null));
             this._commandCollection[3] = new global::System.Data.SqlServerCe.SqlCeCommand();
-            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[3])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[3])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString);
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[3])).CommandText = "DELETE from element";
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[3])).CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4] = new global::System.Data.SqlServerCe.SqlCeCommand();
-            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[4])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[4])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString);
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[4])).CommandText = "DELETE from website where id=@id";
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[4])).CommandType = global::System.Data.CommandType.Text;
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[4])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
             this._commandCollection[5] = new global::System.Data.SqlServerCe.SqlCeCommand();
-            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[5])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString2);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[5])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString);
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[5])).CommandText = "DELETE from website where name=@name";
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[5])).CommandType = global::System.Data.CommandType.Text;
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[5])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@name", global::System.Data.SqlDbType.NVarChar, 100, global::System.Data.ParameterDirection.Input, true, 0, 0, "name", global::System.Data.DataRowVersion.Original, null));
+            this._commandCollection[6] = new global::System.Data.SqlServerCe.SqlCeCommand();
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[6])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[6])).CommandText = "DELETE FROM step\r\nWHERE  (script_id = @script_id)";
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[6])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[6])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@script_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "script_id", global::System.Data.DataRowVersion.Original, null));
+            this._commandCollection[7] = new global::System.Data.SqlServerCe.SqlCeCommand();
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[7])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[7])).CommandText = "DELETE FROM action\r\nWHERE  (id IN\r\n                   (SELECT  action_id\r\n       " +
+                "             FROM     step\r\n                    WHERE  (id = @step_id)))";
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[7])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[7])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@step_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
+            this._commandCollection[8] = new global::System.Data.SqlServerCe.SqlCeCommand();
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[8])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[8])).CommandText = "DELETE FROM condition\r\nWHERE  (condition.id IN\r\n                   (SELECT  condi" +
+                "tion_id\r\n                    FROM     step\r\n                    WHERE  (id = @st" +
+                "ep_id)))";
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[8])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[8])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@step_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
+            this._commandCollection[9] = new global::System.Data.SqlServerCe.SqlCeCommand();
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[9])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[9])).CommandText = "DELETE FROM script\r\nWHERE  (id = @script_id)";
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[9])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[9])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@script_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6650,6 +6673,103 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             else {
                 command.Parameters[0].Value = ((string)(name));
             }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteStepsByScriptId(global::System.Nullable<int> script_id) {
+            global::System.Data.SqlServerCe.SqlCeCommand command = ((global::System.Data.SqlServerCe.SqlCeCommand)(this.CommandCollection[6]));
+            if ((script_id.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(script_id.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteStepActionsById(int step_id) {
+            global::System.Data.SqlServerCe.SqlCeCommand command = ((global::System.Data.SqlServerCe.SqlCeCommand)(this.CommandCollection[7]));
+            command.Parameters[0].Value = ((int)(step_id));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteStepConditionsById(int step_id) {
+            global::System.Data.SqlServerCe.SqlCeCommand command = ((global::System.Data.SqlServerCe.SqlCeCommand)(this.CommandCollection[8]));
+            command.Parameters[0].Value = ((int)(step_id));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteScriptById(int script_id) {
+            global::System.Data.SqlServerCe.SqlCeCommand command = ((global::System.Data.SqlServerCe.SqlCeCommand)(this.CommandCollection[9]));
+            command.Parameters[0].Value = ((int)(script_id));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

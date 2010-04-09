@@ -406,12 +406,12 @@ namespace awaDAL
 
         }
 
-        public IEnumerable<string> GetUserScripts(int uid)
+        public EnumerableRowCollection<AutoWebAgentDBDataSet.scriptRow> GetUserScripts(int uid)
         {
             var q = from scr in DB.script
                     where scr.user_id == uid
-                    select scr.name;
-            return q.AsEnumerable<string>();
+                    select scr;
+            return q;
         }
 
 
@@ -425,6 +425,31 @@ namespace awaDAL
             DB.script.AddscriptRow(row);
             
             SaveChanges("script");
+        }
+        /// <summary>
+        /// delete script by script id
+        /// </summary>
+        /// <remarks>
+        /// 1. get script steps id
+        /// 2. for each step id delete actions from action table
+        /// 3. for each step id delete conditions from condition table
+        /// 4. delete script steps from step table
+        /// 5. delete script
+        /// </remarks>
+        /// <param name="id"></param>
+        public void DeleteScript(int id)
+        {
+            var step_ids = from ids in DB.step
+                           where ids.script_id == id
+                           select ids.id;
+            foreach (var sid in step_ids)
+            {
+                queries.DeleteStepActionsById(sid);
+                queries.DeleteStepConditionsById(sid);
+            }
+            queries.DeleteStepsByScriptId(id);
+            queries.DeleteScriptById(id);
+            SaveChanges("action","condition","script");
         }
     }
 }
