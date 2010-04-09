@@ -1997,6 +1997,8 @@ namespace awaDAL {
             
             private global::System.Data.DataColumn columnstep_number;
             
+            private global::System.Data.DataColumn columnname;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public stepDataTable() {
                 this.TableName = "step";
@@ -2063,6 +2065,13 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn nameColumn {
+                get {
+                    return this.columnname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2091,14 +2100,15 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public stepRow AddstepRow(int script_id, int condition_id, int action_id, conditionRow parentconditionRowBycondition_step) {
+            public stepRow AddstepRow(int script_id, int condition_id, int action_id, conditionRow parentconditionRowBycondition_step, string name) {
                 stepRow rowstepRow = ((stepRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         script_id,
                         condition_id,
                         action_id,
-                        null};
+                        null,
+                        name};
                 if ((parentconditionRowBycondition_step != null)) {
                     columnValuesArray[4] = parentconditionRowBycondition_step[0];
                 }
@@ -2132,6 +2142,7 @@ namespace awaDAL {
                 this.columncondition_id = base.Columns["condition_id"];
                 this.columnaction_id = base.Columns["action_id"];
                 this.columnstep_number = base.Columns["step_number"];
+                this.columnname = base.Columns["name"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2146,6 +2157,8 @@ namespace awaDAL {
                 base.Columns.Add(this.columnaction_id);
                 this.columnstep_number = new global::System.Data.DataColumn("step_number", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstep_number);
+                this.columnname = new global::System.Data.DataColumn("name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnname);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AutoIncrement = true;
@@ -3527,6 +3540,21 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string name {
+                get {
+                    try {
+                        return ((string)(this[this.tablestep.nameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'name\' in table \'step\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablestep.nameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public conditionRow conditionRow {
                 get {
                     return ((conditionRow)(this.GetParentRow(this.Table.ParentRelations["condition_step"])));
@@ -3584,6 +3612,16 @@ namespace awaDAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void Setstep_numberNull() {
                 this[this.tablestep.step_numberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsnameNull() {
+                return this.IsNull(this.tablestep.nameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetnameNull() {
+                this[this.tablestep.nameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

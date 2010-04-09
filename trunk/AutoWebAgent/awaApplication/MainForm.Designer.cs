@@ -149,6 +149,7 @@
             this.scriptDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.recognitionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.scriptTableAdapterBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.stepBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabContainer.SuspendLayout();
@@ -172,6 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.scriptDataTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recognitionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scriptTableAdapterBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stepBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -1120,16 +1122,14 @@
             // 
             // listBoxSteps
             // 
+            this.listBoxSteps.DataSource = this.stepBindingSource;
+            this.listBoxSteps.DisplayMember = "step_number";
             this.listBoxSteps.FormattingEnabled = true;
-            this.listBoxSteps.Items.AddRange(new object[] {
-            "enter loans",
-            "login",
-            "extend all loans",
-            "report via email"});
             this.listBoxSteps.Location = new System.Drawing.Point(211, 42);
             this.listBoxSteps.Name = "listBoxSteps";
             this.listBoxSteps.Size = new System.Drawing.Size(145, 342);
             this.listBoxSteps.TabIndex = 2;
+            this.listBoxSteps.ValueMember = "id";
             // 
             // label3
             // 
@@ -1336,6 +1336,11 @@
             // 
             this.scriptTableAdapterBindingSource.DataSource = typeof(awaDAL.AutoWebAgentDBDataSetTableAdapters.scriptTableAdapter);
             // 
+            // stepBindingSource
+            // 
+            this.stepBindingSource.DataMember = "step";
+            this.stepBindingSource.DataSource = this.autoWebAgentDBDataSetBindingSource;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1381,6 +1386,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.scriptDataTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recognitionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scriptTableAdapterBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stepBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1507,6 +1513,7 @@
         private System.Windows.Forms.BindingSource scriptDataTableBindingSource;
         private System.Windows.Forms.BindingSource scriptBindingSource;
         private System.Windows.Forms.BindingSource scriptTableAdapterBindingSource;
+        private System.Windows.Forms.BindingSource stepBindingSource;
 
     }
 }
