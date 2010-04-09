@@ -2,14 +2,15 @@
 <xs:schema id="AutoWebAgentDBDataSet" targetNamespace="http://tempuri.org/AutoWebAgentDBDataSet.xsd" xmlns:mstns="http://tempuri.org/AutoWebAgentDBDataSet.xsd" xmlns="http://tempuri.org/AutoWebAgentDBDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="AutoWebAgentDBConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="AutoWebAgentDBConnectionString2 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.awaDAL.Properties.Settings.GlobalReference.Default.AutoWebAgentDBConnectionString2" Provider="Microsoft.SqlServerCe.Client.3.5" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="AutoWebAgentDBConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="AutoWebAgentDBConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.awaDAL.Properties.Settings.GlobalReference.Default.AutoWebAgentDBConnectionString" Provider="Microsoft.SqlServerCe.Client.3.5" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="AutoWebAgentDBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="AutoWebAgentDBConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.awaDAL.Properties.Settings.GlobalReference.Default.AutoWebAgentDBConnectionString" Provider="Microsoft.SqlServerCe.Client.3.5" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="actionTableAdapter" GeneratorDataComponentClassName="actionTableAdapter" Name="action" UserDataComponentName="actionTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AutoWebAgentDBConnectionString2 (Settings)" DbObjectName="action" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="action" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [action] WHERE (([id] = @p1))</CommandText>
@@ -57,7 +58,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="conditionTableAdapter" GeneratorDataComponentClassName="conditionTableAdapter" Name="condition" UserDataComponentName="conditionTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AutoWebAgentDBConnectionString2 (Settings)" DbObjectName="condition" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="condition" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [condition] WHERE (([id] = @p1))</CommandText>
@@ -114,7 +115,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="elementTableAdapter" GeneratorDataComponentClassName="elementTableAdapter" Name="element" UserDataComponentName="elementTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AutoWebAgentDBConnectionString2 (Settings)" DbObjectName="element" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="element" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [element] WHERE (([id] = @p1))</CommandText>
@@ -162,7 +163,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="recognitionTableAdapter" GeneratorDataComponentClassName="recognitionTableAdapter" Name="recognition" UserDataComponentName="recognitionTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AutoWebAgentDBConnectionString2 (Settings)" DbObjectName="recognition" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="recognition" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [recognition] WHERE (([id] = @p1))</CommandText>
@@ -213,7 +214,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="scriptTableAdapter" GeneratorDataComponentClassName="scriptTableAdapter" Name="script" UserDataComponentName="scriptTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AutoWebAgentDBConnectionString2 (Settings)" DbObjectName="script" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="script" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [script] WHERE (([id] = @p1))</CommandText>
@@ -261,7 +262,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="stepTableAdapter" GeneratorDataComponentClassName="stepTableAdapter" Name="step" UserDataComponentName="stepTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AutoWebAgentDBConnectionString2 (Settings)" DbObjectName="step" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="step" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [step] WHERE (([id] = @p1))</CommandText>
@@ -312,7 +313,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="usersTableAdapter" GeneratorDataComponentClassName="usersTableAdapter" Name="users" UserDataComponentName="usersTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AutoWebAgentDBConnectionString2 (Settings)" DbObjectName="users" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="users" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [users] WHERE (([id] = @p1))</CommandText>
@@ -357,7 +358,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="websiteTableAdapter" GeneratorDataComponentClassName="websiteTableAdapter" Name="website" UserDataComponentName="websiteTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="AutoWebAgentDBConnectionString2 (Settings)" DbObjectName="website" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="website" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [website] WHERE (([id] = @p1))</CommandText>
@@ -402,7 +403,7 @@
           </TableAdapter>
         </Tables>
         <Sources>
-          <DbSource ConnectionRef="AutoWebAgentDBConnectionString2 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteRecognitionByElementId" MethodsParameterType="CLR" Modifier="Public" Name="DeleteRecognitionByElementId" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteRecognitionByElementId">
+          <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteRecognitionByElementId" MethodsParameterType="CLR" Modifier="Public" Name="DeleteRecognitionByElementId" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteRecognitionByElementId">
             <DeleteCommand>
               <DbCommand CommandType="Text" ModifiedByUser="true">
                 <CommandText>DELETE FROM recognition
@@ -413,7 +414,7 @@ WHERE  (element_id = @element_id)</CommandText>
               </DbCommand>
             </DeleteCommand>
           </DbSource>
-          <DbSource ConnectionRef="AutoWebAgentDBConnectionString2 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteAllRecognition" MethodsParameterType="CLR" Modifier="Public" Name="DeleteAllRecognition" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteAllRecognition">
+          <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteAllRecognition" MethodsParameterType="CLR" Modifier="Public" Name="DeleteAllRecognition" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteAllRecognition">
             <DeleteCommand>
               <DbCommand CommandType="Text" ModifiedByUser="true">
                 <CommandText>DELETE FROM recognition</CommandText>
@@ -421,7 +422,7 @@ WHERE  (element_id = @element_id)</CommandText>
               </DbCommand>
             </DeleteCommand>
           </DbSource>
-          <DbSource ConnectionRef="AutoWebAgentDBConnectionString2 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteElementsByWebsiteId" MethodsParameterType="CLR" Modifier="Public" Name="DeleteElementsByWebsiteId" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="DeleteElementsByWebsiteId">
+          <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteElementsByWebsiteId" MethodsParameterType="CLR" Modifier="Public" Name="DeleteElementsByWebsiteId" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="DeleteElementsByWebsiteId">
             <DeleteCommand>
               <DbCommand CommandType="Text" ModifiedByUser="true">
                 <CommandText>DELETE FROM element
@@ -432,7 +433,7 @@ WHERE  (website_id = @website_id)</CommandText>
               </DbCommand>
             </DeleteCommand>
           </DbSource>
-          <DbSource ConnectionRef="AutoWebAgentDBConnectionString2 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteAllElements" MethodsParameterType="CLR" Modifier="Public" Name="DeleteAllElements" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="DeleteAllElements">
+          <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteAllElements" MethodsParameterType="CLR" Modifier="Public" Name="DeleteAllElements" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="DeleteAllElements">
             <DeleteCommand>
               <DbCommand CommandType="Text" ModifiedByUser="true">
                 <CommandText>DELETE from element</CommandText>
@@ -440,7 +441,7 @@ WHERE  (website_id = @website_id)</CommandText>
               </DbCommand>
             </DeleteCommand>
           </DbSource>
-          <DbSource ConnectionRef="AutoWebAgentDBConnectionString2 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteWebsiteByID" MethodsParameterType="CLR" Modifier="Public" Name="DeleteWebsiteByID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="DeleteWebsiteByID">
+          <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteWebsiteByID" MethodsParameterType="CLR" Modifier="Public" Name="DeleteWebsiteByID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="DeleteWebsiteByID">
             <DeleteCommand>
               <DbCommand CommandType="Text" ModifiedByUser="true">
                 <CommandText>DELETE from website where id=@id</CommandText>
@@ -450,12 +451,62 @@ WHERE  (website_id = @website_id)</CommandText>
               </DbCommand>
             </DeleteCommand>
           </DbSource>
-          <DbSource ConnectionRef="AutoWebAgentDBConnectionString2 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteWebsiteByName" MethodsParameterType="CLR" Modifier="Public" Name="DeleteWebsiteByName" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="DeleteWebsiteByName">
+          <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteWebsiteByName" MethodsParameterType="CLR" Modifier="Public" Name="DeleteWebsiteByName" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="DeleteWebsiteByName">
             <DeleteCommand>
               <DbCommand CommandType="Text" ModifiedByUser="true">
                 <CommandText>DELETE from website where name=@name</CommandText>
                 <Parameters>
                   <Parameter AllowDbNull="true" AutogeneratedName="name" ColumnName="name" DataSourceName="website" DataTypeServer="nvarchar(100)" DbType="String" Direction="Input" ParameterName="@name" Precision="0" ProviderType="NVarChar" Scale="0" Size="100" SourceColumn="name" SourceColumnNullMapping="false" SourceVersion="Original" />
+                </Parameters>
+              </DbCommand>
+            </DeleteCommand>
+          </DbSource>
+          <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteStepsByScriptId" MethodsParameterType="CLR" Modifier="Public" Name="DeleteStepsByScriptId" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="DeleteStepsByScriptId">
+            <DeleteCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>DELETE FROM step
+WHERE  (script_id = @script_id)</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="script_id" ColumnName="script_id" DataSourceName="step" DataTypeServer="int(4)" DbType="Int32" Direction="Input" ParameterName="@script_id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="script_id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                </Parameters>
+              </DbCommand>
+            </DeleteCommand>
+          </DbSource>
+          <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteStepActionsById" MethodsParameterType="CLR" Modifier="Public" Name="DeleteStepActionsById" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="DeleteStepActionsById">
+            <DeleteCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>DELETE FROM action
+WHERE  (id IN
+                   (SELECT  action_id
+                    FROM     step
+                    WHERE  (id = @step_id)))</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="false" AutogeneratedName="step_id" ColumnName="id" DataSourceName="action" DataTypeServer="int(4)" DbType="Int32" Direction="Input" ParameterName="@step_id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                </Parameters>
+              </DbCommand>
+            </DeleteCommand>
+          </DbSource>
+          <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteStepConditionsById" MethodsParameterType="CLR" Modifier="Public" Name="DeleteStepConditionsById" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="DeleteStepConditionsById">
+            <DeleteCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>DELETE FROM condition
+WHERE  (condition.id IN
+                   (SELECT  condition_id
+                    FROM     step
+                    WHERE  (id = @step_id)))</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="false" AutogeneratedName="step_id" ColumnName="id" DataSourceName="condition" DataTypeServer="int(4)" DbType="Int32" Direction="Input" ParameterName="@step_id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                </Parameters>
+              </DbCommand>
+            </DeleteCommand>
+          </DbSource>
+          <DbSource ConnectionRef="AutoWebAgentDBConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteScriptById" MethodsParameterType="CLR" Modifier="Public" Name="DeleteScriptById" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="DeleteScriptById">
+            <DeleteCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>DELETE FROM script
+WHERE  (id = @script_id)</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="false" AutogeneratedName="script_id" ColumnName="id" DataSourceName="script" DataTypeServer="int(4)" DbType="Int32" Direction="Input" ParameterName="@script_id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Original" />
                 </Parameters>
               </DbCommand>
             </DeleteCommand>
