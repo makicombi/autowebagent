@@ -127,6 +127,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.listBoxSteps = new System.Windows.Forms.ListBox();
+            this.stepBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.listBoxScripts = new System.Windows.Forms.ListBox();
             this.scriptBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -149,7 +150,6 @@
             this.scriptDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.recognitionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.scriptTableAdapterBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.stepBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabContainer.SuspendLayout();
@@ -165,6 +165,7 @@
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stepBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scriptBindingSource)).BeginInit();
             this.tabSchedule.SuspendLayout();
             this.tabActivation.SuspendLayout();
@@ -173,7 +174,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.scriptDataTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recognitionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scriptTableAdapterBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stepBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -628,6 +628,7 @@
             this.buttonRemoveStep.TabIndex = 6;
             this.buttonRemoveStep.Text = "remove step";
             this.buttonRemoveStep.UseVisualStyleBackColor = true;
+            this.buttonRemoveStep.Click += new System.EventHandler(this.buttonRemoveStep_Click);
             // 
             // buttonAddStep
             // 
@@ -637,6 +638,7 @@
             this.buttonAddStep.TabIndex = 5;
             this.buttonAddStep.Text = "add step";
             this.buttonAddStep.UseVisualStyleBackColor = true;
+            this.buttonAddStep.Click += new System.EventHandler(this.buttonAddStep_Click);
             // 
             // groupBox1
             // 
@@ -1123,13 +1125,18 @@
             // listBoxSteps
             // 
             this.listBoxSteps.DataSource = this.stepBindingSource;
-            this.listBoxSteps.DisplayMember = "step_number";
+            this.listBoxSteps.DisplayMember = "name";
             this.listBoxSteps.FormattingEnabled = true;
             this.listBoxSteps.Location = new System.Drawing.Point(211, 42);
             this.listBoxSteps.Name = "listBoxSteps";
             this.listBoxSteps.Size = new System.Drawing.Size(145, 342);
             this.listBoxSteps.TabIndex = 2;
             this.listBoxSteps.ValueMember = "id";
+            // 
+            // stepBindingSource
+            // 
+            this.stepBindingSource.DataMember = "step";
+            this.stepBindingSource.DataSource = this.autoWebAgentDBDataSetBindingSource;
             // 
             // label3
             // 
@@ -1150,6 +1157,7 @@
             this.listBoxScripts.Size = new System.Drawing.Size(182, 342);
             this.listBoxScripts.TabIndex = 0;
             this.listBoxScripts.ValueMember = "id";
+            this.listBoxScripts.SelectedIndexChanged += new System.EventHandler(this.listBoxScripts_SelectedIndexChanged);
             // 
             // scriptBindingSource
             // 
@@ -1336,11 +1344,6 @@
             // 
             this.scriptTableAdapterBindingSource.DataSource = typeof(awaDAL.AutoWebAgentDBDataSetTableAdapters.scriptTableAdapter);
             // 
-            // stepBindingSource
-            // 
-            this.stepBindingSource.DataMember = "step";
-            this.stepBindingSource.DataSource = this.autoWebAgentDBDataSetBindingSource;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1376,6 +1379,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stepBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scriptBindingSource)).EndInit();
             this.tabSchedule.ResumeLayout(false);
             this.tabSchedule.PerformLayout();
@@ -1386,7 +1390,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.scriptDataTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recognitionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scriptTableAdapterBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stepBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

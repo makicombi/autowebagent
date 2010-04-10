@@ -449,7 +449,59 @@ namespace awaDAL
             }
             queries.DeleteStepsByScriptId(id);
             queries.DeleteScriptById(id);
-            SaveChanges("action","condition","script");
+            SaveChanges("action","condition","step","script");
+        }
+
+        public EnumerableRowCollection<AutoWebAgentDBDataSet.stepRow> GetStepsByScriptID(int sid)
+        {
+            var steps = from s in DB.step
+                        where s.script_id == sid
+                        orderby s.step_number
+                        select s;
+            return steps;
+        }
+        /// <summary>
+        /// delete step by step Id
+        /// </summary>
+        /// <remarks>
+        /// 1. for step id delete actions from action table
+        /// 2. for step id delete conditions from condition table
+        /// 3. delete step from step table
+        /// </remarks>
+        /// <param name="step_id">step ID</param>
+        public void DeleteStep(int step_id)
+        {
+            queries.DeleteStepActionsById(step_id);
+            queries.DeleteStepConditionsById(step_id);
+            queries.DeleteStepById(step_id);
+            SaveChanges("action", "condition", "step");
+        }
+        /// <summary>
+        /// insert a new step to the step table after the given index
+        /// </summary>
+        /// <remarks>
+        /// 1. get script steps ordered by their number
+        /// 2. increase step number of all steps below the insertion point
+        /// 3. add the new step to the hole just created.
+        /// </remarks>
+        /// <param name="name">step name</param>
+        /// <param name="script_id">script id</param>
+        /// <param name="index">the offset index</param>
+        public void AddStep(string name, int script_id, int index)
+        {
+            var currentSteps = from s in DB.step
+                               where s.script_id == script_id
+                               orderby s.step_number ascending
+                               select s;
+            int newIndex = index + 1;
+            var trailingSteps = currentSteps.Skip(newIndex);
+            foreach (var item in trailingSteps)
+	        {
+                item.step_number++;
+	        }
+            DB.step.AddstepRow(script_id,newIndex,name);
+            SaveChanges("step");
+                               
         }
     }
 }

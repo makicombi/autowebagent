@@ -199,23 +199,14 @@
         s1c0gHPmbrPTpHNJKOCo2G1mZs20zcwUJ5yp1AB5+8/zEwgF5GMVDxh4AAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="stepBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>438, 95</value>
-  </metadata>
-  <metadata name="autoWebAgentDBDataSetBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
-  </metadata>
-  <metadata name="scriptBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>733, 56</value>
-  </metadata>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>627, 17</value>
   </metadata>
   <metadata name="autoWebAgentDBDataSetBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 56</value>
   </metadata>
-  <metadata name="autoWebAgentDBDataSetBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
+  <metadata name="stepBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>438, 95</value>
   </metadata>
   <metadata name="scriptBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>733, 56</value>

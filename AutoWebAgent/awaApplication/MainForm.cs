@@ -31,7 +31,11 @@ namespace awaApplication
         public MainForm()
         {
             InitializeComponent();
+
             listBoxScripts.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnValidation;
+            listBoxSteps.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnValidation;
+            
+
             scriptEntryForm = new TextEntryForm("Please Enter New Script Name:");
             scriptEntryForm.Submitted += new EventHandler(scriptEntryForm_Submitted);
             scriptEntryForm.Location = buttonAddScript.Location;
@@ -39,7 +43,13 @@ namespace awaApplication
             scriptEntryForm.Visible = false;
             tabScript.Controls.Add(scriptEntryForm);
 
-            
+            stepEntryForm = new TextEntryForm("Please Enter New Step Name:");
+            stepEntryForm.Submitted += new EventHandler(stepEntryForm_Submitted);
+            stepEntryForm.Location = buttonAddScript.Location;
+            stepEntryForm.BringToFront();
+            stepEntryForm.Visible = false;
+            tabScript.Controls.Add(stepEntryForm);
+
             aBox = new awaAboutBox();
             aBox.Hide();
             
@@ -58,6 +68,16 @@ namespace awaApplication
 
             scriptBindingSource.DataSource = dal.GetUserScripts(loginForm.UserID).ToList();
             
+        }
+
+        void stepEntryForm_Submitted(object sender, EventArgs e)
+        {
+            TextEntryForm dialog = (TextEntryForm)sender;
+            dialog.Controls["panelContainer"].Controls["labelError"].Text = "";
+            int script_id = (int)listBoxScripts.SelectedValue;
+            dal.AddStep(dialog.Value, script_id, listBoxSteps.SelectedIndex);
+            stepBindingSource.DataSource = dal.GetStepsByScriptID(script_id).ToList();
+            listBoxSteps.SelectedIndex++;
         }
 
         void scriptEntryForm_Submitted(object sender, EventArgs e)
@@ -519,7 +539,34 @@ namespace awaApplication
             {
                 dal.DeleteScript((int)listBoxScripts.SelectedValue);
                 scriptBindingSource.DataSource = dal.GetUserScripts(loginForm.UserID);
+                stepBindingSource.DataSource = dal.GetStepsByScriptID((int)listBoxScripts.SelectedValue);
             }
+        }
+
+        private void buttonAddStep_Click(object sender, EventArgs e)
+        {
+            stepEntryForm.Visible = true;
+            stepEntryForm.Clear();
+            stepEntryForm.BringToFront();
+        }
+
+        private void buttonRemoveStep_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(this, "Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            if (result == DialogResult.Yes)
+            {
+                dal.DeleteStep((int)listBoxSteps.SelectedValue);
+                stepBindingSource.DataSource = dal.GetStepsByScriptID((int)listBoxScripts.SelectedValue);
+            }
+        }
+
+        private void listBoxScripts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((listBoxScripts.SelectedValue != null) && ((int)listBoxScripts.SelectedValue) > -1)
+            {
+                stepBindingSource.DataSource = dal.GetStepsByScriptID((int)listBoxScripts.SelectedValue);    
+            }
+            
         }
     }
 }
