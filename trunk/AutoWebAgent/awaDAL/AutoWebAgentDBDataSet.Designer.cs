@@ -395,12 +395,12 @@ namespace awaDAL {
                         this.tablescript.idColumn}, false);
             this.Relations.Add(this.relationstep_script);
             this.relationcondition_step = new global::System.Data.DataRelation("condition_step", new global::System.Data.DataColumn[] {
-                        this.tablecondition.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablestep.step_numberColumn}, false);
+                        this.tablecondition.step_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablestep.idColumn}, false);
             this.Relations.Add(this.relationcondition_step);
             this.relationaction_step = new global::System.Data.DataRelation("action_step", new global::System.Data.DataColumn[] {
-                        this.tableaction.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablestep.step_numberColumn}, false);
+                        this.tableaction.step_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablestep.idColumn}, false);
             this.Relations.Add(this.relationaction_step);
         }
         
@@ -531,6 +531,8 @@ namespace awaDAL {
             
             private global::System.Data.DataColumn columntarget;
             
+            private global::System.Data.DataColumn columnstep_id;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public actionDataTable() {
                 this.TableName = "action";
@@ -597,6 +599,13 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn step_idColumn {
+                get {
+                    return this.columnstep_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -625,14 +634,15 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public actionRow AddactionRow(string type, string value, int index, string target) {
+            public actionRow AddactionRow(string type, string value, int index, string target, int step_id) {
                 actionRow rowactionRow = ((actionRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         type,
                         value,
                         index,
-                        target};
+                        target,
+                        step_id};
                 rowactionRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowactionRow);
                 return rowactionRow;
@@ -663,6 +673,7 @@ namespace awaDAL {
                 this.columnvalue = base.Columns["value"];
                 this.columnindex = base.Columns["index"];
                 this.columntarget = base.Columns["target"];
+                this.columnstep_id = base.Columns["step_id"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -677,6 +688,8 @@ namespace awaDAL {
                 base.Columns.Add(this.columnindex);
                 this.columntarget = new global::System.Data.DataColumn("target", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntarget);
+                this.columnstep_id = new global::System.Data.DataColumn("step_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstep_id);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AutoIncrement = true;
@@ -687,6 +700,7 @@ namespace awaDAL {
                 this.columnid.Unique = true;
                 this.columntype.MaxLength = 100;
                 this.columnvalue.MaxLength = 100;
+                this.columnstep_id.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -826,6 +840,8 @@ namespace awaDAL {
             
             private global::System.Data.DataColumn columnrhs_element_attr;
             
+            private global::System.Data.DataColumn columnstep_id;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public conditionDataTable() {
                 this.TableName = "condition";
@@ -906,6 +922,13 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn step_idColumn {
+                get {
+                    return this.columnstep_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -934,7 +957,7 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public conditionRow AddconditionRow(int lhs_element_id, string op, string lhs_element_attr, string rhs_value, string rhs_element_id, string rhs_element_attr) {
+            public conditionRow AddconditionRow(int lhs_element_id, string op, string lhs_element_attr, string rhs_value, string rhs_element_id, string rhs_element_attr, int step_id) {
                 conditionRow rowconditionRow = ((conditionRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -943,7 +966,8 @@ namespace awaDAL {
                         lhs_element_attr,
                         rhs_value,
                         rhs_element_id,
-                        rhs_element_attr};
+                        rhs_element_attr,
+                        step_id};
                 rowconditionRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowconditionRow);
                 return rowconditionRow;
@@ -976,6 +1000,7 @@ namespace awaDAL {
                 this.columnrhs_value = base.Columns["rhs_value"];
                 this.columnrhs_element_id = base.Columns["rhs_element_id"];
                 this.columnrhs_element_attr = base.Columns["rhs_element_attr"];
+                this.columnstep_id = base.Columns["step_id"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -994,6 +1019,8 @@ namespace awaDAL {
                 base.Columns.Add(this.columnrhs_element_id);
                 this.columnrhs_element_attr = new global::System.Data.DataColumn("rhs_element_attr", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrhs_element_attr);
+                this.columnstep_id = new global::System.Data.DataColumn("step_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstep_id);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AutoIncrement = true;
@@ -1007,6 +1034,7 @@ namespace awaDAL {
                 this.columnrhs_value.MaxLength = 100;
                 this.columnrhs_element_id.MaxLength = 100;
                 this.columnrhs_element_attr.MaxLength = 100;
+                this.columnstep_id.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1991,10 +2019,6 @@ namespace awaDAL {
             
             private global::System.Data.DataColumn columnscript_id;
             
-            private global::System.Data.DataColumn columncondition_id;
-            
-            private global::System.Data.DataColumn columnaction_id;
-            
             private global::System.Data.DataColumn columnstep_number;
             
             private global::System.Data.DataColumn columnname;
@@ -2044,20 +2068,6 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn condition_idColumn {
-                get {
-                    return this.columncondition_id;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn action_idColumn {
-                get {
-                    return this.columnaction_id;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public global::System.Data.DataColumn step_numberColumn {
                 get {
                     return this.columnstep_number;
@@ -2100,18 +2110,13 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public stepRow AddstepRow(int script_id, int condition_id, int action_id, conditionRow parentconditionRowBycondition_step, string name) {
+            public stepRow AddstepRow(int script_id, int step_number, string name) {
                 stepRow rowstepRow = ((stepRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         script_id,
-                        condition_id,
-                        action_id,
-                        null,
+                        step_number,
                         name};
-                if ((parentconditionRowBycondition_step != null)) {
-                    columnValuesArray[4] = parentconditionRowBycondition_step[0];
-                }
                 rowstepRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowstepRow);
                 return rowstepRow;
@@ -2139,8 +2144,6 @@ namespace awaDAL {
             internal void InitVars() {
                 this.columnid = base.Columns["id"];
                 this.columnscript_id = base.Columns["script_id"];
-                this.columncondition_id = base.Columns["condition_id"];
-                this.columnaction_id = base.Columns["action_id"];
                 this.columnstep_number = base.Columns["step_number"];
                 this.columnname = base.Columns["name"];
             }
@@ -2151,10 +2154,6 @@ namespace awaDAL {
                 base.Columns.Add(this.columnid);
                 this.columnscript_id = new global::System.Data.DataColumn("script_id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnscript_id);
-                this.columncondition_id = new global::System.Data.DataColumn("condition_id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncondition_id);
-                this.columnaction_id = new global::System.Data.DataColumn("action_id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnaction_id);
                 this.columnstep_number = new global::System.Data.DataColumn("step_number", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstep_number);
                 this.columnname = new global::System.Data.DataColumn("name", typeof(string), null, global::System.Data.MappingType.Element);
@@ -2900,6 +2899,16 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int step_id {
+                get {
+                    return ((int)(this[this.tableaction.step_idColumn]));
+                }
+                set {
+                    this[this.tableaction.step_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public bool IstypeNull() {
                 return this.IsNull(this.tableaction.typeColumn);
             }
@@ -3061,6 +3070,16 @@ namespace awaDAL {
                 }
                 set {
                     this[this.tablecondition.rhs_element_attrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int step_id {
+                get {
+                    return ((int)(this[this.tablecondition.step_idColumn]));
+                }
+                set {
+                    this[this.tablecondition.step_idColumn] = value;
                 }
             }
             
@@ -3495,36 +3514,6 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int condition_id {
-                get {
-                    try {
-                        return ((int)(this[this.tablestep.condition_idColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'condition_id\' in table \'step\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablestep.condition_idColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int action_id {
-                get {
-                    try {
-                        return ((int)(this[this.tablestep.action_idColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'action_id\' in table \'step\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablestep.action_idColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public int step_number {
                 get {
                     try {
@@ -3582,26 +3571,6 @@ namespace awaDAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void Setscript_idNull() {
                 this[this.tablestep.script_idColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool Iscondition_idNull() {
-                return this.IsNull(this.tablestep.condition_idColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void Setcondition_idNull() {
-                this[this.tablestep.condition_idColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool Isaction_idNull() {
-                return this.IsNull(this.tablestep.action_idColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void Setaction_idNull() {
-                this[this.tablestep.action_idColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4151,6 +4120,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("type", "type");
             tableMapping.ColumnMappings.Add("value", "value");
             tableMapping.ColumnMappings.Add("index", "index");
+            tableMapping.ColumnMappings.Add("step_id", "step_id");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlServerCe.SqlCeCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -4159,20 +4129,23 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p1", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
             this._adapter.InsertCommand = new global::System.Data.SqlServerCe.SqlCeCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [action] ([type], [value], [index]) VALUES (@p1, @p2, @p3)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [action] ([type], [value], [index], [step_id]) VALUES (@p1, @p2, @p3," +
+                " @p4)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p1", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "type", global::System.Data.DataRowVersion.Current, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p2", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "value", global::System.Data.DataRowVersion.Current, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p3", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "index", global::System.Data.DataRowVersion.Current, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p4", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "step_id", global::System.Data.DataRowVersion.Current, null));
             this._adapter.UpdateCommand = new global::System.Data.SqlServerCe.SqlCeCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [action] SET [type] = @p1, [value] = @p2, [index] = @p3 WHERE (([id] = @p4" +
-                "))";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [action] SET [type] = @p1, [value] = @p2, [index] = @p3, [step_id] = @p4 W" +
+                "HERE (([id] = @p5))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p1", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "type", global::System.Data.DataRowVersion.Current, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p2", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "value", global::System.Data.DataRowVersion.Current, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p3", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "index", global::System.Data.DataRowVersion.Current, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p4", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p4", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "step_id", global::System.Data.DataRowVersion.Current, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p5", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4186,7 +4159,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlServerCe.SqlCeCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlServerCe.SqlCeCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT [id], [type], [value], [index] FROM [action]";
+            this._commandCollection[0].CommandText = "SELECT [id], [type], [value], [index], [step_id] FROM [action]";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4261,7 +4234,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string p1, string p2, global::System.Nullable<int> p3) {
+        public virtual int Insert(string p1, string p2, global::System.Nullable<int> p3, int p4) {
             if ((p1 == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -4280,6 +4253,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(p4));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4299,7 +4273,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string p1, string p2, global::System.Nullable<int> p3, int p4) {
+        public virtual int Update(string p1, string p2, global::System.Nullable<int> p3, int p4, int p5) {
             if ((p1 == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -4319,6 +4293,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(p4));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(p5));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4458,6 +4433,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("rhs_value", "rhs_value");
             tableMapping.ColumnMappings.Add("rhs_element_id", "rhs_element_id");
             tableMapping.ColumnMappings.Add("rhs_element_attr", "rhs_element_attr");
+            tableMapping.ColumnMappings.Add("step_id", "step_id");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlServerCe.SqlCeCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -4467,7 +4443,8 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             this._adapter.InsertCommand = new global::System.Data.SqlServerCe.SqlCeCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [condition] ([lhs_element_id], [op], [lhs_element_attr], [rhs_value]," +
-                " [rhs_element_id], [rhs_element_attr]) VALUES (@p1, @p2, @p3, @p4, @p5, @p6)";
+                " [rhs_element_id], [rhs_element_attr], [step_id]) VALUES (@p1, @p2, @p3, @p4, @p" +
+                "5, @p6, @p7)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p1", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "lhs_element_id", global::System.Data.DataRowVersion.Current, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p2", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "op", global::System.Data.DataRowVersion.Current, null));
@@ -4475,11 +4452,12 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p4", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "rhs_value", global::System.Data.DataRowVersion.Current, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p5", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "rhs_element_id", global::System.Data.DataRowVersion.Current, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p6", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "rhs_element_attr", global::System.Data.DataRowVersion.Current, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p7", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "step_id", global::System.Data.DataRowVersion.Current, null));
             this._adapter.UpdateCommand = new global::System.Data.SqlServerCe.SqlCeCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [condition] SET [lhs_element_id] = @p1, [op] = @p2, [lhs_element_attr] = @" +
-                "p3, [rhs_value] = @p4, [rhs_element_id] = @p5, [rhs_element_attr] = @p6 WHERE ((" +
-                "[id] = @p7))";
+                "p3, [rhs_value] = @p4, [rhs_element_id] = @p5, [rhs_element_attr] = @p6, [step_i" +
+                "d] = @p7 WHERE (([id] = @p8))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p1", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "lhs_element_id", global::System.Data.DataRowVersion.Current, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p2", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "op", global::System.Data.DataRowVersion.Current, null));
@@ -4487,7 +4465,8 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p4", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "rhs_value", global::System.Data.DataRowVersion.Current, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p5", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "rhs_element_id", global::System.Data.DataRowVersion.Current, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p6", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "rhs_element_attr", global::System.Data.DataRowVersion.Current, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p7", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p7", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "step_id", global::System.Data.DataRowVersion.Current, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p8", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4502,7 +4481,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             this._commandCollection[0] = new global::System.Data.SqlServerCe.SqlCeCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT [id], [lhs_element_id], [op], [lhs_element_attr], [rhs_value], [rhs_elemen" +
-                "t_id], [rhs_element_attr] FROM [condition]";
+                "t_id], [rhs_element_attr], [step_id] FROM [condition]";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4577,7 +4556,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> p1, string p2, string p3, string p4, string p5, string p6) {
+        public virtual int Insert(global::System.Nullable<int> p1, string p2, string p3, string p4, string p5, string p6, int p7) {
             if ((p1.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(p1.Value));
             }
@@ -4614,6 +4593,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = ((string)(p6));
             }
+            this.Adapter.InsertCommand.Parameters[6].Value = ((int)(p7));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4633,7 +4613,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> p1, string p2, string p3, string p4, string p5, string p6, int p7) {
+        public virtual int Update(global::System.Nullable<int> p1, string p2, string p3, string p4, string p5, string p6, int p7, int p8) {
             if ((p1.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(p1.Value));
             }
@@ -4671,6 +4651,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(p6));
             }
             this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(p7));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(p8));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5723,9 +5704,8 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             tableMapping.DataSetTable = "step";
             tableMapping.ColumnMappings.Add("id", "id");
             tableMapping.ColumnMappings.Add("script_id", "script_id");
-            tableMapping.ColumnMappings.Add("condition_id", "condition_id");
-            tableMapping.ColumnMappings.Add("action_id", "action_id");
             tableMapping.ColumnMappings.Add("step_number", "step_number");
+            tableMapping.ColumnMappings.Add("name", "name");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlServerCe.SqlCeCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -5734,23 +5714,20 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p1", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
             this._adapter.InsertCommand = new global::System.Data.SqlServerCe.SqlCeCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [step] ([script_id], [condition_id], [action_id], [step_number]) VALU" +
-                "ES (@p1, @p2, @p3, @p4)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [step] ([script_id], [name], [step_number]) VALUES (@p1, @p2, @p3)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p1", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "script_id", global::System.Data.DataRowVersion.Current, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p2", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "condition_id", global::System.Data.DataRowVersion.Current, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p3", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "action_id", global::System.Data.DataRowVersion.Current, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p4", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "step_number", global::System.Data.DataRowVersion.Current, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p2", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "name", global::System.Data.DataRowVersion.Current, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p3", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "step_number", global::System.Data.DataRowVersion.Current, null));
             this._adapter.UpdateCommand = new global::System.Data.SqlServerCe.SqlCeCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [step] SET [script_id] = @p1, [condition_id] = @p2, [action_id] = @p3, [st" +
-                "ep_number] = @p4 WHERE (([id] = @p5))";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [step] SET [script_id] = @p1, [name] = @p2, [step_number] = @p3 WHERE (([i" +
+                "d] = @p4))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p1", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "script_id", global::System.Data.DataRowVersion.Current, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p2", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "condition_id", global::System.Data.DataRowVersion.Current, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p3", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "action_id", global::System.Data.DataRowVersion.Current, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p4", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "step_number", global::System.Data.DataRowVersion.Current, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p5", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p2", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "name", global::System.Data.DataRowVersion.Current, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p3", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "step_number", global::System.Data.DataRowVersion.Current, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p4", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5764,7 +5741,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlServerCe.SqlCeCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlServerCe.SqlCeCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT [id], [script_id], [condition_id], [action_id], [step_number] FROM [step]";
+            this._commandCollection[0].CommandText = "SELECT [id], [script_id], [name], [step_number] FROM [step]";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5839,30 +5816,24 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> p1, global::System.Nullable<int> p2, global::System.Nullable<int> p3, global::System.Nullable<int> p4) {
+        public virtual int Insert(global::System.Nullable<int> p1, string p2, global::System.Nullable<int> p3) {
             if ((p1.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(p1.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((p2.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(p2.Value));
+            if ((p2 == null)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(p2));
             }
             if ((p3.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((int)(p3.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((p4.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(p4.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5883,18 +5854,18 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> p1, global::System.Nullable<int> p2, global::System.Nullable<int> p3, global::System.Nullable<int> p4, int p5) {
+        public virtual int Update(global::System.Nullable<int> p1, string p2, global::System.Nullable<int> p3, int p4) {
             if ((p1.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(p1.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((p2.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(p2.Value));
+            if ((p2 == null)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(p2));
             }
             if ((p3.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(p3.Value));
@@ -5902,13 +5873,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((p4.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(p4.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(p5));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(p4));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6528,7 +6493,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.IDbCommand[10];
+            this._commandCollection = new global::System.Data.IDbCommand[11];
             this._commandCollection[0] = new global::System.Data.SqlServerCe.SqlCeCommand();
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[0])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString);
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[0])).CommandText = "DELETE FROM recognition\r\nWHERE  (element_id = @element_id)";
@@ -6564,22 +6529,36 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[6])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@script_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "script_id", global::System.Data.DataRowVersion.Original, null));
             this._commandCollection[7] = new global::System.Data.SqlServerCe.SqlCeCommand();
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[7])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString);
-            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[7])).CommandText = "DELETE FROM action\r\nWHERE  (id IN\r\n                   (SELECT  action_id\r\n       " +
-                "             FROM     step\r\n                    WHERE  (id = @step_id)))";
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[7])).CommandText = "DELETE FROM action\r\nWHERE  step_id = @step_id";
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[7])).CommandType = global::System.Data.CommandType.Text;
-            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[7])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@step_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
+            global::System.Data.SqlServerCe.SqlCeParameter param = new global::System.Data.SqlServerCe.SqlCeParameter();
+            param.ParameterName = "@step_id";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.Size = 1024;
+            param.IsNullable = true;
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[7])).Parameters.Add(param);
             this._commandCollection[8] = new global::System.Data.SqlServerCe.SqlCeCommand();
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[8])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString);
-            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[8])).CommandText = "DELETE FROM condition\r\nWHERE  (condition.id IN\r\n                   (SELECT  condi" +
-                "tion_id\r\n                    FROM     step\r\n                    WHERE  (id = @st" +
-                "ep_id)))";
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[8])).CommandText = "DELETE FROM condition\r\nWHERE  (step_id = @step_id)";
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[8])).CommandType = global::System.Data.CommandType.Text;
-            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[8])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@step_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
+            param = new global::System.Data.SqlServerCe.SqlCeParameter();
+            param.ParameterName = "@step_id";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.Size = 1024;
+            param.IsNullable = true;
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[8])).Parameters.Add(param);
             this._commandCollection[9] = new global::System.Data.SqlServerCe.SqlCeCommand();
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[9])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString);
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[9])).CommandText = "DELETE FROM script\r\nWHERE  (id = @script_id)";
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[9])).CommandType = global::System.Data.CommandType.Text;
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[9])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@script_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
+            this._commandCollection[10] = new global::System.Data.SqlServerCe.SqlCeCommand();
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[10])).Connection = new global::System.Data.SqlServerCe.SqlCeConnection(global::awaDAL.Properties.Settings.Default.AutoWebAgentDBConnectionString);
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[10])).CommandText = "DELETE FROM step\r\nWHERE  (id = @step_id)";
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[10])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[10])).Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@step_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "id", global::System.Data.DataRowVersion.Original, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6759,9 +6738,14 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
-        public virtual int DeleteStepActionsById(int step_id) {
+        public virtual int DeleteStepActionsById(object step_id) {
             global::System.Data.SqlServerCe.SqlCeCommand command = ((global::System.Data.SqlServerCe.SqlCeCommand)(this.CommandCollection[7]));
-            command.Parameters[0].Value = ((int)(step_id));
+            if ((step_id == null)) {
+                throw new global::System.ArgumentNullException("step_id");
+            }
+            else {
+                command.Parameters[0].Value = ((object)(step_id));
+            }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6782,9 +6766,14 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
-        public virtual int DeleteStepConditionsById(int step_id) {
+        public virtual int DeleteStepConditionsById(object step_id) {
             global::System.Data.SqlServerCe.SqlCeCommand command = ((global::System.Data.SqlServerCe.SqlCeCommand)(this.CommandCollection[8]));
-            command.Parameters[0].Value = ((int)(step_id));
+            if ((step_id == null)) {
+                throw new global::System.ArgumentNullException("step_id");
+            }
+            else {
+                command.Parameters[0].Value = ((object)(step_id));
+            }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6808,6 +6797,29 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         public virtual int DeleteScriptById(int script_id) {
             global::System.Data.SqlServerCe.SqlCeCommand command = ((global::System.Data.SqlServerCe.SqlCeCommand)(this.CommandCollection[9]));
             command.Parameters[0].Value = ((int)(script_id));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteStepById(int step_id) {
+            global::System.Data.SqlServerCe.SqlCeCommand command = ((global::System.Data.SqlServerCe.SqlCeCommand)(this.CommandCollection[10]));
+            command.Parameters[0].Value = ((int)(step_id));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
