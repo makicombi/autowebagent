@@ -6533,7 +6533,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[7])).CommandType = global::System.Data.CommandType.Text;
             global::System.Data.SqlServerCe.SqlCeParameter param = new global::System.Data.SqlServerCe.SqlCeParameter();
             param.ParameterName = "@step_id";
-            param.DbType = global::System.Data.DbType.Int32;
+            param.DbType = global::System.Data.DbType.Object;
             param.Size = 1024;
             param.IsNullable = true;
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
@@ -6544,7 +6544,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[8])).CommandType = global::System.Data.CommandType.Text;
             param = new global::System.Data.SqlServerCe.SqlCeParameter();
             param.ParameterName = "@step_id";
-            param.DbType = global::System.Data.DbType.Int32;
+            param.DbType = global::System.Data.DbType.Object;
             param.Size = 1024;
             param.IsNullable = true;
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
