@@ -466,13 +466,34 @@ namespace awaDAL
         /// <remarks>
         /// 1. for step id delete actions from action table
         /// 2. for step id delete conditions from condition table
-        /// 3. delete step from step table
+        /// 3. align numbering of remaining steps
+        /// 4. delete step from step table
         /// </remarks>
         /// <param name="step_id">step ID</param>
         public void DeleteStep(int step_id)
         {
             queries.DeleteStepActionsById(step_id);
             queries.DeleteStepConditionsById(step_id);
+            var res = from s in DB.step
+                      where s.id == step_id 
+                       select s ;
+            if (res.Count()!=1)
+            {
+                return;
+            }
+
+            int script_id = res.First().script_id;
+            int step_number =  res.First().step_number;
+            var trailingSteps = from s in DB.step
+                                where (s.step_number > step_number) && (s.script_id == script_id)
+                    orderby s.step_number ascending 
+                  select s;
+            foreach (var step in trailingSteps)
+            {
+                step.step_number--;
+            }
+
+
             queries.DeleteStepById(step_id);
             SaveChanges("action", "condition", "step");
         }
@@ -502,6 +523,53 @@ namespace awaDAL
             DB.step.AddstepRow(script_id,newIndex,name);
             SaveChanges("step");
                                
+        }
+
+        public void MoveStepUp(int step_id)
+        {
+            var res = from s in DB.step
+                      where s.id == step_id
+                      select s;
+            if (res.Count() != 1)
+	        {
+        		 return;
+	        }
+            int script_id = res.First().script_id;
+            int step_number = res.First().step_number;
+            var previousStep = from s in DB.step
+                              where (s.script_id == script_id) && (s.step_number == step_number - 1)
+                              select s;
+            if (previousStep.Count() == 1)
+            {
+                res.Single().step_number = previousStep.Single().step_number;
+                // this is because after the previous line the previousStep sequence contains 2 elements with equal step_number
+                previousStep.First(a => a.id!=step_id).step_number = step_number;
+                SaveChanges("step"); 
+            }
+
+        }
+        public void MoveStepDown(int step_id)
+        {
+            var res = from s in DB.step
+                      where s.id == step_id
+                      select s;
+            if (res.Count() != 1)
+            {
+                return;
+            }
+            int script_id = res.First().script_id;
+            int step_number = res.First().step_number;
+            var previousStep = from s in DB.step
+                               where (s.script_id == script_id) && (s.step_number == step_number + 1)
+                               select s;
+            if (previousStep.Count() == 1)
+            {
+                res.Single().step_number = previousStep.Single().step_number;
+                // this is because after the previous line the previousStep sequence contains 2 elements with equal step_number
+                previousStep.First(a => a.id != step_id).step_number = step_number;
+                SaveChanges("step");
+            }
+
         }
     }
 }

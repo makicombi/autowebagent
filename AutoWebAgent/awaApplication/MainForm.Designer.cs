@@ -590,6 +590,7 @@
             this.buttonStepDown.TabIndex = 10;
             this.buttonStepDown.Text = "move down";
             this.buttonStepDown.UseVisualStyleBackColor = true;
+            this.buttonStepDown.Click += new System.EventHandler(this.buttonStepDown_Click);
             // 
             // buttonStepUp
             // 
@@ -599,6 +600,7 @@
             this.buttonStepUp.TabIndex = 9;
             this.buttonStepUp.Text = "move up";
             this.buttonStepUp.UseVisualStyleBackColor = true;
+            this.buttonStepUp.Click += new System.EventHandler(this.buttonStepUp_Click);
             // 
             // buttonRemoveScript
             // 

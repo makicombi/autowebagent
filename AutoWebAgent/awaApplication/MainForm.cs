@@ -77,7 +77,10 @@ namespace awaApplication
             int script_id = (int)listBoxScripts.SelectedValue;
             dal.AddStep(dialog.Value, script_id, listBoxSteps.SelectedIndex);
             stepBindingSource.DataSource = dal.GetStepsByScriptID(script_id).ToList();
-            listBoxSteps.SelectedIndex++;
+            if (listBoxSteps.SelectedIndex+1 < listBoxSteps.Items.Count)
+            {
+                listBoxSteps.SelectedIndex++;
+            }
         }
 
         void scriptEntryForm_Submitted(object sender, EventArgs e)
@@ -567,6 +570,37 @@ namespace awaApplication
                 stepBindingSource.DataSource = dal.GetStepsByScriptID((int)listBoxScripts.SelectedValue);    
             }
             
+        }
+
+        private void buttonStepUp_Click(object sender, EventArgs e)
+        {
+            if (listBoxSteps.SelectedIndex == 0)
+            {
+                return;
+            }
+            if ((listBoxSteps.SelectedValue != null) && ((int)listBoxSteps.SelectedValue) > -1)
+            {
+                dal.MoveStepUp((int)listBoxSteps.SelectedValue);
+                stepBindingSource.DataSource = dal.GetStepsByScriptID((int)listBoxScripts.SelectedValue);
+                listBoxSteps.SelectedIndex--;
+            }
+            
+
+            
+        }
+
+        private void buttonStepDown_Click(object sender, EventArgs e)
+        {
+            if (listBoxSteps.SelectedIndex == listBoxSteps.Items.Count-1)
+            {
+                return;
+            }
+            if ((listBoxSteps.SelectedValue != null) && ((int)listBoxSteps.SelectedValue) > -1)
+            {
+                dal.MoveStepDown((int)listBoxSteps.SelectedValue);
+                stepBindingSource.DataSource = dal.GetStepsByScriptID((int)listBoxScripts.SelectedValue);
+                listBoxSteps.SelectedIndex++;
+            }
         }
     }
 }
