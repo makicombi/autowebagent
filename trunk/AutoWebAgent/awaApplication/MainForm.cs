@@ -567,7 +567,12 @@ namespace awaApplication
         {
             if ((listBoxScripts.SelectedValue != null) && ((int)listBoxScripts.SelectedValue) > -1)
             {
-                stepBindingSource.DataSource = dal.GetStepsByScriptID((int)listBoxScripts.SelectedValue);    
+                stepBindingSource.DataSource = dal.GetStepsByScriptID((int)listBoxScripts.SelectedValue);
+                if (listBoxSteps.Items.Count>0)
+                {
+                    listBoxSteps.SetSelected(0, true);
+                }
+                
             }
             
         }
@@ -602,5 +607,16 @@ namespace awaApplication
                 listBoxSteps.SelectedIndex++;
             }
         }
+
+        private void listBoxSteps_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxSteps.SelectedItem is AutoWebAgentDBDataSet.stepRow)
+            {
+                textBoxStepName.Text = (listBoxSteps.SelectedItem as AutoWebAgentDBDataSet.stepRow).name;
+            }
+            
+
+        }
     }
 }
+;
