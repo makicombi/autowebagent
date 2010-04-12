@@ -1134,6 +1134,7 @@
             this.listBoxSteps.Size = new System.Drawing.Size(145, 342);
             this.listBoxSteps.TabIndex = 2;
             this.listBoxSteps.ValueMember = "id";
+            this.listBoxSteps.SelectedIndexChanged += new System.EventHandler(this.listBoxSteps_SelectedIndexChanged);
             // 
             // stepBindingSource
             // 
