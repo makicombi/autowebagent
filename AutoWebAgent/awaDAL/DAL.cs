@@ -62,6 +62,22 @@ namespace awaDAL
                 this.Priority = p;
             }
         }
+        public class ActionView 
+        {
+            public string Type { get; set; }
+            public string Value { get; set; }
+            public int Index { get; set; }
+            public string NotifyMethod { get; set; }
+            public string Target { get; set; }
+        }
+        public class ConditionView
+        {
+            public string Type { get; set; }
+            public string Source { get; set; }
+            public string TargetValue { get; set; }
+            public string SourceAttribute { get; set; }
+            public string TargetAttribute { get; set; }
+        }
         public AutoWebAgentDBDataSet DB { get; private set; }
         actionTableAdapter actionAdapter;
         conditionTableAdapter conditionAdapter;
@@ -570,6 +586,46 @@ namespace awaDAL
                 SaveChanges("step");
             }
 
+        }
+
+        public IEnumerable<ActionView> GetStepActions(int step_id)
+        {
+            var result = from a in DB.action
+                       from e in DB.element
+                       where (a.target_id == e.id) && (a.step_id == step_id)
+                       select new ActionView(){ Type = a.type, Value = a.value, Index = a.index, NotifyMethod = a.notifyMethod, Target = e.name };
+            return result;
+        }
+
+        public IEnumerable<ConditionView> GetStepConditions(int step_id)
+        {
+            //var result = from e1 in DB.element
+            //             from e2 in DB.element
+            //             from c in DB.condition
+            //             where (c.step_id == step_id)
+//            SELECT  e1.name AS l_element, c.op, c.lhs_element_attr, c.rhs_value, e2.name AS r_element, c.rhs_element_attr, c.step_id
+//FROM     condition AS c LEFT OUTER JOIN
+//               element AS e1 ON c.lhs_element_id = e1.id LEFT OUTER JOIN
+//               element AS e2 ON c.rhs_element_id = e2.id
+//WHERE  (c.step_id = 1)
+            var result = from src_elm in DB.element
+                         join c in DB.condition on src_elm.id equals c.lhs_element_id into cs
+                         from c1 in cs
+                         join tgt_elm in DB.element on c1.rhs_element_id equals tgt_elm.id into rt
+                         from row in rt.DefaultIfEmpty()
+                         where c1.step_id==step_id
+                         select new ConditionView
+                         {
+                             Type = c1.op,
+                             Source = src_elm.name,
+                             SourceAttribute = c1.lhs_element_attr,
+                             TargetValue = (row == null ? c1.rhs_value : row.name),
+                             TargetAttribute = c1.rhs_element_attr
+                         };
+
+            return result;
+
+                          
         }
     }
 }

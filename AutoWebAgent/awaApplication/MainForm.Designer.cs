@@ -80,60 +80,66 @@
             this.buttonRemoveStep = new System.Windows.Forms.Button();
             this.buttonAddStep = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.listBoxActionNotifyMethod4 = new System.Windows.Forms.ListBox();
+            this.buttonRevertStep = new System.Windows.Forms.Button();
+            this.groupBoxActions = new System.Windows.Forms.GroupBox();
+            this.listBoxActionNotifyMethod4 = new System.Windows.Forms.BetterListBox();
             this.textBoxActionValue4 = new System.Windows.Forms.TextBox();
-            this.textBoxActionSource4 = new System.Windows.Forms.TextBox();
-            this.listBoxActionType4 = new System.Windows.Forms.ListBox();
-            this.listBoxActionNotifyMethod3 = new System.Windows.Forms.ListBox();
+            this.textBoxActionTarget4 = new System.Windows.Forms.TextBox();
+            this.listBoxActionType4 = new System.Windows.Forms.BetterListBox();
+            this.listBoxActionNotifyMethod3 = new System.Windows.Forms.BetterListBox();
             this.textBoxActionValue3 = new System.Windows.Forms.TextBox();
-            this.textBoxActionSource3 = new System.Windows.Forms.TextBox();
-            this.listBoxActionType3 = new System.Windows.Forms.ListBox();
-            this.listBoxActionNotifyMethod2 = new System.Windows.Forms.ListBox();
+            this.textBoxActionTarget3 = new System.Windows.Forms.TextBox();
+            this.listBoxActionType3 = new System.Windows.Forms.BetterListBox();
+            this.listBoxActionNotifyMethod2 = new System.Windows.Forms.BetterListBox();
             this.textBoxActionValue2 = new System.Windows.Forms.TextBox();
-            this.textBoxActionSource2 = new System.Windows.Forms.TextBox();
-            this.listBoxActionType2 = new System.Windows.Forms.ListBox();
-            this.listBoxActionNotifyMethod1 = new System.Windows.Forms.ListBox();
+            this.textBoxActionTarget2 = new System.Windows.Forms.TextBox();
+            this.listBoxActionType2 = new System.Windows.Forms.BetterListBox();
+            this.listBoxActionNotifyMethod1 = new System.Windows.Forms.BetterListBox();
             this.textBoxActionValue1 = new System.Windows.Forms.TextBox();
-            this.textBoxActionSource1 = new System.Windows.Forms.TextBox();
-            this.listBoxActionType1 = new System.Windows.Forms.ListBox();
+            this.textBoxActionTarget1 = new System.Windows.Forms.TextBox();
+            this.listBoxActionType1 = new System.Windows.Forms.BetterListBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBoxConditionAttribute4 = new System.Windows.Forms.TextBox();
+            this.groupBoxConditions = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBoxConditionSourceAttribute4 = new System.Windows.Forms.TextBox();
+            this.textBoxConditionSourceAttribute3 = new System.Windows.Forms.TextBox();
+            this.textBoxConditionSourceAttribute2 = new System.Windows.Forms.TextBox();
+            this.textBoxConditionSourceAttribute1 = new System.Windows.Forms.TextBox();
+            this.textBoxConditionTargetAttribute4 = new System.Windows.Forms.TextBox();
             this.textBoxConditionTarget4 = new System.Windows.Forms.TextBox();
-            this.textBoxContionSource4 = new System.Windows.Forms.TextBox();
-            this.listBoxConditionType4 = new System.Windows.Forms.ListBox();
-            this.textBoxConditionAttribute3 = new System.Windows.Forms.TextBox();
+            this.textBoxConditionSource4 = new System.Windows.Forms.TextBox();
+            this.listBoxConditionType4 = new System.Windows.Forms.BetterListBox();
+            this.textBoxConditionTargetAttribute3 = new System.Windows.Forms.TextBox();
             this.textBoxConditionTarget3 = new System.Windows.Forms.TextBox();
-            this.textBoxContionSourc3 = new System.Windows.Forms.TextBox();
-            this.listBoxConditionType3 = new System.Windows.Forms.ListBox();
-            this.textBoxConditionAttribute2 = new System.Windows.Forms.TextBox();
+            this.textBoxConditionSource3 = new System.Windows.Forms.TextBox();
+            this.listBoxConditionType3 = new System.Windows.Forms.BetterListBox();
+            this.textBoxConditionTargetAttribute2 = new System.Windows.Forms.TextBox();
             this.textBoxConditionTarget2 = new System.Windows.Forms.TextBox();
-            this.textBoxContionSource2 = new System.Windows.Forms.TextBox();
-            this.listBoxConditionType2 = new System.Windows.Forms.ListBox();
+            this.textBoxConditionSource2 = new System.Windows.Forms.TextBox();
+            this.listBoxConditionType2 = new System.Windows.Forms.BetterListBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBoxConditionAttribute1 = new System.Windows.Forms.TextBox();
+            this.textBoxConditionTargetAttribute1 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxConditionTarget1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBoxContionSource1 = new System.Windows.Forms.TextBox();
+            this.textBoxConditionSource1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.listBoxConditionType1 = new System.Windows.Forms.ListBox();
+            this.listBoxConditionType1 = new System.Windows.Forms.BetterListBox();
             this.buttonUpdateStep = new System.Windows.Forms.Button();
             this.textBoxStepName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.listBoxSteps = new System.Windows.Forms.ListBox();
+            this.listBoxSteps = new System.Windows.Forms.BetterListBox();
             this.stepBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
-            this.listBoxScripts = new System.Windows.Forms.ListBox();
+            this.listBoxScripts = new System.Windows.Forms.BetterListBox();
             this.scriptBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabSchedule = new System.Windows.Forms.TabPage();
             this.textBox22 = new System.Windows.Forms.TextBox();
-            this.listBox16 = new System.Windows.Forms.ListBox();
+            this.listBox16 = new System.Windows.Forms.BetterListBox();
             this.label17 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -141,7 +147,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
-            this.listBox15 = new System.Windows.Forms.ListBox();
+            this.listBox15 = new System.Windows.Forms.BetterListBox();
             this.tabActivation = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBox23 = new System.Windows.Forms.TextBox();
@@ -150,6 +156,8 @@
             this.scriptDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.recognitionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.scriptTableAdapterBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.actionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.conditionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabContainer.SuspendLayout();
@@ -163,8 +171,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.autoWebAgentDBDataSetBindingSource)).BeginInit();
             this.tabScript.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBoxActions.SuspendLayout();
+            this.groupBoxConditions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stepBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scriptBindingSource)).BeginInit();
             this.tabSchedule.SuspendLayout();
@@ -174,6 +182,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.scriptDataTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recognitionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scriptTableAdapterBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.actionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.conditionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -644,46 +654,57 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Controls.Add(this.buttonRevertStep);
+            this.groupBox1.Controls.Add(this.groupBoxActions);
+            this.groupBox1.Controls.Add(this.groupBoxConditions);
             this.groupBox1.Controls.Add(this.buttonUpdateStep);
             this.groupBox1.Controls.Add(this.textBoxStepName);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(446, 41);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(550, 400);
+            this.groupBox1.Size = new System.Drawing.Size(661, 400);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Step Editor";
             // 
-            // groupBox3
+            // buttonRevertStep
             // 
-            this.groupBox3.Controls.Add(this.listBoxActionNotifyMethod4);
-            this.groupBox3.Controls.Add(this.textBoxActionValue4);
-            this.groupBox3.Controls.Add(this.textBoxActionSource4);
-            this.groupBox3.Controls.Add(this.listBoxActionType4);
-            this.groupBox3.Controls.Add(this.listBoxActionNotifyMethod3);
-            this.groupBox3.Controls.Add(this.textBoxActionValue3);
-            this.groupBox3.Controls.Add(this.textBoxActionSource3);
-            this.groupBox3.Controls.Add(this.listBoxActionType3);
-            this.groupBox3.Controls.Add(this.listBoxActionNotifyMethod2);
-            this.groupBox3.Controls.Add(this.textBoxActionValue2);
-            this.groupBox3.Controls.Add(this.textBoxActionSource2);
-            this.groupBox3.Controls.Add(this.listBoxActionType2);
-            this.groupBox3.Controls.Add(this.listBoxActionNotifyMethod1);
-            this.groupBox3.Controls.Add(this.textBoxActionValue1);
-            this.groupBox3.Controls.Add(this.textBoxActionSource1);
-            this.groupBox3.Controls.Add(this.listBoxActionType1);
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Location = new System.Drawing.Point(10, 198);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(534, 174);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Actions";
+            this.buttonRevertStep.Location = new System.Drawing.Point(278, 378);
+            this.buttonRevertStep.Name = "buttonRevertStep";
+            this.buttonRevertStep.Size = new System.Drawing.Size(130, 23);
+            this.buttonRevertStep.TabIndex = 5;
+            this.buttonRevertStep.Text = "revert step";
+            this.buttonRevertStep.UseVisualStyleBackColor = true;
+            this.buttonRevertStep.Click += new System.EventHandler(this.buttonRevertStep_Click);
+            // 
+            // groupBoxActions
+            // 
+            this.groupBoxActions.Controls.Add(this.listBoxActionNotifyMethod4);
+            this.groupBoxActions.Controls.Add(this.textBoxActionValue4);
+            this.groupBoxActions.Controls.Add(this.textBoxActionTarget4);
+            this.groupBoxActions.Controls.Add(this.listBoxActionType4);
+            this.groupBoxActions.Controls.Add(this.listBoxActionNotifyMethod3);
+            this.groupBoxActions.Controls.Add(this.textBoxActionValue3);
+            this.groupBoxActions.Controls.Add(this.textBoxActionTarget3);
+            this.groupBoxActions.Controls.Add(this.listBoxActionType3);
+            this.groupBoxActions.Controls.Add(this.listBoxActionNotifyMethod2);
+            this.groupBoxActions.Controls.Add(this.textBoxActionValue2);
+            this.groupBoxActions.Controls.Add(this.textBoxActionTarget2);
+            this.groupBoxActions.Controls.Add(this.listBoxActionType2);
+            this.groupBoxActions.Controls.Add(this.listBoxActionNotifyMethod1);
+            this.groupBoxActions.Controls.Add(this.textBoxActionValue1);
+            this.groupBoxActions.Controls.Add(this.textBoxActionTarget1);
+            this.groupBoxActions.Controls.Add(this.listBoxActionType1);
+            this.groupBoxActions.Controls.Add(this.label10);
+            this.groupBoxActions.Controls.Add(this.label11);
+            this.groupBoxActions.Controls.Add(this.label12);
+            this.groupBoxActions.Controls.Add(this.label13);
+            this.groupBoxActions.Location = new System.Drawing.Point(10, 198);
+            this.groupBoxActions.Name = "groupBoxActions";
+            this.groupBoxActions.Size = new System.Drawing.Size(645, 174);
+            this.groupBoxActions.TabIndex = 4;
+            this.groupBoxActions.TabStop = false;
+            this.groupBoxActions.Text = "Actions";
             // 
             // listBoxActionNotifyMethod4
             // 
@@ -696,6 +717,7 @@
             this.listBoxActionNotifyMethod4.Name = "listBoxActionNotifyMethod4";
             this.listBoxActionNotifyMethod4.Size = new System.Drawing.Size(104, 17);
             this.listBoxActionNotifyMethod4.TabIndex = 27;
+            this.listBoxActionNotifyMethod4.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             // 
             // textBoxActionValue4
             // 
@@ -704,12 +726,12 @@
             this.textBoxActionValue4.Size = new System.Drawing.Size(104, 20);
             this.textBoxActionValue4.TabIndex = 26;
             // 
-            // textBoxActionSource4
+            // textBoxActionTarget4
             // 
-            this.textBoxActionSource4.Location = new System.Drawing.Point(119, 110);
-            this.textBoxActionSource4.Name = "textBoxActionSource4";
-            this.textBoxActionSource4.Size = new System.Drawing.Size(104, 20);
-            this.textBoxActionSource4.TabIndex = 25;
+            this.textBoxActionTarget4.Location = new System.Drawing.Point(119, 110);
+            this.textBoxActionTarget4.Name = "textBoxActionTarget4";
+            this.textBoxActionTarget4.Size = new System.Drawing.Size(104, 20);
+            this.textBoxActionTarget4.TabIndex = 25;
             // 
             // listBoxActionType4
             // 
@@ -724,6 +746,7 @@
             this.listBoxActionType4.Name = "listBoxActionType4";
             this.listBoxActionType4.Size = new System.Drawing.Size(104, 17);
             this.listBoxActionType4.TabIndex = 24;
+            this.listBoxActionType4.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             // 
             // listBoxActionNotifyMethod3
             // 
@@ -736,6 +759,7 @@
             this.listBoxActionNotifyMethod3.Name = "listBoxActionNotifyMethod3";
             this.listBoxActionNotifyMethod3.Size = new System.Drawing.Size(104, 17);
             this.listBoxActionNotifyMethod3.TabIndex = 23;
+            this.listBoxActionNotifyMethod3.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             // 
             // textBoxActionValue3
             // 
@@ -744,12 +768,12 @@
             this.textBoxActionValue3.Size = new System.Drawing.Size(104, 20);
             this.textBoxActionValue3.TabIndex = 22;
             // 
-            // textBoxActionSource3
+            // textBoxActionTarget3
             // 
-            this.textBoxActionSource3.Location = new System.Drawing.Point(119, 87);
-            this.textBoxActionSource3.Name = "textBoxActionSource3";
-            this.textBoxActionSource3.Size = new System.Drawing.Size(104, 20);
-            this.textBoxActionSource3.TabIndex = 21;
+            this.textBoxActionTarget3.Location = new System.Drawing.Point(119, 87);
+            this.textBoxActionTarget3.Name = "textBoxActionTarget3";
+            this.textBoxActionTarget3.Size = new System.Drawing.Size(104, 20);
+            this.textBoxActionTarget3.TabIndex = 21;
             // 
             // listBoxActionType3
             // 
@@ -764,6 +788,7 @@
             this.listBoxActionType3.Name = "listBoxActionType3";
             this.listBoxActionType3.Size = new System.Drawing.Size(104, 17);
             this.listBoxActionType3.TabIndex = 20;
+            this.listBoxActionType3.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             // 
             // listBoxActionNotifyMethod2
             // 
@@ -776,6 +801,7 @@
             this.listBoxActionNotifyMethod2.Name = "listBoxActionNotifyMethod2";
             this.listBoxActionNotifyMethod2.Size = new System.Drawing.Size(104, 17);
             this.listBoxActionNotifyMethod2.TabIndex = 19;
+            this.listBoxActionNotifyMethod2.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             // 
             // textBoxActionValue2
             // 
@@ -784,12 +810,12 @@
             this.textBoxActionValue2.Size = new System.Drawing.Size(104, 20);
             this.textBoxActionValue2.TabIndex = 18;
             // 
-            // textBoxActionSource2
+            // textBoxActionTarget2
             // 
-            this.textBoxActionSource2.Location = new System.Drawing.Point(119, 64);
-            this.textBoxActionSource2.Name = "textBoxActionSource2";
-            this.textBoxActionSource2.Size = new System.Drawing.Size(104, 20);
-            this.textBoxActionSource2.TabIndex = 17;
+            this.textBoxActionTarget2.Location = new System.Drawing.Point(119, 64);
+            this.textBoxActionTarget2.Name = "textBoxActionTarget2";
+            this.textBoxActionTarget2.Size = new System.Drawing.Size(104, 20);
+            this.textBoxActionTarget2.TabIndex = 17;
             // 
             // listBoxActionType2
             // 
@@ -804,6 +830,7 @@
             this.listBoxActionType2.Name = "listBoxActionType2";
             this.listBoxActionType2.Size = new System.Drawing.Size(104, 17);
             this.listBoxActionType2.TabIndex = 16;
+            this.listBoxActionType2.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             // 
             // listBoxActionNotifyMethod1
             // 
@@ -816,6 +843,7 @@
             this.listBoxActionNotifyMethod1.Name = "listBoxActionNotifyMethod1";
             this.listBoxActionNotifyMethod1.Size = new System.Drawing.Size(104, 17);
             this.listBoxActionNotifyMethod1.TabIndex = 15;
+            this.listBoxActionNotifyMethod1.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             // 
             // textBoxActionValue1
             // 
@@ -824,12 +852,12 @@
             this.textBoxActionValue1.Size = new System.Drawing.Size(104, 20);
             this.textBoxActionValue1.TabIndex = 14;
             // 
-            // textBoxActionSource1
+            // textBoxActionTarget1
             // 
-            this.textBoxActionSource1.Location = new System.Drawing.Point(119, 41);
-            this.textBoxActionSource1.Name = "textBoxActionSource1";
-            this.textBoxActionSource1.Size = new System.Drawing.Size(104, 20);
-            this.textBoxActionSource1.TabIndex = 13;
+            this.textBoxActionTarget1.Location = new System.Drawing.Point(119, 41);
+            this.textBoxActionTarget1.Name = "textBoxActionTarget1";
+            this.textBoxActionTarget1.Size = new System.Drawing.Size(104, 20);
+            this.textBoxActionTarget1.TabIndex = 13;
             // 
             // listBoxActionType1
             // 
@@ -844,6 +872,7 @@
             this.listBoxActionType1.Name = "listBoxActionType1";
             this.listBoxActionType1.Size = new System.Drawing.Size(104, 17);
             this.listBoxActionType1.TabIndex = 12;
+            this.listBoxActionType1.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             // 
             // label10
             // 
@@ -868,9 +897,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(116, 25);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(41, 13);
+            this.label12.Size = new System.Drawing.Size(38, 13);
             this.label12.TabIndex = 9;
-            this.label12.Text = "Source";
+            this.label12.Text = "Target";
             // 
             // label13
             // 
@@ -881,55 +910,97 @@
             this.label13.TabIndex = 8;
             this.label13.Text = "Type";
             // 
-            // groupBox2
+            // groupBoxConditions
             // 
-            this.groupBox2.Controls.Add(this.textBoxConditionAttribute4);
-            this.groupBox2.Controls.Add(this.textBoxConditionTarget4);
-            this.groupBox2.Controls.Add(this.textBoxContionSource4);
-            this.groupBox2.Controls.Add(this.listBoxConditionType4);
-            this.groupBox2.Controls.Add(this.textBoxConditionAttribute3);
-            this.groupBox2.Controls.Add(this.textBoxConditionTarget3);
-            this.groupBox2.Controls.Add(this.textBoxContionSourc3);
-            this.groupBox2.Controls.Add(this.listBoxConditionType3);
-            this.groupBox2.Controls.Add(this.textBoxConditionAttribute2);
-            this.groupBox2.Controls.Add(this.textBoxConditionTarget2);
-            this.groupBox2.Controls.Add(this.textBoxContionSource2);
-            this.groupBox2.Controls.Add(this.listBoxConditionType2);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.textBoxConditionAttribute1);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.textBoxConditionTarget1);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.textBoxContionSource1);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.listBoxConditionType1);
-            this.groupBox2.Location = new System.Drawing.Point(6, 46);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(538, 146);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Conditions";
+            this.groupBoxConditions.Controls.Add(this.label18);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionSourceAttribute4);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionSourceAttribute3);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionSourceAttribute2);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionSourceAttribute1);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionTargetAttribute4);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionTarget4);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionSource4);
+            this.groupBoxConditions.Controls.Add(this.listBoxConditionType4);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionTargetAttribute3);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionTarget3);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionSource3);
+            this.groupBoxConditions.Controls.Add(this.listBoxConditionType3);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionTargetAttribute2);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionTarget2);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionSource2);
+            this.groupBoxConditions.Controls.Add(this.listBoxConditionType2);
+            this.groupBoxConditions.Controls.Add(this.label9);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionTargetAttribute1);
+            this.groupBoxConditions.Controls.Add(this.label8);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionTarget1);
+            this.groupBoxConditions.Controls.Add(this.label7);
+            this.groupBoxConditions.Controls.Add(this.textBoxConditionSource1);
+            this.groupBoxConditions.Controls.Add(this.label6);
+            this.groupBoxConditions.Controls.Add(this.listBoxConditionType1);
+            this.groupBoxConditions.Location = new System.Drawing.Point(6, 46);
+            this.groupBoxConditions.Name = "groupBoxConditions";
+            this.groupBoxConditions.Size = new System.Drawing.Size(649, 146);
+            this.groupBoxConditions.TabIndex = 3;
+            this.groupBoxConditions.TabStop = false;
+            this.groupBoxConditions.Text = "Conditions";
             // 
-            // textBoxConditionAttribute4
+            // label18
             // 
-            this.textBoxConditionAttribute4.Location = new System.Drawing.Point(336, 103);
-            this.textBoxConditionAttribute4.Name = "textBoxConditionAttribute4";
-            this.textBoxConditionAttribute4.Size = new System.Drawing.Size(104, 20);
-            this.textBoxConditionAttribute4.TabIndex = 19;
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(223, 18);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(83, 13);
+            this.label18.TabIndex = 24;
+            this.label18.Text = "Source Attribute";
+            // 
+            // textBoxConditionSourceAttribute4
+            // 
+            this.textBoxConditionSourceAttribute4.Location = new System.Drawing.Point(226, 103);
+            this.textBoxConditionSourceAttribute4.Name = "textBoxConditionSourceAttribute4";
+            this.textBoxConditionSourceAttribute4.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionSourceAttribute4.TabIndex = 23;
+            // 
+            // textBoxConditionSourceAttribute3
+            // 
+            this.textBoxConditionSourceAttribute3.Location = new System.Drawing.Point(226, 80);
+            this.textBoxConditionSourceAttribute3.Name = "textBoxConditionSourceAttribute3";
+            this.textBoxConditionSourceAttribute3.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionSourceAttribute3.TabIndex = 22;
+            // 
+            // textBoxConditionSourceAttribute2
+            // 
+            this.textBoxConditionSourceAttribute2.Location = new System.Drawing.Point(226, 57);
+            this.textBoxConditionSourceAttribute2.Name = "textBoxConditionSourceAttribute2";
+            this.textBoxConditionSourceAttribute2.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionSourceAttribute2.TabIndex = 21;
+            // 
+            // textBoxConditionSourceAttribute1
+            // 
+            this.textBoxConditionSourceAttribute1.Location = new System.Drawing.Point(226, 34);
+            this.textBoxConditionSourceAttribute1.Name = "textBoxConditionSourceAttribute1";
+            this.textBoxConditionSourceAttribute1.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionSourceAttribute1.TabIndex = 20;
+            // 
+            // textBoxConditionTargetAttribute4
+            // 
+            this.textBoxConditionTargetAttribute4.Location = new System.Drawing.Point(445, 103);
+            this.textBoxConditionTargetAttribute4.Name = "textBoxConditionTargetAttribute4";
+            this.textBoxConditionTargetAttribute4.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionTargetAttribute4.TabIndex = 19;
             // 
             // textBoxConditionTarget4
             // 
-            this.textBoxConditionTarget4.Location = new System.Drawing.Point(226, 103);
+            this.textBoxConditionTarget4.Location = new System.Drawing.Point(335, 103);
             this.textBoxConditionTarget4.Name = "textBoxConditionTarget4";
             this.textBoxConditionTarget4.Size = new System.Drawing.Size(104, 20);
             this.textBoxConditionTarget4.TabIndex = 18;
             // 
-            // textBoxContionSource4
+            // textBoxConditionSource4
             // 
-            this.textBoxContionSource4.Location = new System.Drawing.Point(116, 103);
-            this.textBoxContionSource4.Name = "textBoxContionSource4";
-            this.textBoxContionSource4.Size = new System.Drawing.Size(104, 20);
-            this.textBoxContionSource4.TabIndex = 17;
+            this.textBoxConditionSource4.Location = new System.Drawing.Point(116, 103);
+            this.textBoxConditionSource4.Name = "textBoxConditionSource4";
+            this.textBoxConditionSource4.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionSource4.TabIndex = 17;
             // 
             // listBoxConditionType4
             // 
@@ -945,27 +1016,28 @@
             this.listBoxConditionType4.Name = "listBoxConditionType4";
             this.listBoxConditionType4.Size = new System.Drawing.Size(104, 17);
             this.listBoxConditionType4.TabIndex = 16;
+            this.listBoxConditionType4.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             // 
-            // textBoxConditionAttribute3
+            // textBoxConditionTargetAttribute3
             // 
-            this.textBoxConditionAttribute3.Location = new System.Drawing.Point(336, 80);
-            this.textBoxConditionAttribute3.Name = "textBoxConditionAttribute3";
-            this.textBoxConditionAttribute3.Size = new System.Drawing.Size(104, 20);
-            this.textBoxConditionAttribute3.TabIndex = 15;
+            this.textBoxConditionTargetAttribute3.Location = new System.Drawing.Point(445, 80);
+            this.textBoxConditionTargetAttribute3.Name = "textBoxConditionTargetAttribute3";
+            this.textBoxConditionTargetAttribute3.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionTargetAttribute3.TabIndex = 15;
             // 
             // textBoxConditionTarget3
             // 
-            this.textBoxConditionTarget3.Location = new System.Drawing.Point(226, 80);
+            this.textBoxConditionTarget3.Location = new System.Drawing.Point(335, 80);
             this.textBoxConditionTarget3.Name = "textBoxConditionTarget3";
             this.textBoxConditionTarget3.Size = new System.Drawing.Size(104, 20);
             this.textBoxConditionTarget3.TabIndex = 14;
             // 
-            // textBoxContionSourc3
+            // textBoxConditionSource3
             // 
-            this.textBoxContionSourc3.Location = new System.Drawing.Point(116, 80);
-            this.textBoxContionSourc3.Name = "textBoxContionSourc3";
-            this.textBoxContionSourc3.Size = new System.Drawing.Size(104, 20);
-            this.textBoxContionSourc3.TabIndex = 13;
+            this.textBoxConditionSource3.Location = new System.Drawing.Point(116, 80);
+            this.textBoxConditionSource3.Name = "textBoxConditionSource3";
+            this.textBoxConditionSource3.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionSource3.TabIndex = 13;
             // 
             // listBoxConditionType3
             // 
@@ -981,27 +1053,28 @@
             this.listBoxConditionType3.Name = "listBoxConditionType3";
             this.listBoxConditionType3.Size = new System.Drawing.Size(104, 17);
             this.listBoxConditionType3.TabIndex = 12;
+            this.listBoxConditionType3.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             // 
-            // textBoxConditionAttribute2
+            // textBoxConditionTargetAttribute2
             // 
-            this.textBoxConditionAttribute2.Location = new System.Drawing.Point(336, 57);
-            this.textBoxConditionAttribute2.Name = "textBoxConditionAttribute2";
-            this.textBoxConditionAttribute2.Size = new System.Drawing.Size(104, 20);
-            this.textBoxConditionAttribute2.TabIndex = 11;
+            this.textBoxConditionTargetAttribute2.Location = new System.Drawing.Point(445, 57);
+            this.textBoxConditionTargetAttribute2.Name = "textBoxConditionTargetAttribute2";
+            this.textBoxConditionTargetAttribute2.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionTargetAttribute2.TabIndex = 11;
             // 
             // textBoxConditionTarget2
             // 
-            this.textBoxConditionTarget2.Location = new System.Drawing.Point(226, 57);
+            this.textBoxConditionTarget2.Location = new System.Drawing.Point(335, 57);
             this.textBoxConditionTarget2.Name = "textBoxConditionTarget2";
             this.textBoxConditionTarget2.Size = new System.Drawing.Size(104, 20);
             this.textBoxConditionTarget2.TabIndex = 10;
             // 
-            // textBoxContionSource2
+            // textBoxConditionSource2
             // 
-            this.textBoxContionSource2.Location = new System.Drawing.Point(116, 57);
-            this.textBoxContionSource2.Name = "textBoxContionSource2";
-            this.textBoxContionSource2.Size = new System.Drawing.Size(104, 20);
-            this.textBoxContionSource2.TabIndex = 9;
+            this.textBoxConditionSource2.Location = new System.Drawing.Point(116, 57);
+            this.textBoxConditionSource2.Name = "textBoxConditionSource2";
+            this.textBoxConditionSource2.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionSource2.TabIndex = 9;
             // 
             // listBoxConditionType2
             // 
@@ -1017,27 +1090,28 @@
             this.listBoxConditionType2.Name = "listBoxConditionType2";
             this.listBoxConditionType2.Size = new System.Drawing.Size(104, 17);
             this.listBoxConditionType2.TabIndex = 8;
+            this.listBoxConditionType2.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(333, 18);
+            this.label9.Location = new System.Drawing.Point(442, 18);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(46, 13);
+            this.label9.Size = new System.Drawing.Size(80, 13);
             this.label9.TabIndex = 7;
-            this.label9.Text = "Attribute";
+            this.label9.Text = "Target Attribute";
             // 
-            // textBoxConditionAttribute1
+            // textBoxConditionTargetAttribute1
             // 
-            this.textBoxConditionAttribute1.Location = new System.Drawing.Point(336, 34);
-            this.textBoxConditionAttribute1.Name = "textBoxConditionAttribute1";
-            this.textBoxConditionAttribute1.Size = new System.Drawing.Size(104, 20);
-            this.textBoxConditionAttribute1.TabIndex = 6;
+            this.textBoxConditionTargetAttribute1.Location = new System.Drawing.Point(445, 34);
+            this.textBoxConditionTargetAttribute1.Name = "textBoxConditionTargetAttribute1";
+            this.textBoxConditionTargetAttribute1.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionTargetAttribute1.TabIndex = 6;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(223, 18);
+            this.label8.Location = new System.Drawing.Point(332, 18);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 13);
             this.label8.TabIndex = 5;
@@ -1045,7 +1119,7 @@
             // 
             // textBoxConditionTarget1
             // 
-            this.textBoxConditionTarget1.Location = new System.Drawing.Point(226, 34);
+            this.textBoxConditionTarget1.Location = new System.Drawing.Point(335, 34);
             this.textBoxConditionTarget1.Name = "textBoxConditionTarget1";
             this.textBoxConditionTarget1.Size = new System.Drawing.Size(104, 20);
             this.textBoxConditionTarget1.TabIndex = 4;
@@ -1059,12 +1133,12 @@
             this.label7.TabIndex = 3;
             this.label7.Text = "Source";
             // 
-            // textBoxContionSource1
+            // textBoxConditionSource1
             // 
-            this.textBoxContionSource1.Location = new System.Drawing.Point(116, 34);
-            this.textBoxContionSource1.Name = "textBoxContionSource1";
-            this.textBoxContionSource1.Size = new System.Drawing.Size(104, 20);
-            this.textBoxContionSource1.TabIndex = 2;
+            this.textBoxConditionSource1.Location = new System.Drawing.Point(116, 34);
+            this.textBoxConditionSource1.Name = "textBoxConditionSource1";
+            this.textBoxConditionSource1.Size = new System.Drawing.Size(104, 20);
+            this.textBoxConditionSource1.TabIndex = 2;
             // 
             // label6
             // 
@@ -1089,6 +1163,7 @@
             this.listBoxConditionType1.Name = "listBoxConditionType1";
             this.listBoxConditionType1.Size = new System.Drawing.Size(104, 17);
             this.listBoxConditionType1.TabIndex = 0;
+            this.listBoxConditionType1.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             // 
             // buttonUpdateStep
             // 
@@ -1208,6 +1283,7 @@
             this.listBox16.Name = "listBox16";
             this.listBox16.Size = new System.Drawing.Size(119, 17);
             this.listBox16.TabIndex = 11;
+            this.listBox16.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             this.listBox16.SelectedIndexChanged += new System.EventHandler(this.listBox16_SelectedIndexChanged);
             // 
             // label17
@@ -1347,6 +1423,16 @@
             // 
             this.scriptTableAdapterBindingSource.DataSource = typeof(awaDAL.AutoWebAgentDBDataSetTableAdapters.scriptTableAdapter);
             // 
+            // actionBindingSource
+            // 
+            this.actionBindingSource.DataMember = "action";
+            this.actionBindingSource.DataSource = this.autoWebAgentDBDataSetBindingSource;
+            // 
+            // conditionBindingSource
+            // 
+            this.conditionBindingSource.DataMember = "condition";
+            this.conditionBindingSource.DataSource = this.autoWebAgentDBDataSetBindingSource;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1378,10 +1464,10 @@
             this.tabScript.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.groupBoxActions.ResumeLayout(false);
+            this.groupBoxActions.PerformLayout();
+            this.groupBoxConditions.ResumeLayout(false);
+            this.groupBoxConditions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stepBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scriptBindingSource)).EndInit();
             this.tabSchedule.ResumeLayout(false);
@@ -1393,6 +1479,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.scriptDataTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recognitionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scriptTableAdapterBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.actionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.conditionBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1447,9 +1535,9 @@
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox listBoxSteps;
+        private System.Windows.Forms.BetterListBox listBoxSteps;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListBox listBoxScripts;
+        private System.Windows.Forms.BetterListBox listBoxScripts;
         private System.Windows.Forms.Button buttonRemoveScript;
         private System.Windows.Forms.Button buttonAddScript;
         private System.Windows.Forms.Button buttonRemoveStep;
@@ -1460,58 +1548,58 @@
         private System.Windows.Forms.Button buttonStepUp;
         private System.Windows.Forms.Button buttonUpdateStep;
         private System.Windows.Forms.Button buttonStepDown;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListBox listBoxConditionType1;
-        private System.Windows.Forms.TextBox textBoxContionSource1;
+        private System.Windows.Forms.GroupBox groupBoxActions;
+        private System.Windows.Forms.GroupBox groupBoxConditions;
+        private System.Windows.Forms.BetterListBox listBoxConditionType1;
+        private System.Windows.Forms.TextBox textBoxConditionSource1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxConditionTarget1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBoxConditionAttribute1;
-        private System.Windows.Forms.TextBox textBoxConditionAttribute4;
+        private System.Windows.Forms.TextBox textBoxConditionTargetAttribute1;
+        private System.Windows.Forms.TextBox textBoxConditionTargetAttribute4;
         private System.Windows.Forms.TextBox textBoxConditionTarget4;
-        private System.Windows.Forms.TextBox textBoxContionSource4;
-        private System.Windows.Forms.ListBox listBoxConditionType4;
-        private System.Windows.Forms.TextBox textBoxConditionAttribute3;
+        private System.Windows.Forms.TextBox textBoxConditionSource4;
+        private System.Windows.Forms.BetterListBox listBoxConditionType4;
+        private System.Windows.Forms.TextBox textBoxConditionTargetAttribute3;
         private System.Windows.Forms.TextBox textBoxConditionTarget3;
-        private System.Windows.Forms.TextBox textBoxContionSourc3;
-        private System.Windows.Forms.ListBox listBoxConditionType3;
-        private System.Windows.Forms.TextBox textBoxConditionAttribute2;
+        private System.Windows.Forms.TextBox textBoxConditionSource3;
+        private System.Windows.Forms.BetterListBox listBoxConditionType3;
+        private System.Windows.Forms.TextBox textBoxConditionTargetAttribute2;
         private System.Windows.Forms.TextBox textBoxConditionTarget2;
-        private System.Windows.Forms.TextBox textBoxContionSource2;
-        private System.Windows.Forms.ListBox listBoxConditionType2;
+        private System.Windows.Forms.TextBox textBoxConditionSource2;
+        private System.Windows.Forms.BetterListBox listBoxConditionType2;
         private System.Windows.Forms.TextBox textBoxActionValue1;
-        private System.Windows.Forms.TextBox textBoxActionSource1;
-        private System.Windows.Forms.ListBox listBoxActionType1;
+        private System.Windows.Forms.TextBox textBoxActionTarget1;
+        private System.Windows.Forms.BetterListBox listBoxActionType1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ListBox listBoxActionNotifyMethod1;
-        private System.Windows.Forms.ListBox listBoxActionNotifyMethod4;
+        private System.Windows.Forms.BetterListBox listBoxActionNotifyMethod1;
+        private System.Windows.Forms.BetterListBox listBoxActionNotifyMethod4;
         private System.Windows.Forms.TextBox textBoxActionValue4;
-        private System.Windows.Forms.TextBox textBoxActionSource4;
-        private System.Windows.Forms.ListBox listBoxActionType4;
-        private System.Windows.Forms.ListBox listBoxActionNotifyMethod3;
+        private System.Windows.Forms.TextBox textBoxActionTarget4;
+        private System.Windows.Forms.BetterListBox listBoxActionType4;
+        private System.Windows.Forms.BetterListBox listBoxActionNotifyMethod3;
         private System.Windows.Forms.TextBox textBoxActionValue3;
-        private System.Windows.Forms.TextBox textBoxActionSource3;
-        private System.Windows.Forms.ListBox listBoxActionType3;
-        private System.Windows.Forms.ListBox listBoxActionNotifyMethod2;
+        private System.Windows.Forms.TextBox textBoxActionTarget3;
+        private System.Windows.Forms.BetterListBox listBoxActionType3;
+        private System.Windows.Forms.BetterListBox listBoxActionNotifyMethod2;
         private System.Windows.Forms.TextBox textBoxActionValue2;
-        private System.Windows.Forms.TextBox textBoxActionSource2;
-        private System.Windows.Forms.ListBox listBoxActionType2;
+        private System.Windows.Forms.TextBox textBoxActionTarget2;
+        private System.Windows.Forms.BetterListBox listBoxActionType2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ListBox listBox15;
+        private System.Windows.Forms.BetterListBox listBox15;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.ListBox listBox16;
+        private System.Windows.Forms.BetterListBox listBox16;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -1520,6 +1608,14 @@
         private System.Windows.Forms.BindingSource scriptBindingSource;
         private System.Windows.Forms.BindingSource scriptTableAdapterBindingSource;
         private System.Windows.Forms.BindingSource stepBindingSource;
+        private System.Windows.Forms.BindingSource actionBindingSource;
+        private System.Windows.Forms.BindingSource conditionBindingSource;
+        private System.Windows.Forms.TextBox textBoxConditionSourceAttribute4;
+        private System.Windows.Forms.TextBox textBoxConditionSourceAttribute3;
+        private System.Windows.Forms.TextBox textBoxConditionSourceAttribute2;
+        private System.Windows.Forms.TextBox textBoxConditionSourceAttribute1;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button buttonRevertStep;
 
     }
 }

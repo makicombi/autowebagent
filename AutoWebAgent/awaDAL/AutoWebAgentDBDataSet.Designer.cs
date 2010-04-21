@@ -529,9 +529,11 @@ namespace awaDAL {
             
             private global::System.Data.DataColumn columnindex;
             
-            private global::System.Data.DataColumn columntarget;
+            private global::System.Data.DataColumn columntarget_id;
             
             private global::System.Data.DataColumn columnstep_id;
+            
+            private global::System.Data.DataColumn columnnotifyMethod;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public actionDataTable() {
@@ -592,9 +594,9 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn targetColumn {
+            public global::System.Data.DataColumn target_idColumn {
                 get {
-                    return this.columntarget;
+                    return this.columntarget_id;
                 }
             }
             
@@ -602,6 +604,13 @@ namespace awaDAL {
             public global::System.Data.DataColumn step_idColumn {
                 get {
                     return this.columnstep_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn notifyMethodColumn {
+                get {
+                    return this.columnnotifyMethod;
                 }
             }
             
@@ -634,15 +643,16 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public actionRow AddactionRow(string type, string value, int index, string target, int step_id) {
+            public actionRow AddactionRow(string type, string value, int index, int target_id, int step_id, string notifyMethod) {
                 actionRow rowactionRow = ((actionRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         type,
                         value,
                         index,
-                        target,
-                        step_id};
+                        target_id,
+                        step_id,
+                        notifyMethod};
                 rowactionRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowactionRow);
                 return rowactionRow;
@@ -672,8 +682,9 @@ namespace awaDAL {
                 this.columntype = base.Columns["type"];
                 this.columnvalue = base.Columns["value"];
                 this.columnindex = base.Columns["index"];
-                this.columntarget = base.Columns["target"];
+                this.columntarget_id = base.Columns["target_id"];
                 this.columnstep_id = base.Columns["step_id"];
+                this.columnnotifyMethod = base.Columns["notifyMethod"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -686,10 +697,12 @@ namespace awaDAL {
                 base.Columns.Add(this.columnvalue);
                 this.columnindex = new global::System.Data.DataColumn("index", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnindex);
-                this.columntarget = new global::System.Data.DataColumn("target", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntarget);
+                this.columntarget_id = new global::System.Data.DataColumn("target_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntarget_id);
                 this.columnstep_id = new global::System.Data.DataColumn("step_id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstep_id);
+                this.columnnotifyMethod = new global::System.Data.DataColumn("notifyMethod", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnotifyMethod);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AutoIncrement = true;
@@ -957,7 +970,7 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public conditionRow AddconditionRow(int lhs_element_id, string op, string lhs_element_attr, string rhs_value, string rhs_element_id, string rhs_element_attr, int step_id) {
+            public conditionRow AddconditionRow(int lhs_element_id, string op, string lhs_element_attr, string rhs_value, int rhs_element_id, string rhs_element_attr, int step_id) {
                 conditionRow rowconditionRow = ((conditionRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1015,7 +1028,7 @@ namespace awaDAL {
                 base.Columns.Add(this.columnlhs_element_attr);
                 this.columnrhs_value = new global::System.Data.DataColumn("rhs_value", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrhs_value);
-                this.columnrhs_element_id = new global::System.Data.DataColumn("rhs_element_id", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnrhs_element_id = new global::System.Data.DataColumn("rhs_element_id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrhs_element_id);
                 this.columnrhs_element_attr = new global::System.Data.DataColumn("rhs_element_attr", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrhs_element_attr);
@@ -1032,7 +1045,6 @@ namespace awaDAL {
                 this.columnop.MaxLength = 100;
                 this.columnlhs_element_attr.MaxLength = 100;
                 this.columnrhs_value.MaxLength = 100;
-                this.columnrhs_element_id.MaxLength = 100;
                 this.columnrhs_element_attr.MaxLength = 100;
                 this.columnstep_id.AllowDBNull = false;
             }
@@ -2884,17 +2896,17 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string target {
+            public int target_id {
                 get {
                     try {
-                        return ((string)(this[this.tableaction.targetColumn]));
+                        return ((int)(this[this.tableaction.target_idColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'target\' in table \'action\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'target_id\' in table \'action\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableaction.targetColumn] = value;
+                    this[this.tableaction.target_idColumn] = value;
                 }
             }
             
@@ -2905,6 +2917,21 @@ namespace awaDAL {
                 }
                 set {
                     this[this.tableaction.step_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string notifyMethod {
+                get {
+                    try {
+                        return ((string)(this[this.tableaction.notifyMethodColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'notifyMethod\' in table \'action\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableaction.notifyMethodColumn] = value;
                 }
             }
             
@@ -2939,13 +2966,23 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IstargetNull() {
-                return this.IsNull(this.tableaction.targetColumn);
+            public bool Istarget_idNull() {
+                return this.IsNull(this.tableaction.target_idColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SettargetNull() {
-                this[this.tableaction.targetColumn] = global::System.Convert.DBNull;
+            public void Settarget_idNull() {
+                this[this.tableaction.target_idColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsnotifyMethodNull() {
+                return this.IsNull(this.tableaction.notifyMethodColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetnotifyMethodNull() {
+                this[this.tableaction.notifyMethodColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3044,10 +3081,10 @@ namespace awaDAL {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string rhs_element_id {
+            public int rhs_element_id {
                 get {
                     try {
-                        return ((string)(this[this.tablecondition.rhs_element_idColumn]));
+                        return ((int)(this[this.tablecondition.rhs_element_idColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'rhs_element_id\' in table \'condition\' is DBNull.", e);

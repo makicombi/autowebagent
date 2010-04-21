@@ -613,10 +613,118 @@ namespace awaApplication
             if (listBoxSteps.SelectedItem is AutoWebAgentDBDataSet.stepRow)
             {
                 textBoxStepName.Text = (listBoxSteps.SelectedItem as AutoWebAgentDBDataSet.stepRow).name;
+                int step_id = (int)listBoxSteps.SelectedValue;
+                BindStepConditions(step_id);
+                BindStepActions(step_id);
             }
             
 
         }
+
+        private void BindStepActions(int step_id)
+        {
+            var stepActions = dal.GetStepActions(step_id);
+            int countDB = stepActions.Count();
+            int countGUI = 0;
+            while (groupBoxActions.Controls.ContainsKey("listBoxActionType" + (countGUI++).ToString())) ;
+            for (int i = 1; i <= countGUI; i++)
+            {
+                
+                if (countDB > i)
+                {
+                    BetterListBox lbox = ((BetterListBox)groupBoxActions.Controls["listBoxActionType" + i.ToString()]);
+                    lbox.SelectedItem = stepActions.ElementAt(i).Type;
+                    int index = lbox.Items.IndexOf(lbox.SelectedItem);
+                    lbox.SetSelected(index, true);
+                    ((TextBox)groupBoxActions.Controls["textBoxActionTarget" + i.ToString()]).Text = stepActions.ElementAt(i).Target;
+                    ((TextBox)groupBoxActions.Controls["textBoxActionValue" + i.ToString()]).Text = stepActions.ElementAt(i).Value;
+                    lbox = ((BetterListBox)groupBoxActions.Controls["listBoxActionNotifyMethod" + i.ToString()]);
+                    lbox.SelectedItem = stepActions.ElementAt(i).NotifyMethod; 
+                    index = lbox.Items.IndexOf(lbox.SelectedItem);
+                    lbox.SetSelected(index, true);
+                }
+                else
+                {   
+                    ((BetterListBox)groupBoxActions.Controls["listBoxActionType" + i.ToString()]).SelectedIndex = 0;
+                    ((BetterListBox)groupBoxActions.Controls["listBoxActionType" + i.ToString()]).SetSelected(0, true);
+                    ((TextBox)groupBoxActions.Controls["textBoxActionTarget" + i.ToString()]).Text = "";
+                    ((TextBox)groupBoxActions.Controls["textBoxActionValue" + i.ToString()]).Text = "";
+                    ((BetterListBox)groupBoxActions.Controls["listBoxActionNotifyMethod" + i.ToString()]).SelectedIndex = 0;
+                    ((BetterListBox)groupBoxActions.Controls["listBoxActionNotifyMethod" + i.ToString()]).SetSelected(0, true);
+                }
+            }
+            
+
+        }
+
+       
+
+        private void BindStepConditions(int step_id)
+        {       
+            var stepConditions = dal.GetStepConditions(step_id);
+           int countDB = stepConditions.Count();
+           int countGUI = 0;
+           while (groupBoxConditions.Controls.ContainsKey("listBoxConditionType" + (countGUI++).ToString())) ;
+           for (int i = 1; i <= countGUI; i++)
+           {
+               if (countDB > i)
+               {
+                   BetterListBox lbox = ((BetterListBox)groupBoxConditions.Controls["listBoxConditionType" + i.ToString()]);
+                   lbox.SelectedItem = stepConditions.ElementAt(i).Type;
+                   int index = lbox.Items.IndexOf(lbox.SelectedItem);
+                   lbox.SetSelected(index, true);
+                   ((TextBox)groupBoxConditions.Controls["textBoxConditionSource" + i.ToString()]).Text = stepConditions.ElementAt(i).Source;
+                   ((TextBox)groupBoxConditions.Controls["textBoxConditionTarget" + i.ToString()]).Text = stepConditions.ElementAt(i).TargetValue;
+                   ((TextBox)groupBoxConditions.Controls["textBoxConditionSourceAttribute" + i.ToString()]).Text = stepConditions.ElementAt(i).SourceAttribute;
+                   ((TextBox)groupBoxConditions.Controls["textBoxConditionTargetAttribute" + i.ToString()]).Text = stepConditions.ElementAt(i).TargetAttribute;
+               }
+               else
+               {
+                   ((BetterListBox)groupBoxConditions.Controls["listBoxConditionType" + i.ToString()]).SelectedItem = 0;
+                   ((BetterListBox)groupBoxConditions.Controls["listBoxConditionType" + i.ToString()]).SetSelected(0, true);
+                   ((TextBox)groupBoxConditions.Controls["textBoxConditionSource" + i.ToString()]).Text = "";
+                   ((TextBox)groupBoxConditions.Controls["textBoxConditionTarget" + i.ToString()]).Text = "";
+                   ((TextBox)groupBoxConditions.Controls["textBoxConditionSourceAttribute" + i.ToString()]).Text = "";
+                   ((TextBox)groupBoxConditions.Controls["textBoxConditionTargetAttribute" + i.ToString()]).Text = "";
+               }
+           }
+        }
+
+        private void listBox_Scroll(object Sender, BetterListBox.BetterListBoxScrollArgs e)
+        {
+            BetterListBox listBox = (BetterListBox)Sender;
+            if(listBox.SelectedIndex!=-1)
+                listBox.SetSelected(listBox.SelectedIndex, false);
+            listBox.SetSelected(e.Top,true);
+        }
+
+        private void buttonRevertStep_Click(object sender, EventArgs e)
+        {
+            textBoxStepName.Text = "";
+            foreach (var item in groupBoxConditions.Controls)
+            {
+                if (item is TextBox)
+                    (item as TextBox).Text = "";
+                if (item is ListBox || item is BetterListBox)
+                    (item as ListBox).SetSelected(0, true);
+            }
+            foreach (var item in groupBoxActions.Controls)
+            {
+                if (item is TextBox)
+                    (item as TextBox).Text = "";
+                if (item is ListBox || item is BetterListBox)
+                    (item as ListBox).SetSelected(0, true);
+            }
+            listBoxSteps_SelectedIndexChanged(sender, e);
+        }
+
+
+
+
+
+
+
+
     }
 }
 ;
