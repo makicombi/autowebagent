@@ -30,8 +30,11 @@ namespace awaApplication
         
         public MainForm()
         {
-            InitializeComponent();
+            dal = new DAL();
+            dal.Init(Properties.Settings.Default.awaDB);
 
+            InitializeComponent();
+            BindControlsToDataSource();
             listBoxScripts.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnValidation;
             listBoxSteps.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnValidation;
             
@@ -56,8 +59,7 @@ namespace awaApplication
             webBrowser.ObjectForScripting = this;
             webBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
 
-            dal = new DAL();
-            dal.Init(Properties.Settings.Default.awaDB);
+            
             loginForm = new Login(dal);
             DialogResult res = loginForm.ShowDialog(this);
             if (res == DialogResult.Abort)
@@ -68,6 +70,40 @@ namespace awaApplication
 
             scriptBindingSource.DataSource = dal.GetUserScripts(loginForm.UserID).ToList();
             
+        }
+
+        private void BindControlsToDataSource()
+        {
+
+            List<Control> listBoxes = new List<Control>();
+            listBoxes.AddRange(groupBoxConditions.Controls.Cast<Control>());
+            listBoxes.AddRange(groupBoxActions.Controls.Cast<Control>());
+            foreach (Control c in listBoxes)
+            {
+                if (c is BetterListBox)
+                {
+                    BetterListBox lbox = (BetterListBox)c;
+                    if (c.Name.Contains("Condition"))
+                    {
+                        lbox.DataSource = dal.GetEnumValues("listBoxConditionType");
+                        lbox.DisplayMember = "";
+                    }
+                    else
+                    if (c.Name.Contains("Notify"))
+                    {
+                        lbox.DataSource = dal.GetEnumValues("listBoxActionNotifyMethod");
+                        lbox.DisplayMember = "";
+                    }
+                    else
+                    if (c.Name.Contains("Action"))
+                    {
+                        lbox.DataSource = dal.GetEnumValues("listBoxActionType");
+                        lbox.DisplayMember = "";
+                    }
+                }
+            }
+            
+
         }
 
         void stepEntryForm_Submitted(object sender, EventArgs e)
@@ -716,6 +752,26 @@ namespace awaApplication
                     (item as ListBox).SetSelected(0, true);
             }
             listBoxSteps_SelectedIndexChanged(sender, e);
+        }
+
+        private void buttonUpdateStep_Click(object sender, EventArgs e)
+        {
+            string cause;
+            if (ValidateForm(out cause) == false)
+                MessageBox.Show("Form validation Failed:" + cause);
+            else
+                SubmitForm();
+        }
+
+        private void SubmitForm()
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool ValidateForm(out string cause)
+        {
+            cause = "some control had an invalid data";
+            return false;
         }
 
 

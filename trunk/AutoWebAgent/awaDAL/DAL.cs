@@ -88,6 +88,7 @@ namespace awaDAL
         usersTableAdapter usersAdapter;
         websiteTableAdapter websiteAdapter;
         QueriesTableAdapter queries;
+        validationTableAdapter validationAdapter;
         
 
         public bool IsInitialized { get; private set; }
@@ -104,7 +105,9 @@ namespace awaDAL
             usersAdapter = new usersTableAdapter();
             websiteAdapter = new websiteTableAdapter();
             queries = new QueriesTableAdapter();
+            validationAdapter = new validationTableAdapter();
             DB = new AutoWebAgentDBDataSet();
+            
 
             
         }
@@ -120,6 +123,7 @@ namespace awaDAL
             stepAdapter.Connection=con;
             usersAdapter.Connection=con;
             websiteAdapter.Connection = con;
+            validationAdapter.Connection = con;
 
             usersAdapter.Fill(DB.users);
             
@@ -131,6 +135,7 @@ namespace awaDAL
             conditionAdapter.Fill(DB.condition);
             stepAdapter.Fill(DB.step);
             scriptAdapter.Fill(DB.script);
+            validationAdapter.Fill(DB.validation);
             
             IsInitialized = true;
         }
@@ -626,6 +631,13 @@ namespace awaDAL
             return result;
 
                           
+        }
+        public List<string> GetEnumValues(string fieldName)
+        {
+            var result = from value in DB.validation
+                         where (value.FieldName == fieldName) && (value.FieldType == "enum")
+                         select value.enumValue;
+            return result.ToList<string>();
         }
     }
 }

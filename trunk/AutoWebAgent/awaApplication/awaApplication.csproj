@@ -147,6 +147,7 @@
     <Compile Include="TextEntryForm.Designer.cs">
       <DependentUpon>TextEntryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\awaDAL\awaDAL.csproj">
