@@ -128,6 +128,7 @@
             this.textBoxConditionSource1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.listBoxConditionType1 = new System.Windows.Forms.BetterListBox();
+            this.validationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonUpdateStep = new System.Windows.Forms.Button();
             this.textBoxStepName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -173,6 +174,7 @@
             this.groupBox1.SuspendLayout();
             this.groupBoxActions.SuspendLayout();
             this.groupBoxConditions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.validationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stepBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scriptBindingSource)).BeginInit();
             this.tabSchedule.SuspendLayout();
@@ -1004,18 +1006,14 @@
             // 
             // listBoxConditionType4
             // 
+            this.listBoxConditionType4.DataSource = this.validationBindingSource;
+            this.listBoxConditionType4.DisplayMember = "enumValue";
             this.listBoxConditionType4.FormattingEnabled = true;
-            this.listBoxConditionType4.Items.AddRange(new object[] {
-            "True",
-            "Value",
-            "Equal",
-            "False",
-            "Checked",
-            "Selected"});
             this.listBoxConditionType4.Location = new System.Drawing.Point(6, 103);
             this.listBoxConditionType4.Name = "listBoxConditionType4";
             this.listBoxConditionType4.Size = new System.Drawing.Size(104, 17);
             this.listBoxConditionType4.TabIndex = 16;
+            this.listBoxConditionType4.ValueMember = "id";
             this.listBoxConditionType4.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             // 
             // textBoxConditionTargetAttribute3
@@ -1041,18 +1039,14 @@
             // 
             // listBoxConditionType3
             // 
+            this.listBoxConditionType3.DataSource = this.validationBindingSource;
+            this.listBoxConditionType3.DisplayMember = "enumValue";
             this.listBoxConditionType3.FormattingEnabled = true;
-            this.listBoxConditionType3.Items.AddRange(new object[] {
-            "True",
-            "Value",
-            "Equal",
-            "False",
-            "Checked",
-            "Selected"});
             this.listBoxConditionType3.Location = new System.Drawing.Point(6, 80);
             this.listBoxConditionType3.Name = "listBoxConditionType3";
             this.listBoxConditionType3.Size = new System.Drawing.Size(104, 17);
             this.listBoxConditionType3.TabIndex = 12;
+            this.listBoxConditionType3.ValueMember = "id";
             this.listBoxConditionType3.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             // 
             // textBoxConditionTargetAttribute2
@@ -1078,18 +1072,14 @@
             // 
             // listBoxConditionType2
             // 
+            this.listBoxConditionType2.DataSource = this.validationBindingSource;
+            this.listBoxConditionType2.DisplayMember = "enumValue";
             this.listBoxConditionType2.FormattingEnabled = true;
-            this.listBoxConditionType2.Items.AddRange(new object[] {
-            "True",
-            "Value",
-            "Equal",
-            "False",
-            "Checked",
-            "Selected"});
             this.listBoxConditionType2.Location = new System.Drawing.Point(6, 57);
             this.listBoxConditionType2.Name = "listBoxConditionType2";
             this.listBoxConditionType2.Size = new System.Drawing.Size(104, 17);
             this.listBoxConditionType2.TabIndex = 8;
+            this.listBoxConditionType2.ValueMember = "id";
             this.listBoxConditionType2.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             // 
             // label9
@@ -1151,19 +1141,20 @@
             // 
             // listBoxConditionType1
             // 
+            this.listBoxConditionType1.DataSource = this.validationBindingSource;
+            this.listBoxConditionType1.DisplayMember = "enumValue";
             this.listBoxConditionType1.FormattingEnabled = true;
-            this.listBoxConditionType1.Items.AddRange(new object[] {
-            "True",
-            "Value",
-            "Equal",
-            "False",
-            "Checked",
-            "Selected"});
             this.listBoxConditionType1.Location = new System.Drawing.Point(6, 34);
             this.listBoxConditionType1.Name = "listBoxConditionType1";
             this.listBoxConditionType1.Size = new System.Drawing.Size(104, 17);
             this.listBoxConditionType1.TabIndex = 0;
+            this.listBoxConditionType1.ValueMember = "id";
             this.listBoxConditionType1.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
+            // 
+            // validationBindingSource
+            // 
+            this.validationBindingSource.DataMember = "validation";
+            this.validationBindingSource.DataSource = this.autoWebAgentDBDataSetBindingSource;
             // 
             // buttonUpdateStep
             // 
@@ -1173,6 +1164,7 @@
             this.buttonUpdateStep.TabIndex = 2;
             this.buttonUpdateStep.Text = "update step";
             this.buttonUpdateStep.UseVisualStyleBackColor = true;
+            this.buttonUpdateStep.Click += new System.EventHandler(this.buttonUpdateStep_Click);
             // 
             // textBoxStepName
             // 
@@ -1468,6 +1460,7 @@
             this.groupBoxActions.PerformLayout();
             this.groupBoxConditions.ResumeLayout(false);
             this.groupBoxConditions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.validationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stepBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scriptBindingSource)).EndInit();
             this.tabSchedule.ResumeLayout(false);
@@ -1616,6 +1609,7 @@
         private System.Windows.Forms.TextBox textBoxConditionSourceAttribute1;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button buttonRevertStep;
+        private System.Windows.Forms.BindingSource validationBindingSource;
 
     }
 }
