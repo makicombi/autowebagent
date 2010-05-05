@@ -80,6 +80,7 @@
             this.buttonRemoveStep = new System.Windows.Forms.Button();
             this.buttonAddStep = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listBoxElementSuggestion = new System.Windows.Forms.ListBox();
             this.buttonRevertStep = new System.Windows.Forms.Button();
             this.groupBoxActions = new System.Windows.Forms.GroupBox();
             this.listBoxActionNotifyMethod4 = new System.Windows.Forms.BetterListBox();
@@ -112,6 +113,7 @@
             this.textBoxConditionTarget4 = new System.Windows.Forms.TextBox();
             this.textBoxConditionSource4 = new System.Windows.Forms.TextBox();
             this.listBoxConditionType4 = new System.Windows.Forms.BetterListBox();
+            this.validationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBoxConditionTargetAttribute3 = new System.Windows.Forms.TextBox();
             this.textBoxConditionTarget3 = new System.Windows.Forms.TextBox();
             this.textBoxConditionSource3 = new System.Windows.Forms.TextBox();
@@ -128,7 +130,6 @@
             this.textBoxConditionSource1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.listBoxConditionType1 = new System.Windows.Forms.BetterListBox();
-            this.validationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonUpdateStep = new System.Windows.Forms.Button();
             this.textBoxStepName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -342,6 +343,7 @@
             this.tabContainer.SelectedIndex = 0;
             this.tabContainer.Size = new System.Drawing.Size(1136, 516);
             this.tabContainer.TabIndex = 2;
+            this.tabContainer.SelectedIndexChanged += new System.EventHandler(this.tabContainer_SelectedIndexChanged);
             // 
             // tabMap
             // 
@@ -656,6 +658,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.listBoxElementSuggestion);
             this.groupBox1.Controls.Add(this.buttonRevertStep);
             this.groupBox1.Controls.Add(this.groupBoxActions);
             this.groupBox1.Controls.Add(this.groupBoxConditions);
@@ -668,6 +671,16 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Step Editor";
+            // 
+            // listBoxElementSuggestion
+            // 
+            this.listBoxElementSuggestion.FormattingEnabled = true;
+            this.listBoxElementSuggestion.Location = new System.Drawing.Point(329, 19);
+            this.listBoxElementSuggestion.Name = "listBoxElementSuggestion";
+            this.listBoxElementSuggestion.Size = new System.Drawing.Size(104, 30);
+            this.listBoxElementSuggestion.TabIndex = 11;
+            this.listBoxElementSuggestion.Visible = false;
+            this.listBoxElementSuggestion.DoubleClick += new System.EventHandler(this.listBoxElementSuggestion_DoubleClick);
             // 
             // buttonRevertStep
             // 
@@ -734,6 +747,9 @@
             this.textBoxActionTarget4.Name = "textBoxActionTarget4";
             this.textBoxActionTarget4.Size = new System.Drawing.Size(104, 20);
             this.textBoxActionTarget4.TabIndex = 25;
+            this.textBoxActionTarget4.TextChanged += new System.EventHandler(this.textBoxConditionSource1_TextChanged);
+            this.textBoxActionTarget4.Click += new System.EventHandler(this.textBoxConditionSource1_Click);
+            this.textBoxActionTarget4.Enter += new System.EventHandler(this.textBoxConditionSource1_Enter);
             // 
             // listBoxActionType4
             // 
@@ -776,6 +792,9 @@
             this.textBoxActionTarget3.Name = "textBoxActionTarget3";
             this.textBoxActionTarget3.Size = new System.Drawing.Size(104, 20);
             this.textBoxActionTarget3.TabIndex = 21;
+            this.textBoxActionTarget3.TextChanged += new System.EventHandler(this.textBoxConditionSource1_TextChanged);
+            this.textBoxActionTarget3.Click += new System.EventHandler(this.textBoxConditionSource1_Click);
+            this.textBoxActionTarget3.Enter += new System.EventHandler(this.textBoxConditionSource1_Enter);
             // 
             // listBoxActionType3
             // 
@@ -818,6 +837,9 @@
             this.textBoxActionTarget2.Name = "textBoxActionTarget2";
             this.textBoxActionTarget2.Size = new System.Drawing.Size(104, 20);
             this.textBoxActionTarget2.TabIndex = 17;
+            this.textBoxActionTarget2.TextChanged += new System.EventHandler(this.textBoxConditionSource1_TextChanged);
+            this.textBoxActionTarget2.Click += new System.EventHandler(this.textBoxConditionSource1_Click);
+            this.textBoxActionTarget2.Enter += new System.EventHandler(this.textBoxConditionSource1_Enter);
             // 
             // listBoxActionType2
             // 
@@ -860,6 +882,9 @@
             this.textBoxActionTarget1.Name = "textBoxActionTarget1";
             this.textBoxActionTarget1.Size = new System.Drawing.Size(104, 20);
             this.textBoxActionTarget1.TabIndex = 13;
+            this.textBoxActionTarget1.TextChanged += new System.EventHandler(this.textBoxConditionSource1_TextChanged);
+            this.textBoxActionTarget1.Click += new System.EventHandler(this.textBoxConditionSource1_Click);
+            this.textBoxActionTarget1.Enter += new System.EventHandler(this.textBoxConditionSource1_Enter);
             // 
             // listBoxActionType1
             // 
@@ -1003,6 +1028,9 @@
             this.textBoxConditionSource4.Name = "textBoxConditionSource4";
             this.textBoxConditionSource4.Size = new System.Drawing.Size(104, 20);
             this.textBoxConditionSource4.TabIndex = 17;
+            this.textBoxConditionSource4.TextChanged += new System.EventHandler(this.textBoxConditionSource1_TextChanged);
+            this.textBoxConditionSource4.Click += new System.EventHandler(this.textBoxConditionSource1_Click);
+            this.textBoxConditionSource4.Enter += new System.EventHandler(this.textBoxConditionSource1_Enter);
             // 
             // listBoxConditionType4
             // 
@@ -1015,6 +1043,12 @@
             this.listBoxConditionType4.TabIndex = 16;
             this.listBoxConditionType4.ValueMember = "id";
             this.listBoxConditionType4.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
+            this.listBoxConditionType4.SelectedIndexChanged += new System.EventHandler(this.listBoxConditionType_SelectedIndexChanged);
+            // 
+            // validationBindingSource
+            // 
+            this.validationBindingSource.DataMember = "validation";
+            this.validationBindingSource.DataSource = this.autoWebAgentDBDataSetBindingSource;
             // 
             // textBoxConditionTargetAttribute3
             // 
@@ -1036,6 +1070,9 @@
             this.textBoxConditionSource3.Name = "textBoxConditionSource3";
             this.textBoxConditionSource3.Size = new System.Drawing.Size(104, 20);
             this.textBoxConditionSource3.TabIndex = 13;
+            this.textBoxConditionSource3.TextChanged += new System.EventHandler(this.textBoxConditionSource1_TextChanged);
+            this.textBoxConditionSource3.Click += new System.EventHandler(this.textBoxConditionSource1_Click);
+            this.textBoxConditionSource3.Enter += new System.EventHandler(this.textBoxConditionSource1_Enter);
             // 
             // listBoxConditionType3
             // 
@@ -1048,6 +1085,7 @@
             this.listBoxConditionType3.TabIndex = 12;
             this.listBoxConditionType3.ValueMember = "id";
             this.listBoxConditionType3.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
+            this.listBoxConditionType3.SelectedIndexChanged += new System.EventHandler(this.listBoxConditionType_SelectedIndexChanged);
             // 
             // textBoxConditionTargetAttribute2
             // 
@@ -1069,6 +1107,9 @@
             this.textBoxConditionSource2.Name = "textBoxConditionSource2";
             this.textBoxConditionSource2.Size = new System.Drawing.Size(104, 20);
             this.textBoxConditionSource2.TabIndex = 9;
+            this.textBoxConditionSource2.TextChanged += new System.EventHandler(this.textBoxConditionSource1_TextChanged);
+            this.textBoxConditionSource2.Click += new System.EventHandler(this.textBoxConditionSource1_Click);
+            this.textBoxConditionSource2.Enter += new System.EventHandler(this.textBoxConditionSource1_Enter);
             // 
             // listBoxConditionType2
             // 
@@ -1081,6 +1122,7 @@
             this.listBoxConditionType2.TabIndex = 8;
             this.listBoxConditionType2.ValueMember = "id";
             this.listBoxConditionType2.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
+            this.listBoxConditionType2.SelectedIndexChanged += new System.EventHandler(this.listBoxConditionType_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -1129,6 +1171,9 @@
             this.textBoxConditionSource1.Name = "textBoxConditionSource1";
             this.textBoxConditionSource1.Size = new System.Drawing.Size(104, 20);
             this.textBoxConditionSource1.TabIndex = 2;
+            this.textBoxConditionSource1.TextChanged += new System.EventHandler(this.textBoxConditionSource1_TextChanged);
+            this.textBoxConditionSource1.Click += new System.EventHandler(this.textBoxConditionSource1_Click);
+            this.textBoxConditionSource1.Enter += new System.EventHandler(this.textBoxConditionSource1_Enter);
             // 
             // label6
             // 
@@ -1150,11 +1195,7 @@
             this.listBoxConditionType1.TabIndex = 0;
             this.listBoxConditionType1.ValueMember = "id";
             this.listBoxConditionType1.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
-            // 
-            // validationBindingSource
-            // 
-            this.validationBindingSource.DataMember = "validation";
-            this.validationBindingSource.DataSource = this.autoWebAgentDBDataSetBindingSource;
+            this.listBoxConditionType1.SelectedIndexChanged += new System.EventHandler(this.listBoxConditionType_SelectedIndexChanged);
             // 
             // buttonUpdateStep
             // 
@@ -1434,8 +1475,10 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
+            this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "Auto Web Agent";
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -1610,6 +1653,7 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button buttonRevertStep;
         private System.Windows.Forms.BindingSource validationBindingSource;
+        private System.Windows.Forms.ListBox listBoxElementSuggestion;
 
     }
 }
