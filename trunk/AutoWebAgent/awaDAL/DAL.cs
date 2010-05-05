@@ -12,7 +12,15 @@ using awaDAL.AutoWebAgentDBDataSetTableAdapters;
 
 namespace awaDAL
 {
-    
+    public enum ConditionType
+    {
+        True,
+        Value,
+        Equal,
+        False,
+        Checked,
+        Selected
+    }
     public class DAL
     {
         public enum ElementType
@@ -31,6 +39,7 @@ namespace awaDAL
             SELECT,
             NONE
         }
+
         static private Dictionary<string, ElementType> elementTypeMap = new Dictionary<string, ElementType>() {
                                                                             {"BUTTON",ElementType.BUTTON},
                                                                             {"CHECKBOX",ElementType.CHECKBOX},
@@ -46,6 +55,7 @@ namespace awaDAL
                                                                             {"AREA",ElementType.AREA},
                                                                             {"SELECT",ElementType.SELECT}
                                                                         };
+        
         public static ElementType StringToElementType(string s)
         {
             return elementTypeMap[s.ToUpper()];
@@ -89,7 +99,104 @@ namespace awaDAL
         websiteTableAdapter websiteAdapter;
         QueriesTableAdapter queries;
         validationTableAdapter validationAdapter;
+
+        private List<AutoWebAgentDBDataSet.conditionRow> stepConditions = new List<AutoWebAgentDBDataSet.conditionRow>();
+        private List<AutoWebAgentDBDataSet.actionRow> stepActions = new List<AutoWebAgentDBDataSet.actionRow>();
+        private int step_id;
+        private List<AutoWebAgentDBDataSet.conditionRow> GetStepConditionsRaw(int step_id)
+        {
+            return (from row in DB.condition where row.step_id == step_id select row).ToList();
+        }
         
+        private List<AutoWebAgentDBDataSet.actionRow> GetStepActionsRaw(int step_id)
+        {
+            return (from row in DB.action where row.step_id == step_id select row).ToList();
+        }
+        
+        /// <summary>
+        /// deletes step conditions and actions
+        /// </summary>
+        /// <remarks>
+        /// 1. select and delete step's condition rows
+        /// 2. select and delete step's action rows
+        /// 3. clear action and condition lists for the step
+        /// </remarks>
+        /// <param name="step_id">the step id</param>
+        public void StepUpdateStart(int step_id)
+        {
+            this.step_id = step_id;
+            var rowsToDelete = GetStepConditionsRaw(step_id);
+
+            foreach (var row in rowsToDelete)
+            {
+                DB.condition.RemoveconditionRow(row);
+            }
+            var rowsToDelete2 = GetStepActionsRaw(step_id);
+
+            foreach (var row in rowsToDelete2)
+            {
+                DB.action.RemoveactionRow(row);
+            }
+            SaveChanges("action", "condition");
+            stepConditions.Clear();
+            stepActions.Clear();
+        }
+        
+        public void StepUpdateEnd()
+        {
+            foreach (var row in stepConditions)
+            {
+                DB.condition.AddconditionRow(row);
+            }
+            foreach (var row in stepActions)
+            {
+                if (row.target_id == -1)
+                {
+                    continue;
+                }
+                DB.action.AddactionRow(row);
+            }
+            SaveChanges("action", "condition");
+        }
+        private int? GetElementId(string encodedElementName)
+        {
+            string[] res = encodedElementName.Split(new string[] { "::" }, StringSplitOptions.RemoveEmptyEntries);
+            if (res.Length != 2) return null;
+            int website_id = GetWebsiteIDByName(res[0]);
+            var q = from elm in DB.element
+                    where elm.website_id == website_id && elm.name == res[1]
+                    select elm.id;
+            if (q.Count()==0)
+            {
+                return null;
+            }
+            return q.Single();
+        }
+        public void StepUpdateAddCondition(string type, string source,string sourceAttribute,string target_value, string target_attribute)
+        {
+            AutoWebAgentDBDataSet.conditionRow row = DB.condition.NewconditionRow();
+            row.step_id = this.step_id;
+            row.op = type;
+            row.lhs_element_id = GetElementId(source).GetValueOrDefault(-1);
+            row.lhs_element_attr = sourceAttribute;
+            row.rhs_value = target_value;
+            row.rhs_element_id = GetElementId(target_value).GetValueOrDefault(-1);
+            row.rhs_element_attr = target_attribute;
+            stepConditions.Add(row);
+            
+        }
+        public void StepUpdateAddAction(string type, string value, string target, string notifyMethod)
+        {
+            AutoWebAgentDBDataSet.actionRow row = DB.action.NewactionRow();
+            row.type = type;
+            row.value = value;
+            row.index = stepActions.Count + 1;
+            row.step_id = this.step_id;
+            row.notifyMethod = notifyMethod;
+            row.target_id = GetElementId(target).GetValueOrDefault(-1);
+            stepActions.Add(row);
+
+        }
 
         public bool IsInitialized { get; private set; }
         public DAL()
@@ -638,6 +745,22 @@ namespace awaDAL
                          where (value.FieldName == fieldName) && (value.FieldType == "enum")
                          select value.enumValue;
             return result.ToList<string>();
+        }
+
+        public List<string> GetElementSuggestions()
+        {
+            List<string> result = new List<string>();
+            var query = from ws in DB.website
+                         join elm in DB.element
+                         on ws.id equals elm.website_id into ws_elm
+                         from r in ws_elm
+                         select new { WebSite=r.websiteRow.name,Element=r.name};
+            foreach (var row in query)
+            {
+                result.Add(row.WebSite + "::" + row.Element);
+            }
+            return result;
+
         }
     }
 }

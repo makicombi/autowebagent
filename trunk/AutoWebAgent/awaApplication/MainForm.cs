@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using awaDAL;
 namespace awaApplication
 {
+   
     [System.Runtime.InteropServices.ComVisible(true)]
     public partial class MainForm : Form
     {
@@ -18,6 +19,7 @@ namespace awaApplication
         private DAL dal;
         private HtmlElement currentElement;
         private DAL.ElementType currentElementType = DAL.ElementType.NONE;
+        private List<string> suggestionList;
         public int WebsiteID { get; private set; }
         public AutoWebAgentDBDataSet.websiteRow WebsiteRow { get; private set; }
 
@@ -27,7 +29,7 @@ namespace awaApplication
         }
         private SelectionState selectionState = SelectionState.IDLE;
         private IDictionary<HtmlElement, string> elementStyles = new Dictionary<HtmlElement, string>();
-        
+
         public MainForm()
         {
             dal = new DAL();
@@ -37,7 +39,7 @@ namespace awaApplication
             BindControlsToDataSource();
             listBoxScripts.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnValidation;
             listBoxSteps.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnValidation;
-            
+
 
             scriptEntryForm = new TextEntryForm("Please Enter New Script Name:");
             scriptEntryForm.Submitted += new EventHandler(scriptEntryForm_Submitted);
@@ -55,11 +57,11 @@ namespace awaApplication
 
             aBox = new awaAboutBox();
             aBox.Hide();
-            
+
             webBrowser.ObjectForScripting = this;
             webBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser_DocumentCompleted);
 
-            
+
             loginForm = new Login(dal);
             DialogResult res = loginForm.ShowDialog(this);
             if (res == DialogResult.Abort)
@@ -69,7 +71,7 @@ namespace awaApplication
 
 
             scriptBindingSource.DataSource = dal.GetUserScripts(loginForm.UserID).ToList();
-            
+
         }
 
         private void BindControlsToDataSource()
@@ -89,20 +91,20 @@ namespace awaApplication
                         lbox.DisplayMember = "";
                     }
                     else
-                    if (c.Name.Contains("Notify"))
-                    {
-                        lbox.DataSource = dal.GetEnumValues("listBoxActionNotifyMethod");
-                        lbox.DisplayMember = "";
-                    }
-                    else
-                    if (c.Name.Contains("Action"))
-                    {
-                        lbox.DataSource = dal.GetEnumValues("listBoxActionType");
-                        lbox.DisplayMember = "";
-                    }
+                        if (c.Name.Contains("Notify"))
+                        {
+                            lbox.DataSource = dal.GetEnumValues("listBoxActionNotifyMethod");
+                            lbox.DisplayMember = "";
+                        }
+                        else
+                            if (c.Name.Contains("Action"))
+                            {
+                                lbox.DataSource = dal.GetEnumValues("listBoxActionType");
+                                lbox.DisplayMember = "";
+                            }
                 }
             }
-            
+
 
         }
 
@@ -113,7 +115,7 @@ namespace awaApplication
             int script_id = (int)listBoxScripts.SelectedValue;
             dal.AddStep(dialog.Value, script_id, listBoxSteps.SelectedIndex);
             stepBindingSource.DataSource = dal.GetStepsByScriptID(script_id).ToList();
-            if (listBoxSteps.SelectedIndex+1 < listBoxSteps.Items.Count)
+            if (listBoxSteps.SelectedIndex + 1 < listBoxSteps.Items.Count)
             {
                 listBoxSteps.SelectedIndex++;
             }
@@ -132,13 +134,13 @@ namespace awaApplication
                 }
             }
             dialog.Controls["panelContainer"].Controls["labelError"].Text = "";
-            dal.AddScript(dialog.Value,loginForm.UserID);
+            dal.AddScript(dialog.Value, loginForm.UserID);
             scriptBindingSource.DataSource = dal.GetUserScripts(loginForm.UserID);
         }
 
-        
 
-        
+
+
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -573,8 +575,8 @@ namespace awaApplication
 
         private void buttonRemoveScript_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show(this,"Are you sure?","Confirmation",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button1);
-            if (result== DialogResult.Yes)
+            DialogResult result = MessageBox.Show(this, "Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            if (result == DialogResult.Yes)
             {
                 dal.DeleteScript((int)listBoxScripts.SelectedValue);
                 scriptBindingSource.DataSource = dal.GetUserScripts(loginForm.UserID);
@@ -604,13 +606,13 @@ namespace awaApplication
             if ((listBoxScripts.SelectedValue != null) && ((int)listBoxScripts.SelectedValue) > -1)
             {
                 stepBindingSource.DataSource = dal.GetStepsByScriptID((int)listBoxScripts.SelectedValue);
-                if (listBoxSteps.Items.Count>0)
+                if (listBoxSteps.Items.Count > 0)
                 {
                     listBoxSteps.SetSelected(0, true);
                 }
-                
+
             }
-            
+
         }
 
         private void buttonStepUp_Click(object sender, EventArgs e)
@@ -625,14 +627,14 @@ namespace awaApplication
                 stepBindingSource.DataSource = dal.GetStepsByScriptID((int)listBoxScripts.SelectedValue);
                 listBoxSteps.SelectedIndex--;
             }
-            
 
-            
+
+
         }
 
         private void buttonStepDown_Click(object sender, EventArgs e)
         {
-            if (listBoxSteps.SelectedIndex == listBoxSteps.Items.Count-1)
+            if (listBoxSteps.SelectedIndex == listBoxSteps.Items.Count - 1)
             {
                 return;
             }
@@ -653,7 +655,7 @@ namespace awaApplication
                 BindStepConditions(step_id);
                 BindStepActions(step_id);
             }
-            
+
 
         }
 
@@ -665,7 +667,7 @@ namespace awaApplication
             while (groupBoxActions.Controls.ContainsKey("listBoxActionType" + (countGUI++).ToString())) ;
             for (int i = 1; i <= countGUI; i++)
             {
-                
+
                 if (countDB > i)
                 {
                     BetterListBox lbox = ((BetterListBox)groupBoxActions.Controls["listBoxActionType" + i.ToString()]);
@@ -675,12 +677,12 @@ namespace awaApplication
                     ((TextBox)groupBoxActions.Controls["textBoxActionTarget" + i.ToString()]).Text = stepActions.ElementAt(i).Target;
                     ((TextBox)groupBoxActions.Controls["textBoxActionValue" + i.ToString()]).Text = stepActions.ElementAt(i).Value;
                     lbox = ((BetterListBox)groupBoxActions.Controls["listBoxActionNotifyMethod" + i.ToString()]);
-                    lbox.SelectedItem = stepActions.ElementAt(i).NotifyMethod; 
+                    lbox.SelectedItem = stepActions.ElementAt(i).NotifyMethod;
                     index = lbox.Items.IndexOf(lbox.SelectedItem);
                     lbox.SetSelected(index, true);
                 }
                 else
-                {   
+                {
                     ((BetterListBox)groupBoxActions.Controls["listBoxActionType" + i.ToString()]).SelectedIndex = 0;
                     ((BetterListBox)groupBoxActions.Controls["listBoxActionType" + i.ToString()]).SetSelected(0, true);
                     ((TextBox)groupBoxActions.Controls["textBoxActionTarget" + i.ToString()]).Text = "";
@@ -689,49 +691,49 @@ namespace awaApplication
                     ((BetterListBox)groupBoxActions.Controls["listBoxActionNotifyMethod" + i.ToString()]).SetSelected(0, true);
                 }
             }
-            
+
 
         }
 
-       
+
 
         private void BindStepConditions(int step_id)
-        {       
+        {
             var stepConditions = dal.GetStepConditions(step_id);
-           int countDB = stepConditions.Count();
-           int countGUI = 0;
-           while (groupBoxConditions.Controls.ContainsKey("listBoxConditionType" + (countGUI++).ToString())) ;
-           for (int i = 1; i <= countGUI; i++)
-           {
-               if (countDB > i)
-               {
-                   BetterListBox lbox = ((BetterListBox)groupBoxConditions.Controls["listBoxConditionType" + i.ToString()]);
-                   lbox.SelectedItem = stepConditions.ElementAt(i).Type;
-                   int index = lbox.Items.IndexOf(lbox.SelectedItem);
-                   lbox.SetSelected(index, true);
-                   ((TextBox)groupBoxConditions.Controls["textBoxConditionSource" + i.ToString()]).Text = stepConditions.ElementAt(i).Source;
-                   ((TextBox)groupBoxConditions.Controls["textBoxConditionTarget" + i.ToString()]).Text = stepConditions.ElementAt(i).TargetValue;
-                   ((TextBox)groupBoxConditions.Controls["textBoxConditionSourceAttribute" + i.ToString()]).Text = stepConditions.ElementAt(i).SourceAttribute;
-                   ((TextBox)groupBoxConditions.Controls["textBoxConditionTargetAttribute" + i.ToString()]).Text = stepConditions.ElementAt(i).TargetAttribute;
-               }
-               else
-               {
-                   ((BetterListBox)groupBoxConditions.Controls["listBoxConditionType" + i.ToString()]).SelectedItem = 0;
-                   ((BetterListBox)groupBoxConditions.Controls["listBoxConditionType" + i.ToString()]).SetSelected(0, true);
-                   ((TextBox)groupBoxConditions.Controls["textBoxConditionSource" + i.ToString()]).Text = "";
-                   ((TextBox)groupBoxConditions.Controls["textBoxConditionTarget" + i.ToString()]).Text = "";
-                   ((TextBox)groupBoxConditions.Controls["textBoxConditionSourceAttribute" + i.ToString()]).Text = "";
-                   ((TextBox)groupBoxConditions.Controls["textBoxConditionTargetAttribute" + i.ToString()]).Text = "";
-               }
-           }
+            int countDB = stepConditions.Count();
+            int countGUI = 0;
+            while (groupBoxConditions.Controls.ContainsKey("listBoxConditionType" + (countGUI++).ToString())) ;
+            for (int i = 1; i <= countGUI; i++)
+            {
+                if (countDB > i)
+                {
+                    BetterListBox lbox = ((BetterListBox)groupBoxConditions.Controls["listBoxConditionType" + i.ToString()]);
+                    lbox.SelectedItem = stepConditions.ElementAt(i).Type;
+                    int index = lbox.Items.IndexOf(lbox.SelectedItem);
+                    lbox.SetSelected(index, true);
+                    ((TextBox)groupBoxConditions.Controls["textBoxConditionSource" + i.ToString()]).Text = stepConditions.ElementAt(i).Source;
+                    ((TextBox)groupBoxConditions.Controls["textBoxConditionTarget" + i.ToString()]).Text = stepConditions.ElementAt(i).TargetValue;
+                    ((TextBox)groupBoxConditions.Controls["textBoxConditionSourceAttribute" + i.ToString()]).Text = stepConditions.ElementAt(i).SourceAttribute;
+                    ((TextBox)groupBoxConditions.Controls["textBoxConditionTargetAttribute" + i.ToString()]).Text = stepConditions.ElementAt(i).TargetAttribute;
+                }
+                else
+                {
+                    ((BetterListBox)groupBoxConditions.Controls["listBoxConditionType" + i.ToString()]).SelectedItem = 0;
+                    ((BetterListBox)groupBoxConditions.Controls["listBoxConditionType" + i.ToString()]).SetSelected(0, true);
+                    ((TextBox)groupBoxConditions.Controls["textBoxConditionSource" + i.ToString()]).Text = "";
+                    ((TextBox)groupBoxConditions.Controls["textBoxConditionTarget" + i.ToString()]).Text = "";
+                    ((TextBox)groupBoxConditions.Controls["textBoxConditionSourceAttribute" + i.ToString()]).Text = "";
+                    ((TextBox)groupBoxConditions.Controls["textBoxConditionTargetAttribute" + i.ToString()]).Text = "";
+                }
+            }
         }
 
         private void listBox_Scroll(object Sender, BetterListBox.BetterListBoxScrollArgs e)
         {
             BetterListBox listBox = (BetterListBox)Sender;
-            if(listBox.SelectedIndex!=-1)
+            if (listBox.SelectedIndex != -1)
                 listBox.SetSelected(listBox.SelectedIndex, false);
-            listBox.SetSelected(e.Top,true);
+            listBox.SetSelected(e.Top, true);
         }
 
         private void buttonRevertStep_Click(object sender, EventArgs e)
@@ -763,21 +765,147 @@ namespace awaApplication
                 SubmitForm();
         }
 
+        
         private void SubmitForm()
         {
-            throw new NotImplementedException();
+            dal.StepUpdateStart((int)listBoxSteps.SelectedValue);
+            //add conditions
+            dal.StepUpdateAddCondition(listBoxConditionType1.Text, textBoxConditionSource1.Text, textBoxConditionSourceAttribute1.Text, textBoxConditionTarget1.Text, textBoxConditionTargetAttribute1.Text);
+            dal.StepUpdateAddCondition(listBoxConditionType2.Text, textBoxConditionSource2.Text, textBoxConditionSourceAttribute2.Text, textBoxConditionTarget2.Text, textBoxConditionTargetAttribute2.Text);
+            dal.StepUpdateAddCondition(listBoxConditionType3.Text, textBoxConditionSource3.Text, textBoxConditionSourceAttribute3.Text, textBoxConditionTarget3.Text, textBoxConditionTargetAttribute3.Text);
+            dal.StepUpdateAddCondition(listBoxConditionType4.Text, textBoxConditionSource4.Text, textBoxConditionSourceAttribute4.Text, textBoxConditionTarget4.Text, textBoxConditionTargetAttribute4.Text);
+            //add actions
+            dal.StepUpdateAddAction(listBoxActionType1.Text, textBoxActionValue1.Text, textBoxActionTarget1.Text, listBoxActionNotifyMethod1.Text);
+            dal.StepUpdateAddAction(listBoxActionType2.Text, textBoxActionValue2.Text, textBoxActionTarget2.Text, listBoxActionNotifyMethod2.Text);
+            dal.StepUpdateAddAction(listBoxActionType3.Text, textBoxActionValue3.Text, textBoxActionTarget3.Text, listBoxActionNotifyMethod3.Text);
+            dal.StepUpdateAddAction(listBoxActionType4.Text, textBoxActionValue4.Text, textBoxActionTarget4.Text, listBoxActionNotifyMethod4.Text);
+            dal.StepUpdateEnd();
         }
 
         private bool ValidateForm(out string cause)
         {
             cause = "some control had an invalid data";
-            return false;
+            //TODO: add validation here
+            return true;
+        }
+
+        private void textBoxConditionSource1_Enter(object sender, EventArgs e)
+        {
+
+            TextBox tbox = (TextBox)sender;
+            List<string> currentSuggestion = suggestionList.FindAll(a => a.StartsWith(tbox.Text));
+            listBoxElementSuggestion.DataSource = currentSuggestion;
+            listBoxElementSuggestion.Location = new Point(tbox.Parent.Location.X + tbox.Location.X, tbox.Parent.Location.Y + tbox.Location.Y + tbox.Height + 2);
+            Graphics g = listBoxElementSuggestion.CreateGraphics();
+            g.PageUnit = GraphicsUnit.Pixel;
+            listBoxElementSuggestion.ScrollAlwaysVisible = true;
+            listBoxElementSuggestion.Height = listBoxElementSuggestion.Items.Count > 0 ? listBoxElementSuggestion.GetItemHeight(0) * 10 : 40;
+            listBoxElementSuggestion.Width = (int)(currentSuggestion.Max(i => g.MeasureString(i, listBoxElementSuggestion.Font).Width)) + 20;
+
+            listBoxElementSuggestion.Visible = true;
+            listBoxElementSuggestion.Tag = tbox;
+
+        }
+
+        private void tabContainer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabContainer.SelectedTab.Name == "tabScript")
+            {
+                suggestionList = dal.GetElementSuggestions();
+
+            }
         }
 
 
 
+        private void MainForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            if ((listBoxElementSuggestion.Visible == true) && (e.KeyCode == Keys.Escape))
+            {
+                listBoxElementSuggestion.Visible = false;
+            }
+        }
 
+        private void textBoxConditionSource1_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tbox = (TextBox)sender;
+            listBoxElementSuggestion.DataSource = suggestionList.FindAll(a => a.StartsWith(tbox.Text));
+        }
 
+        private void textBoxConditionSource1_Click(object sender, EventArgs e)
+        {
+            textBoxConditionSource1_Enter(sender, e);
+        }
+
+        private void listBoxElementSuggestion_DoubleClick(object sender, EventArgs e)
+        {
+            ListBox lbox = (ListBox)sender;
+            TextBox tbox = (TextBox)lbox.Tag;
+            tbox.Text = lbox.SelectedItem.ToString();
+
+        }
+
+        private void listBoxConditionType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBox listBoxConditionType = sender as ListBox;
+            if (listBoxConditionType != null)
+            {
+                TextBox textBoxConditionSource = listBoxConditionType.Parent.Controls[listBoxConditionType.Name.Replace("listBoxConditionType", "textBoxConditionSource")] as TextBox;
+                TextBox textBoxConditionSourceAttribute = listBoxConditionType.Parent.Controls[listBoxConditionType.Name.Replace("listBoxConditionType", "textBoxConditionSourceAttribute")] as TextBox;
+                TextBox textBoxConditionTarget = listBoxConditionType.Parent.Controls[listBoxConditionType.Name.Replace("listBoxConditionType", "textBoxConditionTarget")] as TextBox;
+                TextBox textBoxConditionTargetAttribute = listBoxConditionType.Parent.Controls[listBoxConditionType.Name.Replace("listBoxConditionType", "textBoxConditionTargetAttribute")] as TextBox;
+                if ((textBoxConditionSource == null) || 
+                    (textBoxConditionSourceAttribute == null) ||
+                    (textBoxConditionTarget == null) ||
+                    (textBoxConditionTargetAttribute == null))
+                {
+                    throw new Exception("Couldan't translate condition control names");
+                }
+
+                switch ((ConditionType)listBoxConditionType.SelectedIndex)
+                {
+                    case ConditionType.True:
+                        textBoxConditionSource.Enabled = false;
+                        textBoxConditionSourceAttribute.Enabled = false;
+                        textBoxConditionTarget.Enabled = false;
+                        textBoxConditionTargetAttribute.Enabled = false;
+                        break;
+                    case ConditionType.False:
+                        textBoxConditionSource.Enabled = true;
+                        textBoxConditionSourceAttribute.Enabled = true;
+                        textBoxConditionTarget.Enabled = true;
+                        textBoxConditionTargetAttribute.Enabled = false;
+                        break;
+                    case ConditionType.Equal:
+                        textBoxConditionSource.Enabled = true;
+                        textBoxConditionSourceAttribute.Enabled = true;
+                        textBoxConditionTarget.Enabled = true;
+                        textBoxConditionTargetAttribute.Enabled = true;
+                        break;
+                    case ConditionType.Value:
+                        textBoxConditionSource.Enabled = false;
+                        textBoxConditionSourceAttribute.Enabled = false;
+                        textBoxConditionTarget.Enabled = false;
+                        textBoxConditionTargetAttribute.Enabled = false;
+                        break;
+                    case ConditionType.Checked:
+                        textBoxConditionSource.Enabled = true;
+                        textBoxConditionSourceAttribute.Enabled = false;
+                        textBoxConditionTarget.Enabled = false;
+                        textBoxConditionTargetAttribute.Enabled = false;
+                        break;
+                    case ConditionType.Selected:
+                        textBoxConditionSource.Enabled = true;
+                        textBoxConditionSourceAttribute.Enabled = false;
+                        textBoxConditionTarget.Enabled = true;
+                        textBoxConditionTargetAttribute.Enabled = false;
+                        break;
+                    default:
+                        break;
+                }
+                //lbox.SelectedItem.ToString()
+            }
+        }
 
 
 
