@@ -149,12 +149,15 @@
             this.label15 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
-            this.listBox15 = new System.Windows.Forms.BetterListBox();
+            this.listBoxScheduledScripts = new System.Windows.Forms.BetterListBox();
             this.tabActivation = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBox23 = new System.Windows.Forms.TextBox();
+            this.textBoxLog = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.buttonSelectAll = new System.Windows.Forms.Button();
+            this.buttonClearAll = new System.Windows.Forms.Button();
+            this.buttonForceStart = new System.Windows.Forms.Button();
+            this.checkedListBoxScripts = new System.Windows.Forms.CheckedListBox();
             this.scriptDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.recognitionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.scriptTableAdapterBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -210,37 +213,37 @@
             this.loadToolStripMenuItem,
             this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.newToolStripMenuItem.Text = "New";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.loadToolStripMenuItem.Text = "Import";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.saveToolStripMenuItem.Text = "Export";
             // 
             // schedualToolStripMenuItem
             // 
             this.schedualToolStripMenuItem.Name = "schedualToolStripMenuItem";
-            this.schedualToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.schedualToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.schedualToolStripMenuItem.Text = "&Schedule";
             // 
             // scriptToolStripMenuItem
             // 
             this.scriptToolStripMenuItem.Name = "scriptToolStripMenuItem";
-            this.scriptToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.scriptToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.scriptToolStripMenuItem.Text = "S&cript";
             // 
             // mapToolStripMenuItem
@@ -248,13 +251,13 @@
             this.mapToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.webToolStripMenuItem});
             this.mapToolStripMenuItem.Name = "mapToolStripMenuItem";
-            this.mapToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.mapToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.mapToolStripMenuItem.Text = "&Map";
             // 
             // webToolStripMenuItem
             // 
             this.webToolStripMenuItem.Name = "webToolStripMenuItem";
-            this.webToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.webToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.webToolStripMenuItem.Text = "&Web Recorder";
             // 
             // helpToolStripMenuItem
@@ -262,13 +265,13 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -391,6 +394,7 @@
             this.clearSiteButton.TabIndex = 11;
             this.clearSiteButton.Text = "Clear Site";
             this.clearSiteButton.UseVisualStyleBackColor = true;
+            this.clearSiteButton.Click += new System.EventHandler(this.clearSiteButton_Click);
             // 
             // label2
             // 
@@ -440,6 +444,7 @@
             this.saveElementButton.TabIndex = 10;
             this.saveElementButton.Text = "Apply";
             this.saveElementButton.UseVisualStyleBackColor = true;
+            this.saveElementButton.Click += new System.EventHandler(this.saveElementButton_Click);
             // 
             // elementNameTextBox
             // 
@@ -506,19 +511,19 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(129, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(109, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(129, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(109, 17);
             this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
             // 
             // toolStripStatusLabel3
             // 
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(129, 17);
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(109, 17);
             this.toolStripStatusLabel3.Text = "toolStripStatusLabel3";
             // 
             // elementsDataGridView
@@ -1286,7 +1291,7 @@
             this.tabSchedule.Controls.Add(this.label15);
             this.tabSchedule.Controls.Add(this.dateTimePicker1);
             this.tabSchedule.Controls.Add(this.label14);
-            this.tabSchedule.Controls.Add(this.listBox15);
+            this.tabSchedule.Controls.Add(this.listBoxScheduledScripts);
             this.tabSchedule.Location = new System.Drawing.Point(4, 22);
             this.tabSchedule.Name = "tabSchedule";
             this.tabSchedule.Padding = new System.Windows.Forms.Padding(3);
@@ -1379,17 +1384,15 @@
             this.label14.TabIndex = 3;
             this.label14.Text = "Scripts";
             // 
-            // listBox15
+            // listBoxScheduledScripts
             // 
-            this.listBox15.FormattingEnabled = true;
-            this.listBox15.Items.AddRange(new object[] {
-            "mysite google ranking check",
-            "afeka library loan extension",
-            "monitor movie tickets"});
-            this.listBox15.Location = new System.Drawing.Point(8, 22);
-            this.listBox15.Name = "listBox15";
-            this.listBox15.Size = new System.Drawing.Size(182, 342);
-            this.listBox15.TabIndex = 2;
+            this.listBoxScheduledScripts.DataSource = this.scriptBindingSource;
+            this.listBoxScheduledScripts.DisplayMember = "name";
+            this.listBoxScheduledScripts.FormattingEnabled = true;
+            this.listBoxScheduledScripts.Location = new System.Drawing.Point(8, 22);
+            this.listBoxScheduledScripts.Name = "listBoxScheduledScripts";
+            this.listBoxScheduledScripts.Size = new System.Drawing.Size(182, 342);
+            this.listBoxScheduledScripts.TabIndex = 2;
             // 
             // tabActivation
             // 
@@ -1402,10 +1405,11 @@
             this.tabActivation.TabIndex = 3;
             this.tabActivation.Text = "Activation";
             this.tabActivation.UseVisualStyleBackColor = true;
+            this.tabActivation.Enter += new System.EventHandler(this.tabActivation_Enter);
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.textBox23);
+            this.groupBox4.Controls.Add(this.textBoxLog);
             this.groupBox4.Location = new System.Drawing.Point(9, 278);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(1036, 204);
@@ -1413,35 +1417,67 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Log";
             // 
-            // textBox23
+            // textBoxLog
             // 
-            this.textBox23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox23.Location = new System.Drawing.Point(3, 16);
-            this.textBox23.Multiline = true;
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(1030, 185);
-            this.textBox23.TabIndex = 0;
+            this.textBoxLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxLog.Location = new System.Drawing.Point(3, 16);
+            this.textBoxLog.Multiline = true;
+            this.textBoxLog.Name = "textBoxLog";
+            this.textBoxLog.Size = new System.Drawing.Size(1030, 185);
+            this.textBoxLog.TabIndex = 0;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.checkedListBox1);
+            this.panel1.Controls.Add(this.buttonSelectAll);
+            this.panel1.Controls.Add(this.buttonClearAll);
+            this.panel1.Controls.Add(this.buttonForceStart);
+            this.panel1.Controls.Add(this.checkedListBoxScripts);
             this.panel1.Location = new System.Drawing.Point(6, 17);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1041, 254);
+            this.panel1.Size = new System.Drawing.Size(1039, 254);
             this.panel1.TabIndex = 0;
             // 
-            // checkedListBox1
+            // buttonSelectAll
             // 
-            this.checkedListBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
+            this.buttonSelectAll.Location = new System.Drawing.Point(550, 87);
+            this.buttonSelectAll.Name = "buttonSelectAll";
+            this.buttonSelectAll.Size = new System.Drawing.Size(164, 23);
+            this.buttonSelectAll.TabIndex = 3;
+            this.buttonSelectAll.Text = "Select All";
+            this.buttonSelectAll.UseVisualStyleBackColor = true;
+            // 
+            // buttonClearAll
+            // 
+            this.buttonClearAll.Location = new System.Drawing.Point(550, 116);
+            this.buttonClearAll.Name = "buttonClearAll";
+            this.buttonClearAll.Size = new System.Drawing.Size(164, 23);
+            this.buttonClearAll.TabIndex = 2;
+            this.buttonClearAll.Text = "Clear All";
+            this.buttonClearAll.UseVisualStyleBackColor = true;
+            // 
+            // buttonForceStart
+            // 
+            this.buttonForceStart.BackColor = System.Drawing.Color.Red;
+            this.buttonForceStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.buttonForceStart.Location = new System.Drawing.Point(700, 184);
+            this.buttonForceStart.Name = "buttonForceStart";
+            this.buttonForceStart.Size = new System.Drawing.Size(164, 33);
+            this.buttonForceStart.TabIndex = 1;
+            this.buttonForceStart.Text = "Force Start";
+            this.buttonForceStart.UseVisualStyleBackColor = false;
+            // 
+            // checkedListBoxScripts
+            // 
+            this.checkedListBoxScripts.Dock = System.Windows.Forms.DockStyle.Left;
+            this.checkedListBoxScripts.FormattingEnabled = true;
+            this.checkedListBoxScripts.Items.AddRange(new object[] {
             "mysite google ranking check",
             "afeka library loan extension",
             "monitor movie tickets"});
-            this.checkedListBox1.Location = new System.Drawing.Point(0, 0);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(1041, 244);
-            this.checkedListBox1.TabIndex = 0;
+            this.checkedListBoxScripts.Location = new System.Drawing.Point(0, 0);
+            this.checkedListBoxScripts.Name = "checkedListBoxScripts";
+            this.checkedListBoxScripts.Size = new System.Drawing.Size(544, 244);
+            this.checkedListBoxScripts.TabIndex = 0;
             // 
             // scriptDataTableBindingSource
             // 
@@ -1628,7 +1664,7 @@
         private System.Windows.Forms.BetterListBox listBoxActionType2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.BetterListBox listBox15;
+        private System.Windows.Forms.BetterListBox listBoxScheduledScripts;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label16;
@@ -1637,9 +1673,9 @@
         private System.Windows.Forms.TextBox textBox22;
         private System.Windows.Forms.BetterListBox listBox16;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox checkedListBoxScripts;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox textBox23;
+        private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.BindingSource scriptDataTableBindingSource;
         private System.Windows.Forms.BindingSource scriptBindingSource;
         private System.Windows.Forms.BindingSource scriptTableAdapterBindingSource;
@@ -1654,6 +1690,9 @@
         private System.Windows.Forms.Button buttonRevertStep;
         private System.Windows.Forms.BindingSource validationBindingSource;
         private System.Windows.Forms.ListBox listBoxElementSuggestion;
+        private System.Windows.Forms.Button buttonForceStart;
+        private System.Windows.Forms.Button buttonSelectAll;
+        private System.Windows.Forms.Button buttonClearAll;
 
     }
 }
