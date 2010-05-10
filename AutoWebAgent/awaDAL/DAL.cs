@@ -129,14 +129,15 @@ namespace awaDAL
 
             foreach (var row in rowsToDelete)
             {
-                DB.condition.RemoveconditionRow(row);
+                conditionAdapter.Delete(row.id);
             }
             var rowsToDelete2 = GetStepActionsRaw(step_id);
 
             foreach (var row in rowsToDelete2)
             {
-                DB.action.RemoveactionRow(row);
+                actionAdapter.Delete(row.id);
             }
+            
             SaveChanges("action", "condition");
             stepConditions.Clear();
             stepActions.Clear();

@@ -668,16 +668,16 @@ namespace awaApplication
             for (int i = 1; i <= countGUI; i++)
             {
 
-                if (countDB > i)
+                if (countDB >= i)
                 {
                     BetterListBox lbox = ((BetterListBox)groupBoxActions.Controls["listBoxActionType" + i.ToString()]);
-                    lbox.SelectedItem = stepActions.ElementAt(i).Type;
+                    lbox.SelectedItem = stepActions.ElementAt(i-1).Type;
                     int index = lbox.Items.IndexOf(lbox.SelectedItem);
                     lbox.SetSelected(index, true);
-                    ((TextBox)groupBoxActions.Controls["textBoxActionTarget" + i.ToString()]).Text = stepActions.ElementAt(i).Target;
-                    ((TextBox)groupBoxActions.Controls["textBoxActionValue" + i.ToString()]).Text = stepActions.ElementAt(i).Value;
+                    ((TextBox)groupBoxActions.Controls["textBoxActionTarget" + i.ToString()]).Text = stepActions.ElementAt(i-1).Target;
+                    ((TextBox)groupBoxActions.Controls["textBoxActionValue" + i.ToString()]).Text = stepActions.ElementAt(i-1).Value;
                     lbox = ((BetterListBox)groupBoxActions.Controls["listBoxActionNotifyMethod" + i.ToString()]);
-                    lbox.SelectedItem = stepActions.ElementAt(i).NotifyMethod;
+                    lbox.SelectedItem = stepActions.ElementAt(i-1).NotifyMethod;
                     index = lbox.Items.IndexOf(lbox.SelectedItem);
                     lbox.SetSelected(index, true);
                 }
@@ -705,16 +705,16 @@ namespace awaApplication
             while (groupBoxConditions.Controls.ContainsKey("listBoxConditionType" + (countGUI++).ToString())) ;
             for (int i = 1; i <= countGUI; i++)
             {
-                if (countDB > i)
+                if (countDB >= i)
                 {
                     BetterListBox lbox = ((BetterListBox)groupBoxConditions.Controls["listBoxConditionType" + i.ToString()]);
-                    lbox.SelectedItem = stepConditions.ElementAt(i).Type;
+                    lbox.SelectedItem = stepConditions.ElementAt(i-1).Type;
                     int index = lbox.Items.IndexOf(lbox.SelectedItem);
                     lbox.SetSelected(index, true);
-                    ((TextBox)groupBoxConditions.Controls["textBoxConditionSource" + i.ToString()]).Text = stepConditions.ElementAt(i).Source;
-                    ((TextBox)groupBoxConditions.Controls["textBoxConditionTarget" + i.ToString()]).Text = stepConditions.ElementAt(i).TargetValue;
-                    ((TextBox)groupBoxConditions.Controls["textBoxConditionSourceAttribute" + i.ToString()]).Text = stepConditions.ElementAt(i).SourceAttribute;
-                    ((TextBox)groupBoxConditions.Controls["textBoxConditionTargetAttribute" + i.ToString()]).Text = stepConditions.ElementAt(i).TargetAttribute;
+                    ((TextBox)groupBoxConditions.Controls["textBoxConditionSource" + i.ToString()]).Text = stepConditions.ElementAt(i-1).Source;
+                    ((TextBox)groupBoxConditions.Controls["textBoxConditionTarget" + i.ToString()]).Text = stepConditions.ElementAt(i-1).TargetValue;
+                    ((TextBox)groupBoxConditions.Controls["textBoxConditionSourceAttribute" + i.ToString()]).Text = stepConditions.ElementAt(i-1).SourceAttribute;
+                    ((TextBox)groupBoxConditions.Controls["textBoxConditionTargetAttribute" + i.ToString()]).Text = stepConditions.ElementAt(i-1).TargetAttribute;
                 }
                 else
                 {
@@ -829,7 +829,11 @@ namespace awaApplication
         private void textBoxConditionSource1_TextChanged(object sender, EventArgs e)
         {
             TextBox tbox = (TextBox)sender;
-            listBoxElementSuggestion.DataSource = suggestionList.FindAll(a => a.StartsWith(tbox.Text));
+            if (suggestionList != null)
+            {
+                listBoxElementSuggestion.DataSource = suggestionList.FindAll(a => a.StartsWith(tbox.Text));    
+            }
+            
         }
 
         private void textBoxConditionSource1_Click(object sender, EventArgs e)
@@ -906,6 +910,17 @@ namespace awaApplication
                 //lbox.SelectedItem.ToString()
             }
         }
+
+        private void tabActivation_Enter(object sender, EventArgs e)
+        {
+            checkedListBoxScripts.Items.Clear();
+            foreach (awaDAL.AutoWebAgentDBDataSet.scriptRow item in scriptBindingSource.List)
+            {
+                checkedListBoxScripts.Items.Add(string.Format("{0} [{1}]", item.name, item.modified));
+            }
+        }
+
+
 
 
 
