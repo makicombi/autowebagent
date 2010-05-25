@@ -423,7 +423,6 @@ namespace awaDAL
         public int SaveChanges(params string[] tableNames)
         {
             int c = 0;
-            
             foreach (var table in tableNames)
             {
                 FieldInfo fi = this.GetType().GetField(table + "Adapter", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
@@ -432,7 +431,6 @@ namespace awaDAL
                 c += (int)mi.Invoke(adapter, new object[] { this.DB.Tables[table] });
                 mi = fi.FieldType.GetMethod("Fill", new System.Type[] { this.DB.Tables[table].GetType() });
                 c += (int)mi.Invoke(adapter, new object[] { this.DB.Tables[table] });
-
             }
             return c;
         }
@@ -702,12 +700,18 @@ namespace awaDAL
         }
 
         public IEnumerable<ActionView> GetStepActions(int step_id)
-        {
-            var result = from a in DB.action
-                       from e in DB.element
-                       where (a.target_id == e.id) && (a.step_id == step_id)
-                       select new ActionView(){ Type = a.type, Value = a.value, Index = a.index, NotifyMethod = a.notifyMethod, Target = e.name };
+        {         
+            var result = from tgt_elm in DB.element
+                         join a in DB.action on tgt_elm.id equals a.target_id into a_e
+                         from a1 in a_e
+                         where a1.step_id == step_id
+                          select new ActionView() { Type = a1.type, Value = a1.value, Index = a1.index, NotifyMethod = a1.notifyMethod, Target = tgt_elm.name };
+
             return result;
+            
+
+                       
+                       
         }
 
         public IEnumerable<ConditionView> GetStepConditions(int step_id)

@@ -662,6 +662,7 @@ namespace awaApplication
         private void BindStepActions(int step_id)
         {
             var stepActions = dal.GetStepActions(step_id);
+
             int countDB = stepActions.Count();
             int countGUI = 0;
             while (groupBoxActions.Controls.ContainsKey("listBoxActionType" + (countGUI++).ToString())) ;
@@ -800,7 +801,10 @@ namespace awaApplication
             g.PageUnit = GraphicsUnit.Pixel;
             listBoxElementSuggestion.ScrollAlwaysVisible = true;
             listBoxElementSuggestion.Height = listBoxElementSuggestion.Items.Count > 0 ? listBoxElementSuggestion.GetItemHeight(0) * 10 : 40;
-            listBoxElementSuggestion.Width = (int)(currentSuggestion.Max(i => g.MeasureString(i, listBoxElementSuggestion.Font).Width)) + 20;
+            if (currentSuggestion.Count > 0)
+            {
+                listBoxElementSuggestion.Width = (int)(currentSuggestion.Max(i => g.MeasureString(i, listBoxElementSuggestion.Font).Width)) + 20;
+            }
 
             listBoxElementSuggestion.Visible = true;
             listBoxElementSuggestion.Tag = tbox;
@@ -918,6 +922,11 @@ namespace awaApplication
             {
                 checkedListBoxScripts.Items.Add(string.Format("{0} [{1}]", item.name, item.modified));
             }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
 

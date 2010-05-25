@@ -2,6 +2,9 @@
     
     
     public partial class AutoWebAgentDBDataSet {
+        partial class actionDataTable
+        {
+        }
     }
 }
 
