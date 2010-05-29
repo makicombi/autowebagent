@@ -75,6 +75,7 @@
             this.buttonRemoveStep = new System.Windows.Forms.Button();
             this.buttonAddStep = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelStepUpdateTime = new System.Windows.Forms.Label();
             this.listBoxElementSuggestion = new System.Windows.Forms.ListBox();
             this.buttonRevertStep = new System.Windows.Forms.Button();
             this.groupBoxActions = new System.Windows.Forms.GroupBox();
@@ -135,10 +136,14 @@
             this.listBoxScripts = new System.Windows.Forms.BetterListBox();
             this.scriptBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabSchedule = new System.Windows.Forms.TabPage();
+            this.textBoxCount = new System.Windows.Forms.TextBox();
+            this.radioButtonCount = new System.Windows.Forms.RadioButton();
+            this.radioButtonRecurrance = new System.Windows.Forms.RadioButton();
+            this.labelScheduleUpdate = new System.Windows.Forms.Label();
+            this.buttonUpdateSchedule = new System.Windows.Forms.Button();
             this.textBox22 = new System.Windows.Forms.TextBox();
             this.listBox16 = new System.Windows.Forms.BetterListBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label15 = new System.Windows.Forms.Label();
@@ -607,6 +612,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.labelStepUpdateTime);
             this.groupBox1.Controls.Add(this.listBoxElementSuggestion);
             this.groupBox1.Controls.Add(this.buttonRevertStep);
             this.groupBox1.Controls.Add(this.groupBoxActions);
@@ -621,6 +627,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Step Editor";
             // 
+            // labelStepUpdateTime
+            // 
+            this.labelStepUpdateTime.AutoSize = true;
+            this.labelStepUpdateTime.Location = new System.Drawing.Point(285, 379);
+            this.labelStepUpdateTime.Name = "labelStepUpdateTime";
+            this.labelStepUpdateTime.Size = new System.Drawing.Size(0, 13);
+            this.labelStepUpdateTime.TabIndex = 12;
+            // 
             // listBoxElementSuggestion
             // 
             this.listBoxElementSuggestion.FormattingEnabled = true;
@@ -633,7 +647,7 @@
             // 
             // buttonRevertStep
             // 
-            this.buttonRevertStep.Location = new System.Drawing.Point(278, 378);
+            this.buttonRevertStep.Location = new System.Drawing.Point(12, 377);
             this.buttonRevertStep.Name = "buttonRevertStep";
             this.buttonRevertStep.Size = new System.Drawing.Size(130, 23);
             this.buttonRevertStep.TabIndex = 5;
@@ -1148,7 +1162,7 @@
             // 
             // buttonUpdateStep
             // 
-            this.buttonUpdateStep.Location = new System.Drawing.Point(414, 377);
+            this.buttonUpdateStep.Location = new System.Drawing.Point(148, 378);
             this.buttonUpdateStep.Name = "buttonUpdateStep";
             this.buttonUpdateStep.Size = new System.Drawing.Size(130, 23);
             this.buttonUpdateStep.TabIndex = 2;
@@ -1226,10 +1240,14 @@
             // 
             // tabSchedule
             // 
+            this.tabSchedule.Controls.Add(this.textBoxCount);
+            this.tabSchedule.Controls.Add(this.radioButtonCount);
+            this.tabSchedule.Controls.Add(this.radioButtonRecurrance);
+            this.tabSchedule.Controls.Add(this.labelScheduleUpdate);
+            this.tabSchedule.Controls.Add(this.buttonUpdateSchedule);
             this.tabSchedule.Controls.Add(this.textBox22);
             this.tabSchedule.Controls.Add(this.listBox16);
             this.tabSchedule.Controls.Add(this.label17);
-            this.tabSchedule.Controls.Add(this.checkBox1);
             this.tabSchedule.Controls.Add(this.label16);
             this.tabSchedule.Controls.Add(this.dateTimePicker2);
             this.tabSchedule.Controls.Add(this.label15);
@@ -1243,6 +1261,54 @@
             this.tabSchedule.TabIndex = 2;
             this.tabSchedule.Text = "Schedule";
             this.tabSchedule.UseVisualStyleBackColor = true;
+            this.tabSchedule.Click += new System.EventHandler(this.tabSchedule_Click);
+            // 
+            // textBoxCount
+            // 
+            this.textBoxCount.Location = new System.Drawing.Point(279, 254);
+            this.textBoxCount.Name = "textBoxCount";
+            this.textBoxCount.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCount.TabIndex = 17;
+            // 
+            // radioButtonCount
+            // 
+            this.radioButtonCount.AutoSize = true;
+            this.radioButtonCount.Location = new System.Drawing.Point(220, 254);
+            this.radioButtonCount.Name = "radioButtonCount";
+            this.radioButtonCount.Size = new System.Drawing.Size(53, 17);
+            this.radioButtonCount.TabIndex = 16;
+            this.radioButtonCount.TabStop = true;
+            this.radioButtonCount.Text = "Count";
+            this.radioButtonCount.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonRecurrance
+            // 
+            this.radioButtonRecurrance.AutoSize = true;
+            this.radioButtonRecurrance.Location = new System.Drawing.Point(220, 89);
+            this.radioButtonRecurrance.Name = "radioButtonRecurrance";
+            this.radioButtonRecurrance.Size = new System.Drawing.Size(81, 17);
+            this.radioButtonRecurrance.TabIndex = 15;
+            this.radioButtonRecurrance.TabStop = true;
+            this.radioButtonRecurrance.Text = "Recurrance";
+            this.radioButtonRecurrance.UseVisualStyleBackColor = true;
+            // 
+            // labelScheduleUpdate
+            // 
+            this.labelScheduleUpdate.AutoSize = true;
+            this.labelScheduleUpdate.Location = new System.Drawing.Point(621, 350);
+            this.labelScheduleUpdate.Name = "labelScheduleUpdate";
+            this.labelScheduleUpdate.Size = new System.Drawing.Size(41, 13);
+            this.labelScheduleUpdate.TabIndex = 14;
+            this.labelScheduleUpdate.Text = "label19";
+            // 
+            // buttonUpdateSchedule
+            // 
+            this.buttonUpdateSchedule.Location = new System.Drawing.Point(539, 341);
+            this.buttonUpdateSchedule.Name = "buttonUpdateSchedule";
+            this.buttonUpdateSchedule.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpdateSchedule.TabIndex = 13;
+            this.buttonUpdateSchedule.Text = "Update";
+            this.buttonUpdateSchedule.UseVisualStyleBackColor = true;
             // 
             // textBox22
             // 
@@ -1263,7 +1329,7 @@
             "weeks"});
             this.listBox16.Location = new System.Drawing.Point(371, 170);
             this.listBox16.Name = "listBox16";
-            this.listBox16.Size = new System.Drawing.Size(119, 17);
+            this.listBox16.Size = new System.Drawing.Size(56, 69);
             this.listBox16.TabIndex = 11;
             this.listBox16.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
             this.listBox16.SelectedIndexChanged += new System.EventHandler(this.listBox16_SelectedIndexChanged);
@@ -1277,20 +1343,10 @@
             this.label17.TabIndex = 10;
             this.label17.Text = "Every";
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(239, 78);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(82, 17);
-            this.checkBox1.TabIndex = 9;
-            this.checkBox1.Text = "Recurrence";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(269, 109);
+            this.label16.Location = new System.Drawing.Point(267, 119);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(52, 13);
             this.label16.TabIndex = 7;
@@ -1298,7 +1354,7 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(272, 125);
+            this.dateTimePicker2.Location = new System.Drawing.Point(270, 135);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(218, 20);
             this.dateTimePicker2.TabIndex = 6;
@@ -1316,7 +1372,7 @@
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(270, 36);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(218, 20);
             this.dateTimePicker1.TabIndex = 4;
             // 
             // label14
@@ -1337,6 +1393,7 @@
             this.listBoxScheduledScripts.Name = "listBoxScheduledScripts";
             this.listBoxScheduledScripts.Size = new System.Drawing.Size(182, 342);
             this.listBoxScheduledScripts.TabIndex = 2;
+            this.listBoxScheduledScripts.ValueMember = "id";
             // 
             // tabActivation
             // 
@@ -1458,6 +1515,7 @@
             this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "Auto Web Agent";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -1602,7 +1660,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.BetterListBox listBoxScheduledScripts;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label15;
@@ -1630,6 +1687,12 @@
         private System.Windows.Forms.Button buttonSelectAll;
         private System.Windows.Forms.Button buttonClearAll;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Label labelStepUpdateTime;
+        private System.Windows.Forms.Label labelScheduleUpdate;
+        private System.Windows.Forms.Button buttonUpdateSchedule;
+        private System.Windows.Forms.RadioButton radioButtonCount;
+        private System.Windows.Forms.RadioButton radioButtonRecurrance;
+        private System.Windows.Forms.TextBox textBoxCount;
 
     }
 }

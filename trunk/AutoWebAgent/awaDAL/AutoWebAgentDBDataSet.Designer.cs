@@ -2762,7 +2762,7 @@ namespace awaDAL {
                 this.columnid.AllowDBNull = false;
                 this.columnid.ReadOnly = true;
                 this.columnid.Unique = true;
-                this.columnname.MaxLength = 100;
+                this.columnname.MaxLength = 4000;
                 this.columnurl.MaxLength = 4000;
             }
             
@@ -7564,7 +7564,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[7])).CommandType = global::System.Data.CommandType.Text;
             global::System.Data.SqlServerCe.SqlCeParameter param = new global::System.Data.SqlServerCe.SqlCeParameter();
             param.ParameterName = "@step_id";
-            param.DbType = global::System.Data.DbType.Object;
+            param.DbType = global::System.Data.DbType.Int32;
             param.Size = 1024;
             param.IsNullable = true;
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
@@ -7575,7 +7575,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[8])).CommandType = global::System.Data.CommandType.Text;
             param = new global::System.Data.SqlServerCe.SqlCeParameter();
             param.ParameterName = "@step_id";
-            param.DbType = global::System.Data.DbType.Object;
+            param.DbType = global::System.Data.DbType.Int32;
             param.Size = 1024;
             param.IsNullable = true;
             param.SourceVersion = global::System.Data.DataRowVersion.Original;

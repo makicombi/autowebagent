@@ -32,7 +32,7 @@ namespace TestAWA
         }
         public void PopulateSteps()
         {
-            Step s = new Step();
+            Step s = new Step(browser,dal,-1);
             
             ValueCondition vc = new ValueCondition("this is a text area", dal, browser);
             vc.ConditionElement = aux;
@@ -56,7 +56,7 @@ namespace TestAWA
         }
         public void CreateScript()
         {
-            script = new Script();
+            script = new Script(browser,dal,-1);
             script.Name = "test";
             script.Author = "koby hershkovitz";
             script.LastModifiedTime = DateTime.Now;

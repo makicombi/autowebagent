@@ -9,9 +9,22 @@ namespace awaApplication
     {
         bool Eval();
     }
-
+    
     public abstract class ConditionBase : ICondition
     {
+
+        public enum ConditionType
+        {
+            TRUE,
+            FALSE,
+            EQUAL,
+            SELECTED,
+            VALUE,
+            NOT_EQUAL,
+            NOT_SELECETED,
+            NOT_VALUE,
+            CONTAINS
+        }
         public SiteObject ConditionElement { get; set; }
         public awaDAL.DAL DAL { get; private set; }
         public WatiN.Core.IE IE { get; private set; }
@@ -24,10 +37,22 @@ namespace awaApplication
         {
             if ( ConditionElement.IsBound==false)
             {
+                if (!ConditionElement.Bind(DAL,IE))
                 throw new SiteObjectNotBoundException(ConditionElement);
             }
             return true;
         }
+        public static Dictionary<string, ConditionType> ConditionTypeEnum = 
+            new Dictionary<string, ConditionType>() {{"Contains",ConditionType.CONTAINS},
+                {"Contains",ConditionType.EQUAL},
+                {"False",ConditionType.FALSE},
+                {"NotEqual",ConditionType.NOT_EQUAL},
+                {"NotSelected",ConditionType.NOT_SELECETED},
+                {"NotValue",ConditionType.NOT_VALUE},
+                {"Selected",ConditionType.SELECTED},
+                {"True",ConditionType.TRUE},
+                {"Value",ConditionType.VALUE}
+            };
     }
     public class ConditionCollection : System.Collections.CollectionBase
     {
@@ -60,6 +85,63 @@ namespace awaApplication
         }
     }
 
+    public class ContainsCondition : ConditionBase
+    {
+        private string value;
+        public ContainsCondition(string value, awaDAL.DAL dal, WatiN.Core.IE ie)
+            : base(dal, ie)
+        {
+            this.value = value;
+        }
+        public override bool Eval()
+        {
+            if (ConditionElement.IsBound == false)
+            {
+                if (!ConditionElement.Bind(this.DAL, this.IE))
+                    return false;
+            }
+            return (ConditionElement.Value.Contains(value));
+        }
+    }
+
+    public class NotContainsCondition : ConditionBase
+    {
+        private string value;
+        public NotContainsCondition(string value, awaDAL.DAL dal, WatiN.Core.IE ie)
+            : base(dal, ie)
+        {
+            this.value = value;
+        }
+        public override bool Eval()
+        {
+            if (ConditionElement.IsBound == false)
+            {
+                if (!ConditionElement.Bind(this.DAL, this.IE))
+                    return false;
+            }
+            return !(ConditionElement.Value.Contains(value));
+        }
+    }
+
+    public class NotValueCondition : ConditionBase
+    {
+        private string value;
+        public NotValueCondition(string value, awaDAL.DAL dal, WatiN.Core.IE ie)
+            : base(dal, ie)
+        {
+            this.value = value;
+        }
+        public override bool Eval()
+        {
+            if (ConditionElement.IsBound == false)
+            {
+                if (!ConditionElement.Bind(this.DAL, this.IE))
+                    return false;
+            }
+            return (ConditionElement.Value != value);
+        }
+    }
+
     public class EqualityCondition : ConditionBase
     {
         public enum ComparisonAttribute
@@ -76,13 +158,11 @@ namespace awaApplication
         }
         public override bool Eval()
         {
-            if ((ConditionElement.IsBound == false) )
-            {
-                throw new SiteObjectNotBoundException(ConditionElement);
-            }
+            base.Eval();
             if ((AuxElement.IsBound == false))
             {
-                throw new SiteObjectNotBoundException(AuxElement);
+                if (!AuxElement.Bind(DAL,IE))
+                    throw new SiteObjectNotBoundException(AuxElement);
             }
             switch (ca)
             {
@@ -106,6 +186,53 @@ namespace awaApplication
             }
             return false;
            
+        }
+    }
+
+    public class NotEqualityCondition : ConditionBase
+    {
+        public enum ComparisonAttribute
+        {
+            VALUE, CLASS, NAME, INNERHTML, INNERTEXT
+        }
+        private ComparisonAttribute ca = ComparisonAttribute.VALUE;
+        public SiteObject AuxElement { get; set; }
+
+        public NotEqualityCondition(ComparisonAttribute attr, awaDAL.DAL dal, WatiN.Core.IE ie)
+            : base(dal, ie)
+        {
+            this.ca = attr;
+        }
+        public override bool Eval()
+        {
+            base.Eval();
+            if ((AuxElement.IsBound == false))
+            {
+                if (!AuxElement.Bind(DAL, IE))
+                    throw new SiteObjectNotBoundException(AuxElement);
+            }
+            switch (ca)
+            {
+                case ComparisonAttribute.VALUE:
+                    return (ConditionElement.Value != AuxElement.Value);
+
+                case ComparisonAttribute.CLASS:
+                    return (ConditionElement.WatinElement.ClassName == AuxElement.WatinElement.ClassName);
+
+                case ComparisonAttribute.NAME:
+                    return (ConditionElement.Name != AuxElement.Name);
+
+                case ComparisonAttribute.INNERHTML:
+                    return (ConditionElement.WatinElement.InnerHtml != AuxElement.WatinElement.InnerHtml);
+
+                case ComparisonAttribute.INNERTEXT:
+                    return (ConditionElement.WatinElement.Text != AuxElement.WatinElement.Text);
+
+                default:
+                    break;
+            }
+            return false;
+
         }
     }
 
@@ -152,6 +279,24 @@ namespace awaApplication
             return (ConditionElement.WatinElement.GetAdapter<WatiN.Core.SelectList>().SelectedItem==selectedItem);
         }
     }
+    public class NotSelectedCondition : ConditionBase
+    {
+        private string selectedItem;
+        public NotSelectedCondition(string si, awaDAL.DAL dal, WatiN.Core.IE ie)
+            : base(dal, ie)
+        {
+            selectedItem = si;
+        }
+        public override bool Eval()
+        {
+            if ((ConditionElement.IsBound == false))
+            {
+                throw new SiteObjectNotBoundException(ConditionElement);
+            }
+            return (ConditionElement.WatinElement.GetAdapter<WatiN.Core.SelectList>().SelectedItem != selectedItem);
+        }
+    }
+
     public class TrueCondition : ConditionBase
     {
         public TrueCondition() : base(null, null) { }
