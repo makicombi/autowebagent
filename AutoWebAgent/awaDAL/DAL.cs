@@ -19,7 +19,16 @@ namespace awaDAL
         Equal,
         False,
         Checked,
-        Selected
+        Selected,
+        NotEqual,
+        NotValue
+    }
+    public class DBElement
+    {
+        public string Name { get; set; }
+        public string Property { get; set; }
+        public string Value { get; set; }
+        public int Priority { get; set; }
     }
     public class DAL
     {
@@ -435,14 +444,15 @@ namespace awaDAL
             return c;
         }
 
-        public DataTable CreateElementRecognitionView(int WebsiteID)
+        public List<DBElement> CreateElementRecognitionView(int WebsiteID)
         {
             var view = from elm in DB.element
                               join rec in DB.recognition
                               on elm.id equals rec.element_id
                               where elm.website_id == WebsiteID
                               select new { Name = elm.name, Property = rec.attribute, Value = rec.value, Priority = rec.priority };
-            return view.CopyToDataTable();
+            var result = view.ToList().ToNonAnonymousList(typeof(DBElement));
+            return (List<DBElement>)result;
 
         }
         private void CreateDB(string name)

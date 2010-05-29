@@ -286,7 +286,7 @@ namespace testDAL
             DAL target = new DAL(); // TODO: Initialize to an appropriate value
             int WebsiteID = 0; // TODO: Initialize to an appropriate value
             DataTable expected = null; // TODO: Initialize to an appropriate value
-            DataTable actual;
+            object actual;
             actual = target.CreateElementRecognitionView(WebsiteID);
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");

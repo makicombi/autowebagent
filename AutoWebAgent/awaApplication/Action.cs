@@ -58,6 +58,56 @@ namespace awaApplication
         }
     }
 
+
+    public class CheckAction : ActionBase
+    {
+        public CheckAction(awaDAL.DAL dal, WatiN.Core.IE ie, SiteObject target)
+            : base(dal, ie, target)
+        {
+
+        }
+        public override void Execute()
+        {
+            if (Target.Bind(DAL, IE))
+            {
+                if (Target.Value!="checked")
+                {
+                    Target.WatinElement.Click();
+                }
+            }
+            else
+            {
+                //write error log
+            }
+
+        }
+    }
+
+    public class UnCheckAction : ActionBase
+    {
+        public UnCheckAction(awaDAL.DAL dal, WatiN.Core.IE ie, SiteObject target)
+            : base(dal, ie, target)
+        {
+
+        }
+        public override void Execute()
+        {
+            if (Target.Bind(DAL, IE))
+            {
+                if (Target.Value == "checked")
+                {
+                    Target.WatinElement.Click();
+                }
+            }
+            else
+            {
+                //write error log
+            }
+
+        }
+    }
+
+
     public class SelectAction : ActionBase
     {
         string item;

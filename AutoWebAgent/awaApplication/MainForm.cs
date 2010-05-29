@@ -34,7 +34,7 @@ namespace awaApplication
         {
             dal = new DAL();
             dal.Init(Properties.Settings.Default.awaDB);
-
+            ScriptManager.GetInstance().Init(dal);
             InitializeComponent();
             BindControlsToDataSource();
             listBoxScripts.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnValidation;
@@ -218,7 +218,31 @@ namespace awaApplication
             {
                 bool found;
                 var row = dal.GetWebsiteRow(websiteNameTextBox.Text, out found);
-                if (found) urlTextBox.Text = row.url;
+                if (found)
+                {
+                    DialogResult res =DialogResult.No;
+                    if(row.url != urlTextBox.Text)
+                    res = MessageBox.Show("Entered URL and saved URL are Conflicted,\nPress Yes to save the Entered URL,\nPress NO to use the saved URL",
+                                                        "URL COnflict Detected", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                    if (res == DialogResult.Yes)
+                    {
+                        if ((!urlTextBox.Text.StartsWith("http://")) &&
+                            (!urlTextBox.Text.StartsWith("https://")) &&
+                            (!urlTextBox.Text.StartsWith("file://")))
+                        {
+                            urlTextBox.Text = "http://" + urlTextBox.Text;
+                        }
+                        if ((Uri.IsWellFormedUriString(urlTextBox.Text, UriKind.RelativeOrAbsolute)) || urlTextBox.Text.StartsWith("file://"))
+                        {
+                            row.url = urlTextBox.Text;
+                            dal.SaveChanges("website");
+                        }
+                    }
+                    else
+                    {
+                        urlTextBox.Text = row.url;
+                    }
+                }
             }
             catch (Exception exc)
             {
@@ -233,15 +257,7 @@ namespace awaApplication
             }
             if ((Uri.IsWellFormedUriString(urlTextBox.Text, UriKind.RelativeOrAbsolute)) || urlTextBox.Text.StartsWith("file://"))
             {
-                try
-                {
-                    webBrowser.Navigate(urlTextBox.Text);
-                }
-                catch (Exception exc)
-                {
-                    MessageBox.Show(exc.Message);
-                    return;
-                }
+
                 try
                 {
                     WebsiteID = dal.GetWebsiteID(urlTextBox.Text);
@@ -252,7 +268,6 @@ namespace awaApplication
                     MessageBox.Show("Internal Error:" + exc.Message);
                     Application.Exit();
                 }
-
                 // New Website
                 if (WebsiteID < 0)
                 {
@@ -274,15 +289,27 @@ namespace awaApplication
                 {
                     if (websiteNameTextBox.Text.Length > 0)
                     {
-                        dal.DB.website.FindByid(WebsiteID).name = websiteNameTextBox.Text;
+                        WebsiteRow.name = websiteNameTextBox.Text;
                     }
                     else
                     {
-                        websiteNameTextBox.Text = dal.DB.website.FindByid(WebsiteID).name;
+                        websiteNameTextBox.Text = WebsiteRow.name;
                     }
 
                 }
                 updateGrid();
+                try
+                {
+                    webBrowser.Navigate(urlTextBox.Text);
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                    return;
+                }
+                
+
+                
 
             }
             else
@@ -292,8 +319,10 @@ namespace awaApplication
         }
         private void updateGrid()
         {
+            
             elementsDataGridView.AutoGenerateColumns = true;
             elementsDataGridView.DataSource = dal.CreateElementRecognitionView(WebsiteID);
+            elementsDataGridView.Invalidate();
         }
 
         private void urlTextBox_KeyUp(object sender, KeyEventArgs e)
@@ -763,7 +792,10 @@ namespace awaApplication
             if (ValidateForm(out cause) == false)
                 MessageBox.Show("Form validation Failed:" + cause);
             else
+            {
                 SubmitForm();
+                labelStepUpdateTime.Text = String.Format("last updated:[{0}]", DateTime.Now.ToString());
+            }
         }
 
         
@@ -927,6 +959,16 @@ namespace awaApplication
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void tabSchedule_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
 
 
