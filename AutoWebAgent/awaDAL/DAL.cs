@@ -49,6 +49,21 @@ namespace awaDAL
             NONE
         }
 
+
+        public enum Tables 
+        { 
+            ACTION,
+            CONDITION,
+            ELEMENT,
+            RECOGNITION,
+            SCRIPT,
+            STEP,
+            USERS,
+            VALIDATION,
+            WEBSITE
+        }
+
+
         static private Dictionary<string, ElementType> elementTypeMap = new Dictionary<string, ElementType>() {
                                                                             {"BUTTON",ElementType.BUTTON},
                                                                             {"CHECKBOX",ElementType.CHECKBOX},
@@ -108,7 +123,8 @@ namespace awaDAL
         websiteTableAdapter websiteAdapter;
         QueriesTableAdapter queries;
         validationTableAdapter validationAdapter;
-
+        StepConditionsViewDataTableTableAdapter scvta = new StepConditionsViewDataTableTableAdapter();
+            
         private List<AutoWebAgentDBDataSet.conditionRow> stepConditions = new List<AutoWebAgentDBDataSet.conditionRow>();
         private List<AutoWebAgentDBDataSet.actionRow> stepActions = new List<AutoWebAgentDBDataSet.actionRow>();
         private int step_id;
@@ -167,7 +183,10 @@ namespace awaDAL
                 DB.action.AddactionRow(row);
             }
             SaveChanges("action", "condition");
+            
         }
+
+
         private int? GetElementId(string encodedElementName)
         {
             string[] res = encodedElementName.Split(new string[] { "::" }, StringSplitOptions.RemoveEmptyEntries);
@@ -241,7 +260,7 @@ namespace awaDAL
             usersAdapter.Connection=con;
             websiteAdapter.Connection = con;
             validationAdapter.Connection = con;
-
+            scvta.Connection = con;
             usersAdapter.Fill(DB.users);
             
             recognitionAdapter.Fill(DB.recognition);
@@ -444,6 +463,54 @@ namespace awaDAL
             return c;
         }
 
+        public void SaveChanges(params Tables[] tables)
+        {
+            foreach (Tables table in tables)
+            {
+                switch (table)
+                {
+                    case Tables.ACTION:
+                        actionAdapter.Update(DB.action);
+                        actionAdapter.Fill(DB.action);
+                        break;
+                    case Tables.CONDITION:
+                        conditionAdapter.Update(DB.condition);
+                        conditionAdapter.Fill(DB.condition);
+                        break;
+                    case Tables.ELEMENT:
+                        elementAdapter.Update(DB.element);
+                        elementAdapter.Fill(DB.element);
+                        break;
+                    case Tables.RECOGNITION:
+                        recognitionAdapter.Update(DB.recognition);
+                        recognitionAdapter.Fill(DB.recognition);
+                        break;
+                    case Tables.SCRIPT:
+                        scriptAdapter.Update(DB.script);
+                        scriptAdapter.Fill(DB.script);
+                        break;
+                    case Tables.STEP:
+                        stepAdapter.Update(DB.step);
+                        stepAdapter.Fill(DB.step);
+                        break;
+                    case Tables.USERS:
+                        usersAdapter.Update(DB.users);
+                        usersAdapter.Fill(DB.users);
+                        break;
+                    case Tables.VALIDATION:
+                        validationAdapter.Update(DB.validation);
+                        validationAdapter.Fill(DB.validation);
+                        break;
+                    case Tables.WEBSITE:
+                        websiteAdapter.Update(DB.website);
+                        websiteAdapter.Fill(DB.website);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
         public List<DBElement> CreateElementRecognitionView(int WebsiteID)
         {
             var view = from elm in DB.element
@@ -540,9 +607,19 @@ namespace awaDAL
             SaveChanges("element");
             queries.DeleteWebsiteByID(wid);
             //SaveChanges("website"); /*<- this is strange because it is removed from the DB before the save took place so I remove it*/
-
+            Reload();
         }
+        private void Reload()
+        {
+             recognitionAdapter.Fill(DB.recognition);
+            elementAdapter.Fill(DB.element);
+            websiteAdapter.Fill(DB.website);
 
+            actionAdapter.Fill(DB.action);
+            conditionAdapter.Fill(DB.condition);
+            stepAdapter.Fill(DB.step);
+            scriptAdapter.Fill(DB.script);
+        }
         public EnumerableRowCollection<AutoWebAgentDBDataSet.scriptRow> GetUserScripts(int uid)
         {
             var q = from scr in DB.script
@@ -587,6 +664,7 @@ namespace awaDAL
             queries.DeleteStepsByScriptId(id);
             queries.DeleteScriptById(id);
             SaveChanges("action","condition","step","script");
+            Reload();
         }
 
         public EnumerableRowCollection<AutoWebAgentDBDataSet.stepRow> GetStepsByScriptID(int sid)
@@ -633,6 +711,7 @@ namespace awaDAL
 
             queries.DeleteStepById(step_id);
             SaveChanges("action", "condition", "step");
+            Reload();
         }
         /// <summary>
         /// insert a new step to the step table after the given index
@@ -710,12 +789,20 @@ namespace awaDAL
         }
 
         public IEnumerable<ActionView> GetStepActions(int step_id)
-        {         
-            var result = from tgt_elm in DB.element
+        {
+            var result = from w in DB.website
+                         join te in DB.element on w.id equals te.website_id into w_t
+                         from tgt_elm in w_t
                          join a in DB.action on tgt_elm.id equals a.target_id into a_e
                          from a1 in a_e
                          where a1.step_id == step_id
-                          select new ActionView() { Type = a1.type, Value = a1.value, Index = a1.index, NotifyMethod = a1.notifyMethod, Target = tgt_elm.name };
+                          select new ActionView() { 
+                              Type = a1.type, 
+                              Value = a1.value, 
+                              Index = a1.index, 
+                              NotifyMethod = 
+                              a1.notifyMethod, 
+                              Target = w.name+"::"+tgt_elm.name };
 
             return result;
             
@@ -726,34 +813,50 @@ namespace awaDAL
 
         public IEnumerable<ConditionView> GetStepConditions(int step_id)
         {
-            //var result = from e1 in DB.element
-            //             from e2 in DB.element
-            //             from c in DB.condition
-            //             where (c.step_id == step_id)
-//            SELECT  e1.name AS l_element, c.op, c.lhs_element_attr, c.rhs_value, e2.name AS r_element, c.rhs_element_attr, c.step_id
-//FROM     condition AS c LEFT OUTER JOIN
-//               element AS e1 ON c.lhs_element_id = e1.id LEFT OUTER JOIN
-//               element AS e2 ON c.rhs_element_id = e2.id
-//WHERE  (c.step_id = 1)
-            var result = from src_elm in DB.element
-                         join c in DB.condition on src_elm.id equals c.lhs_element_id into cs
-                         from c1 in cs
-                         join tgt_elm in DB.element on c1.rhs_element_id equals tgt_elm.id into rt
-                         from row in rt.DefaultIfEmpty()
-                         where c1.step_id==step_id
-                         select new ConditionView
-                         {
-                             Type = c1.op,
-                             Source = src_elm.name,
-                             SourceAttribute = c1.lhs_element_attr,
-                             TargetValue = (row == null ? c1.rhs_value : row.name),
-                             TargetAttribute = c1.rhs_element_attr
-                         };
+           
+            //            SELECT  w1.name AS SourceWebsite, e1.name AS l_element, c.op, c.lhs_element_attr, c.rhs_value, w2.name AS TargetWebsite, e2.name AS r_element, c.rhs_element_attr, c.step_id
+            //FROM     condition AS c LEFT OUTER JOIN
+            //               element AS e1 ON c.lhs_element_id = e1.id LEFT OUTER JOIN
+            //               element AS e2 ON c.rhs_element_id = e2.id LEFT OUTER JOIN
+            //               website AS w1 ON e1.website_id = w1.id LEFT OUTER JOIN
+            //               website AS w2 ON e2.website_id = w2.id
+            //WHERE  (c.step_id = @p1)
+            StepConditionsViewDataTableTableAdapter scvta = new StepConditionsViewDataTableTableAdapter();
+            scvta.Connection = actionAdapter.Connection;
 
-            return result;
-
-                          
+            scvta.Fill(DB.StepConditionsViewDataTable, step_id);
+            List<ConditionView> clist = new List<ConditionView>();
+            foreach (var row in DB.StepConditionsViewDataTable)
+            {
+                
+                string source = ((row.op == "True") || (row.op == "False")) ? "" : (row.SourceWebsite + "::" + row.l_element);
+                string target = "";
+                if ((row.op == "True") || (row.op == "False"))
+                {
+                    target = "";
+                }
+                else if (row.op.EndsWith("Value"))
+                {
+                    target = row.rhs_value;
+                }
+                else if (row.op.EndsWith("Equal"))
+                {
+                    target = row.TargetWebsite + "::" + row.r_element;
+                }
+                clist.Add(new ConditionView() { Type = row.op,
+                                                Source = source,
+                                                SourceAttribute = row.lhs_element_attr,
+                                                TargetValue = target                           
+                });
+                
+            }
+            return clist;
+             
         }
+
+
+
+
         public List<string> GetEnumValues(string fieldName)
         {
             var result = from value in DB.validation

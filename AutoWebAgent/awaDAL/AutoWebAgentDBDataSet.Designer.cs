@@ -43,6 +43,8 @@ namespace awaDAL {
         
         private validationDataTable tablevalidation;
         
+        private StepConditionsViewDataTableDataTable tableStepConditionsViewDataTable;
+        
         private global::System.Data.DataRelation relationFK_element_recognition;
         
         private global::System.Data.DataRelation relationFK_website_element;
@@ -111,6 +113,9 @@ namespace awaDAL {
                 }
                 if ((ds.Tables["validation"] != null)) {
                     base.Tables.Add(new validationDataTable(ds.Tables["validation"]));
+                }
+                if ((ds.Tables["StepConditionsViewDataTable"] != null)) {
+                    base.Tables.Add(new StepConditionsViewDataTableDataTable(ds.Tables["StepConditionsViewDataTable"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -212,6 +217,15 @@ namespace awaDAL {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public StepConditionsViewDataTableDataTable StepConditionsViewDataTable {
+            get {
+                return this.tableStepConditionsViewDataTable;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -297,6 +311,9 @@ namespace awaDAL {
                 if ((ds.Tables["validation"] != null)) {
                     base.Tables.Add(new validationDataTable(ds.Tables["validation"]));
                 }
+                if ((ds.Tables["StepConditionsViewDataTable"] != null)) {
+                    base.Tables.Add(new StepConditionsViewDataTableDataTable(ds.Tables["StepConditionsViewDataTable"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -381,6 +398,12 @@ namespace awaDAL {
                     this.tablevalidation.InitVars();
                 }
             }
+            this.tableStepConditionsViewDataTable = ((StepConditionsViewDataTableDataTable)(base.Tables["StepConditionsViewDataTable"]));
+            if ((initTable == true)) {
+                if ((this.tableStepConditionsViewDataTable != null)) {
+                    this.tableStepConditionsViewDataTable.InitVars();
+                }
+            }
             this.relationFK_element_recognition = this.Relations["FK_element_recognition"];
             this.relationFK_website_element = this.Relations["FK_website_element"];
             this.relationstep_script = this.Relations["step_script"];
@@ -416,6 +439,8 @@ namespace awaDAL {
             base.Tables.Add(this.tablewebsite);
             this.tablevalidation = new validationDataTable();
             base.Tables.Add(this.tablevalidation);
+            this.tableStepConditionsViewDataTable = new StepConditionsViewDataTableDataTable();
+            base.Tables.Add(this.tableStepConditionsViewDataTable);
             this.relationFK_element_recognition = new global::System.Data.DataRelation("FK_element_recognition", new global::System.Data.DataColumn[] {
                         this.tableelement.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablerecognition.element_idColumn}, false);
@@ -496,6 +521,11 @@ namespace awaDAL {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializeStepConditionsViewDataTable() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -565,6 +595,8 @@ namespace awaDAL {
         public delegate void websiteRowChangeEventHandler(object sender, websiteRowChangeEvent e);
         
         public delegate void validationRowChangeEventHandler(object sender, validationRowChangeEvent e);
+        
+        public delegate void StepConditionsViewDataTableRowChangeEventHandler(object sender, StepConditionsViewDataTableRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -3203,6 +3235,350 @@ namespace awaDAL {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class StepConditionsViewDataTableDataTable : global::System.Data.TypedTableBase<StepConditionsViewDataTableRow> {
+            
+            private global::System.Data.DataColumn columnSourceWebsite;
+            
+            private global::System.Data.DataColumn columnl_element;
+            
+            private global::System.Data.DataColumn columnop;
+            
+            private global::System.Data.DataColumn columnlhs_element_attr;
+            
+            private global::System.Data.DataColumn columnrhs_value;
+            
+            private global::System.Data.DataColumn columnTargetWebsite;
+            
+            private global::System.Data.DataColumn columnr_element;
+            
+            private global::System.Data.DataColumn columnrhs_element_attr;
+            
+            private global::System.Data.DataColumn columnstep_id;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public StepConditionsViewDataTableDataTable() {
+                this.TableName = "StepConditionsViewDataTable";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal StepConditionsViewDataTableDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected StepConditionsViewDataTableDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn SourceWebsiteColumn {
+                get {
+                    return this.columnSourceWebsite;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn l_elementColumn {
+                get {
+                    return this.columnl_element;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn opColumn {
+                get {
+                    return this.columnop;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn lhs_element_attrColumn {
+                get {
+                    return this.columnlhs_element_attr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn rhs_valueColumn {
+                get {
+                    return this.columnrhs_value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn TargetWebsiteColumn {
+                get {
+                    return this.columnTargetWebsite;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn r_elementColumn {
+                get {
+                    return this.columnr_element;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn rhs_element_attrColumn {
+                get {
+                    return this.columnrhs_element_attr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn step_idColumn {
+                get {
+                    return this.columnstep_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public StepConditionsViewDataTableRow this[int index] {
+                get {
+                    return ((StepConditionsViewDataTableRow)(this.Rows[index]));
+                }
+            }
+            
+            public event StepConditionsViewDataTableRowChangeEventHandler StepConditionsViewDataTableRowChanging;
+            
+            public event StepConditionsViewDataTableRowChangeEventHandler StepConditionsViewDataTableRowChanged;
+            
+            public event StepConditionsViewDataTableRowChangeEventHandler StepConditionsViewDataTableRowDeleting;
+            
+            public event StepConditionsViewDataTableRowChangeEventHandler StepConditionsViewDataTableRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddStepConditionsViewDataTableRow(StepConditionsViewDataTableRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public StepConditionsViewDataTableRow AddStepConditionsViewDataTableRow(string SourceWebsite, string l_element, string op, string lhs_element_attr, string rhs_value, string TargetWebsite, string r_element, string rhs_element_attr, int step_id) {
+                StepConditionsViewDataTableRow rowStepConditionsViewDataTableRow = ((StepConditionsViewDataTableRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        SourceWebsite,
+                        l_element,
+                        op,
+                        lhs_element_attr,
+                        rhs_value,
+                        TargetWebsite,
+                        r_element,
+                        rhs_element_attr,
+                        step_id};
+                rowStepConditionsViewDataTableRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowStepConditionsViewDataTableRow);
+                return rowStepConditionsViewDataTableRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                StepConditionsViewDataTableDataTable cln = ((StepConditionsViewDataTableDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new StepConditionsViewDataTableDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnSourceWebsite = base.Columns["SourceWebsite"];
+                this.columnl_element = base.Columns["l_element"];
+                this.columnop = base.Columns["op"];
+                this.columnlhs_element_attr = base.Columns["lhs_element_attr"];
+                this.columnrhs_value = base.Columns["rhs_value"];
+                this.columnTargetWebsite = base.Columns["TargetWebsite"];
+                this.columnr_element = base.Columns["r_element"];
+                this.columnrhs_element_attr = base.Columns["rhs_element_attr"];
+                this.columnstep_id = base.Columns["step_id"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnSourceWebsite = new global::System.Data.DataColumn("SourceWebsite", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSourceWebsite);
+                this.columnl_element = new global::System.Data.DataColumn("l_element", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnl_element);
+                this.columnop = new global::System.Data.DataColumn("op", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnop);
+                this.columnlhs_element_attr = new global::System.Data.DataColumn("lhs_element_attr", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlhs_element_attr);
+                this.columnrhs_value = new global::System.Data.DataColumn("rhs_value", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnrhs_value);
+                this.columnTargetWebsite = new global::System.Data.DataColumn("TargetWebsite", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTargetWebsite);
+                this.columnr_element = new global::System.Data.DataColumn("r_element", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnr_element);
+                this.columnrhs_element_attr = new global::System.Data.DataColumn("rhs_element_attr", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnrhs_element_attr);
+                this.columnstep_id = new global::System.Data.DataColumn("step_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstep_id);
+                this.columnSourceWebsite.ReadOnly = true;
+                this.columnSourceWebsite.MaxLength = 4000;
+                this.columnl_element.ReadOnly = true;
+                this.columnl_element.MaxLength = 100;
+                this.columnop.ReadOnly = true;
+                this.columnop.MaxLength = 100;
+                this.columnlhs_element_attr.ReadOnly = true;
+                this.columnlhs_element_attr.MaxLength = 100;
+                this.columnrhs_value.ReadOnly = true;
+                this.columnrhs_value.MaxLength = 100;
+                this.columnTargetWebsite.ReadOnly = true;
+                this.columnTargetWebsite.MaxLength = 4000;
+                this.columnr_element.ReadOnly = true;
+                this.columnr_element.MaxLength = 100;
+                this.columnrhs_element_attr.ReadOnly = true;
+                this.columnrhs_element_attr.MaxLength = 100;
+                this.columnstep_id.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public StepConditionsViewDataTableRow NewStepConditionsViewDataTableRow() {
+                return ((StepConditionsViewDataTableRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new StepConditionsViewDataTableRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(StepConditionsViewDataTableRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.StepConditionsViewDataTableRowChanged != null)) {
+                    this.StepConditionsViewDataTableRowChanged(this, new StepConditionsViewDataTableRowChangeEvent(((StepConditionsViewDataTableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.StepConditionsViewDataTableRowChanging != null)) {
+                    this.StepConditionsViewDataTableRowChanging(this, new StepConditionsViewDataTableRowChangeEvent(((StepConditionsViewDataTableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.StepConditionsViewDataTableRowDeleted != null)) {
+                    this.StepConditionsViewDataTableRowDeleted(this, new StepConditionsViewDataTableRowChangeEvent(((StepConditionsViewDataTableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.StepConditionsViewDataTableRowDeleting != null)) {
+                    this.StepConditionsViewDataTableRowDeleting(this, new StepConditionsViewDataTableRowChangeEvent(((StepConditionsViewDataTableRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemoveStepConditionsViewDataTableRow(StepConditionsViewDataTableRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                AutoWebAgentDBDataSet ds = new AutoWebAgentDBDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "StepConditionsViewDataTableDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
@@ -4368,6 +4744,253 @@ namespace awaDAL {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class StepConditionsViewDataTableRow : global::System.Data.DataRow {
+            
+            private StepConditionsViewDataTableDataTable tableStepConditionsViewDataTable;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal StepConditionsViewDataTableRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableStepConditionsViewDataTable = ((StepConditionsViewDataTableDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string SourceWebsite {
+                get {
+                    try {
+                        return ((string)(this[this.tableStepConditionsViewDataTable.SourceWebsiteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SourceWebsite\' in table \'StepConditionsViewDataTable\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableStepConditionsViewDataTable.SourceWebsiteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string l_element {
+                get {
+                    try {
+                        return ((string)(this[this.tableStepConditionsViewDataTable.l_elementColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'l_element\' in table \'StepConditionsViewDataTable\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableStepConditionsViewDataTable.l_elementColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string op {
+                get {
+                    try {
+                        return ((string)(this[this.tableStepConditionsViewDataTable.opColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'op\' in table \'StepConditionsViewDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStepConditionsViewDataTable.opColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string lhs_element_attr {
+                get {
+                    try {
+                        return ((string)(this[this.tableStepConditionsViewDataTable.lhs_element_attrColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'lhs_element_attr\' in table \'StepConditionsViewDataTable\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStepConditionsViewDataTable.lhs_element_attrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string rhs_value {
+                get {
+                    try {
+                        return ((string)(this[this.tableStepConditionsViewDataTable.rhs_valueColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'rhs_value\' in table \'StepConditionsViewDataTable\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableStepConditionsViewDataTable.rhs_valueColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string TargetWebsite {
+                get {
+                    try {
+                        return ((string)(this[this.tableStepConditionsViewDataTable.TargetWebsiteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TargetWebsite\' in table \'StepConditionsViewDataTable\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableStepConditionsViewDataTable.TargetWebsiteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string r_element {
+                get {
+                    try {
+                        return ((string)(this[this.tableStepConditionsViewDataTable.r_elementColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'r_element\' in table \'StepConditionsViewDataTable\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableStepConditionsViewDataTable.r_elementColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string rhs_element_attr {
+                get {
+                    try {
+                        return ((string)(this[this.tableStepConditionsViewDataTable.rhs_element_attrColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'rhs_element_attr\' in table \'StepConditionsViewDataTable\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStepConditionsViewDataTable.rhs_element_attrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int step_id {
+                get {
+                    try {
+                        return ((int)(this[this.tableStepConditionsViewDataTable.step_idColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'step_id\' in table \'StepConditionsViewDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStepConditionsViewDataTable.step_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsSourceWebsiteNull() {
+                return this.IsNull(this.tableStepConditionsViewDataTable.SourceWebsiteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetSourceWebsiteNull() {
+                this[this.tableStepConditionsViewDataTable.SourceWebsiteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isl_elementNull() {
+                return this.IsNull(this.tableStepConditionsViewDataTable.l_elementColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setl_elementNull() {
+                this[this.tableStepConditionsViewDataTable.l_elementColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsopNull() {
+                return this.IsNull(this.tableStepConditionsViewDataTable.opColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetopNull() {
+                this[this.tableStepConditionsViewDataTable.opColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Islhs_element_attrNull() {
+                return this.IsNull(this.tableStepConditionsViewDataTable.lhs_element_attrColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setlhs_element_attrNull() {
+                this[this.tableStepConditionsViewDataTable.lhs_element_attrColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isrhs_valueNull() {
+                return this.IsNull(this.tableStepConditionsViewDataTable.rhs_valueColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setrhs_valueNull() {
+                this[this.tableStepConditionsViewDataTable.rhs_valueColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsTargetWebsiteNull() {
+                return this.IsNull(this.tableStepConditionsViewDataTable.TargetWebsiteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetTargetWebsiteNull() {
+                this[this.tableStepConditionsViewDataTable.TargetWebsiteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isr_elementNull() {
+                return this.IsNull(this.tableStepConditionsViewDataTable.r_elementColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setr_elementNull() {
+                this[this.tableStepConditionsViewDataTable.r_elementColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isrhs_element_attrNull() {
+                return this.IsNull(this.tableStepConditionsViewDataTable.rhs_element_attrColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setrhs_element_attrNull() {
+                this[this.tableStepConditionsViewDataTable.rhs_element_attrColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool Isstep_idNull() {
+                return this.IsNull(this.tableStepConditionsViewDataTable.step_idColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void Setstep_idNull() {
+                this[this.tableStepConditionsViewDataTable.step_idColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
@@ -4633,6 +5256,37 @@ namespace awaDAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public validationRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class StepConditionsViewDataTableRowChangeEvent : global::System.EventArgs {
+            
+            private StepConditionsViewDataTableRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public StepConditionsViewDataTableRowChangeEvent(StepConditionsViewDataTableRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public StepConditionsViewDataTableRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -7508,6 +8162,182 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class StepConditionsViewDataTableTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlServerCe.SqlCeDataAdapter _adapter;
+        
+        private global::System.Data.SqlServerCe.SqlCeConnection _connection;
+        
+        private global::System.Data.SqlServerCe.SqlCeTransaction _transaction;
+        
+        private global::System.Data.SqlServerCe.SqlCeCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public StepConditionsViewDataTableTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected internal global::System.Data.SqlServerCe.SqlCeDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlServerCe.SqlCeConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlServerCe.SqlCeCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        internal global::System.Data.SqlServerCe.SqlCeTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        protected global::System.Data.SqlServerCe.SqlCeCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlServerCe.SqlCeDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "StepConditionsViewDataTable";
+            tableMapping.ColumnMappings.Add("SourceWebsite", "SourceWebsite");
+            tableMapping.ColumnMappings.Add("l_element", "l_element");
+            tableMapping.ColumnMappings.Add("op", "op");
+            tableMapping.ColumnMappings.Add("lhs_element_attr", "lhs_element_attr");
+            tableMapping.ColumnMappings.Add("rhs_value", "rhs_value");
+            tableMapping.ColumnMappings.Add("TargetWebsite", "TargetWebsite");
+            tableMapping.ColumnMappings.Add("r_element", "r_element");
+            tableMapping.ColumnMappings.Add("rhs_element_attr", "rhs_element_attr");
+            tableMapping.ColumnMappings.Add("step_id", "step_id");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
+            this._connection.ConnectionString = "Data Source=C:\\Documents and Settings\\User-1\\My Documents\\לימודים\\AutoWebAgentPro" +
+                "ject2009\\AutoWebAgent\\trunk\\AutoWebAgent\\db\\AutoWebAgentDB.sdf;Password=koby3274" +
+                ";Persist Security Info=True";
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlServerCe.SqlCeCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlServerCe.SqlCeCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT  w1.name AS SourceWebsite, e1.name AS l_element, c.op, c.lhs_element_attr, c.rhs_value, w2.name AS TargetWebsite, e2.name AS r_element, c.rhs_element_attr, c.step_id
+FROM     condition AS c LEFT OUTER JOIN
+               element AS e1 ON c.lhs_element_id = e1.id LEFT OUTER JOIN
+               element AS e2 ON c.rhs_element_id = e2.id LEFT OUTER JOIN
+               website AS w1 ON e1.website_id = w1.id LEFT OUTER JOIN
+               website AS w2 ON e2.website_id = w2.id
+WHERE  (c.step_id = @p1)";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlServerCe.SqlCeParameter("@p1", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, true, 0, 0, "step_id", global::System.Data.DataRowVersion.Current, null));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(AutoWebAgentDBDataSet.StepConditionsViewDataTableDataTable dataTable, int p1) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(p1));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual AutoWebAgentDBDataSet.StepConditionsViewDataTableDataTable GetData(int p1) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(p1));
+            AutoWebAgentDBDataSet.StepConditionsViewDataTableDataTable dataTable = new AutoWebAgentDBDataSet.StepConditionsViewDataTableDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class QueriesTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.IDbCommand[] _commandCollection;
@@ -7564,7 +8394,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[7])).CommandType = global::System.Data.CommandType.Text;
             global::System.Data.SqlServerCe.SqlCeParameter param = new global::System.Data.SqlServerCe.SqlCeParameter();
             param.ParameterName = "@step_id";
-            param.DbType = global::System.Data.DbType.Int32;
+            param.DbType = global::System.Data.DbType.Object;
             param.Size = 1024;
             param.IsNullable = true;
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
@@ -7575,7 +8405,7 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
             ((global::System.Data.SqlServerCe.SqlCeCommand)(this._commandCollection[8])).CommandType = global::System.Data.CommandType.Text;
             param = new global::System.Data.SqlServerCe.SqlCeParameter();
             param.ParameterName = "@step_id";
-            param.DbType = global::System.Data.DbType.Int32;
+            param.DbType = global::System.Data.DbType.Object;
             param.Size = 1024;
             param.IsNullable = true;
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
@@ -8187,15 +9017,6 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._usersTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.users.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._usersTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._recognitionTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.recognition.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -8211,6 +9032,15 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._scriptTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._usersTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.users.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._usersTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -8271,14 +9101,6 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._usersTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.users.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._usersTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._recognitionTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.recognition.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -8295,6 +9117,14 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._usersTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.users.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._usersTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -8304,6 +9134,14 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private int UpdateDeletedRows(AutoWebAgentDBDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._usersTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.users.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._usersTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._scriptTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.script.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -8317,14 +9155,6 @@ namespace awaDAL.AutoWebAgentDBDataSetTableAdapters {
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._recognitionTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._usersTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.users.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._usersTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

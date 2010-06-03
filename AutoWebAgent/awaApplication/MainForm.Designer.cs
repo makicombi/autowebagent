@@ -336,11 +336,11 @@
             // 
             // clearSiteButton
             // 
-            this.clearSiteButton.Location = new System.Drawing.Point(1033, 89);
+            this.clearSiteButton.Location = new System.Drawing.Point(1033, 63);
             this.clearSiteButton.Name = "clearSiteButton";
             this.clearSiteButton.Size = new System.Drawing.Size(75, 23);
             this.clearSiteButton.TabIndex = 11;
-            this.clearSiteButton.Text = "Clear Site";
+            this.clearSiteButton.Text = "Erase Site";
             this.clearSiteButton.UseVisualStyleBackColor = true;
             this.clearSiteButton.Click += new System.EventHandler(this.clearSiteButton_Click);
             // 
