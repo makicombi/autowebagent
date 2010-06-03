@@ -112,6 +112,8 @@ namespace awaApplication
         {
             TextEntryForm dialog = (TextEntryForm)sender;
             dialog.Controls["panelContainer"].Controls["labelError"].Text = "";
+            scriptBindingSource.DataSource = dal.GetUserScripts(loginForm.UserID);
+            scriptBindingSource.ResetBindings(false);
             int script_id = (int)listBoxScripts.SelectedValue;
             dal.AddStep(dialog.Value, script_id, listBoxSteps.SelectedIndex);
             stepBindingSource.DataSource = dal.GetStepsByScriptID(script_id).ToList();
@@ -217,6 +219,7 @@ namespace awaApplication
             try
             {
                 bool found;
+                
                 var row = dal.GetWebsiteRow(websiteNameTextBox.Text, out found);
                 if (found)
                 {
@@ -590,9 +593,18 @@ namespace awaApplication
 
         private void clearSiteButton_Click(object sender, EventArgs e)
         {
+            DialogResult res = MessageBox.Show("All Elements and and related script will be erased along with the website,\n"+
+                "do you want to continue","Warning",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2);
+            if (res == DialogResult.No) return;
             dal.ClearWebsiteData(WebsiteID);
             WebsiteID = -1; // complete the deletion of the website and return to initial state
             updateGrid();
+            webBrowser.Navigate("About:Blank");
+            urlTextBox.Text = "";
+            websiteNameTextBox.Clear();
+            elementNameTextBox.Clear();
+            selectedElementListView.Items.Clear();
+            
         }
 
         private void buttonAddScript_Click(object sender, EventArgs e)
@@ -625,8 +637,9 @@ namespace awaApplication
             DialogResult result = MessageBox.Show(this, "Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if (result == DialogResult.Yes)
             {
+                int scriptId = (int)listBoxScripts.SelectedValue;
                 dal.DeleteStep((int)listBoxSteps.SelectedValue);
-                stepBindingSource.DataSource = dal.GetStepsByScriptID((int)listBoxScripts.SelectedValue);
+                stepBindingSource.DataSource = dal.GetStepsByScriptID(scriptId);
             }
         }
 
@@ -694,8 +707,8 @@ namespace awaApplication
 
             int countDB = stepActions.Count();
             int countGUI = 0;
-            while (groupBoxActions.Controls.ContainsKey("listBoxActionType" + (countGUI++).ToString())) ;
-            for (int i = 1; i <= countGUI; i++)
+            while (groupBoxActions.Controls.ContainsKey("listBoxActionType" + (++countGUI).ToString())) ;
+            for (int i = 1; i < countGUI; i++)
             {
 
                 if (countDB >= i)

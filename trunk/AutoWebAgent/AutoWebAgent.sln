@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAWA", "TestAWA\TestAWA.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testDAL", "testDAL\testDAL.csproj", "{5BBBF6D6-C49A-4F59-A9A4-46738049B69A}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AWASetup", "AWASetup\AWASetup.vdproj", "{95FD4A02-5773-49AB-89A8-D9982DE6AF3A}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = AutoWebAgent1.vsmdi
@@ -47,6 +49,9 @@ Global
 		{5BBBF6D6-C49A-4F59-A9A4-46738049B69A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BBBF6D6-C49A-4F59-A9A4-46738049B69A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BBBF6D6-C49A-4F59-A9A4-46738049B69A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95FD4A02-5773-49AB-89A8-D9982DE6AF3A}.Debug|Any CPU.ActiveCfg = Debug
+		{95FD4A02-5773-49AB-89A8-D9982DE6AF3A}.Release|Any CPU.ActiveCfg = Release
+		{95FD4A02-5773-49AB-89A8-D9982DE6AF3A}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
