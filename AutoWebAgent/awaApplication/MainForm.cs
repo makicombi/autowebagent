@@ -20,6 +20,7 @@ namespace awaApplication
         private HtmlElement currentElement;
         private DAL.ElementType currentElementType = DAL.ElementType.NONE;
         private List<string> suggestionList;
+        private Dictionary<string, AutoWebAgentDBDataSet.scriptRow> scriptName2ScriptRow = new Dictionary<string, AutoWebAgentDBDataSet.scriptRow>();
         public int WebsiteID { get; private set; }
         public AutoWebAgentDBDataSet.websiteRow WebsiteRow { get; private set; }
 
@@ -35,7 +36,10 @@ namespace awaApplication
             dal = new DAL();
             dal.Init(Properties.Settings.Default.awaDB);
             ScriptManager.GetInstance().Init(dal);
+            
             InitializeComponent();
+
+            Log.GetInstance().SetSink(Log.SinkType.CONTROL, textBoxLog);
             BindControlsToDataSource();
             listBoxScripts.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnValidation;
             listBoxSteps.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnValidation;
@@ -619,9 +623,11 @@ namespace awaApplication
             DialogResult result = MessageBox.Show(this, "Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if (result == DialogResult.Yes)
             {
+                ScriptManager.GetInstance().RemoveScript(dal.GetScriptNameById((int)listBoxScripts.SelectedValue));
                 dal.DeleteScript((int)listBoxScripts.SelectedValue);
                 scriptBindingSource.DataSource = dal.GetUserScripts(loginForm.UserID);
                 stepBindingSource.DataSource = dal.GetStepsByScriptID((int)listBoxScripts.SelectedValue);
+                
             }
         }
 
@@ -745,8 +751,8 @@ namespace awaApplication
             var stepConditions = dal.GetStepConditions(step_id);
             int countDB = stepConditions.Count();
             int countGUI = 0;
-            while (groupBoxConditions.Controls.ContainsKey("listBoxConditionType" + (countGUI++).ToString())) ;
-            for (int i = 1; i <= countGUI; i++)
+            while (groupBoxConditions.Controls.ContainsKey("listBoxConditionType" + (++countGUI).ToString())) ;
+            for (int i = 1; i < countGUI; i++)
             {
                 if (countDB >= i)
                 {
@@ -807,7 +813,8 @@ namespace awaApplication
             else
             {
                 SubmitForm();
-                labelStepUpdateTime.Text = String.Format("last updated:[{0}]", DateTime.Now.ToString());
+                DateTime time = DateTime.Now;
+                labelStepUpdateTime.Text = String.Format("last updated:[{0}]", time.ToString());
             }
         }
 
@@ -962,10 +969,31 @@ namespace awaApplication
 
         private void tabActivation_Enter(object sender, EventArgs e)
         {
-            checkedListBoxScripts.Items.Clear();
+            // Remove enries that are not found in the DB
+            List<object> toRemoveObjects = new List<object>();
+            for(int i=0;i<checkedListBoxScripts.Items.Count;i++)
+            {
+                IList<awaDAL.AutoWebAgentDBDataSet.scriptRow> list = (IList<awaDAL.AutoWebAgentDBDataSet.scriptRow>)scriptBindingSource.List;
+                if (! list.ToList().Exists(row => string.Format("{0} [{1}]", row.name, row.modified) == checkedListBoxScripts.Items[i].ToString()))
+                    toRemoveObjects.Add(checkedListBoxScripts.Items[i]);
+            }
+            foreach (var index in toRemoveObjects)
+            {
+                scriptName2ScriptRow.Remove(index.ToString());
+                checkedListBoxScripts.Items.Remove(index);
+                
+            }
+            // Add entries from the DB that are not in the List
             foreach (awaDAL.AutoWebAgentDBDataSet.scriptRow item in scriptBindingSource.List)
             {
-                checkedListBoxScripts.Items.Add(string.Format("{0} [{1}]", item.name, item.modified));
+                string sname = string.Format("{0} [{1}]", item.name, item.modified);
+                if (checkedListBoxScripts.Items.Cast<string>().Contains(sname))
+                {
+                    scriptName2ScriptRow[sname] = item;
+                    continue;
+                }
+                checkedListBoxScripts.Items.Add(sname);
+                scriptName2ScriptRow[sname] = item;
             }
         }
 
@@ -980,6 +1008,116 @@ namespace awaApplication
         }
 
         private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonForceStart_Click(object sender, EventArgs e)
+        {
+            ScriptManager sm = ScriptManager.GetInstance();
+            if (!sm.Initialized)
+            {
+                MessageBox.Show("Script Manager Failed to Initialize !!");
+                Application.Exit();
+            }
+
+            for (int i = 0; i < checkedListBoxScripts.CheckedItems.Count;i++ )
+            {
+                var script = checkedListBoxScripts.CheckedItems[i];
+                //sm.AddScript(
+                sm.ForceScript(scriptName2ScriptRow[script.ToString()].name);
+            }
+            
+
+        }
+
+        private void buttonUpdateSchedule_Click(object sender, EventArgs e)
+        {
+            int count;
+            double recurrance;
+            
+            if (!int.TryParse(textBoxCount.Text, out count))
+            {
+                MessageBox.Show("Invalid Count Value!");
+                return;
+            }
+            ScriptManager sm = ScriptManager.GetInstance();
+           
+            //sm.UpdateScript(scriptName2ScriptRow[script.ToString()].name,dateTimePicker1.Value, dateTimePicker2.Value,count,new TimeSpan());
+            
+        }
+
+        private void checkedListBoxScripts_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            
+               var script = checkedListBoxScripts.Items[e.Index];
+             if (e.NewValue == CheckState.Checked)
+             {
+                 int count;
+                int recurrance;
+                 TimeSpan period = new TimeSpan(0,0,1);
+            
+                if (!int.TryParse(textBoxCount.Text, out count))
+                {
+                    count = 0;
+                }
+                 if (!int.TryParse(textBoxReccurance.Text, out recurrance))
+                {
+                   recurrance = 0;
+                }
+                 List<object> arg = new List<object>();
+                 arg.Add(scriptName2ScriptRow[script.ToString()].id);
+                 arg.Add(dateTimePicker1.Value);
+                 arg.Add(dateTimePicker2.Value);
+
+                 if (listBoxPeriod.SelectedItem != null)
+                 {
+                     if (listBoxPeriod.SelectedItem.ToString() == "seconds")
+                     {
+                         period = new TimeSpan(0,0,recurrance);
+                     }
+                     else if (listBoxPeriod.SelectedItem.ToString() == "minutes")
+                     {
+                         period = new TimeSpan(0,recurrance,0);
+                     }
+                     else if (listBoxPeriod.SelectedItem.ToString() == "hours")
+                     {
+                         period = new TimeSpan(recurrance,0,0);
+                     }
+                     else if (listBoxPeriod.SelectedItem.ToString() == "days")
+                     {
+                         period = new TimeSpan(recurrance,0,0,0);
+                     }
+                     else if (listBoxPeriod.SelectedItem.ToString() == "weeks")
+                     {
+                         period = new TimeSpan(recurrance*7,0,0,0);
+                     } 
+                 }
+                 arg.Add(period);
+                 arg.Add(count);
+                
+                 backgroundWorker.RunWorkerAsync(arg);
+             }
+             else if (e.NewValue == CheckState.Unchecked)
+             {
+                 
+                 ScriptManager.GetInstance().RemoveScript(scriptName2ScriptRow[script.ToString()].name);
+             }
+        }
+
+        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            
+            ScriptManager sm = ScriptManager.GetInstance();
+            //sm.AddScript(32, new DateTime(), new DateTime(), TimeSpan.Zero, 0);
+            List<object> arg = (List<object>)e.Argument;
+            
+            //ScriptManager.GetInstance().AddScript(scriptName2ScriptRow[e.Argument.ToString()].id, dateTimePicker1.Value, dateTimePicker2.Value, new TimeSpan(0), 1);
+            
+            ScriptManager.GetInstance().AddScript((int)arg[0], (DateTime)arg[1], (DateTime)arg[2], (TimeSpan)arg[3], (int)arg[4]);
+        }
+
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
 
         }

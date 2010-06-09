@@ -828,21 +828,30 @@ namespace awaDAL
             List<ConditionView> clist = new List<ConditionView>();
             foreach (var row in DB.StepConditionsViewDataTable)
             {
-                
-                string source = ((row.op == "True") || (row.op == "False")) ? "" : (row.SourceWebsite + "::" + row.l_element);
+
+                string source = "";
                 string target = "";
-                if ((row.op == "True") || (row.op == "False"))
+                try
                 {
-                    target = "";
+                    source = ((row.op == "True") || (row.op == "False")) ? "" : (row.SourceWebsite + "::" + row.l_element);
                 }
-                else if (row.op.EndsWith("Value"))
+                catch { source = ""; }
+                try
                 {
-                    target = row.rhs_value;
+                    if ((row.op == "True") || (row.op == "False"))
+                    {
+                        target = "";
+                    }
+                    else if (row.op.EndsWith("Value"))
+                    {
+                        target = row.rhs_value;
+                    }
+                    else if (row.op.EndsWith("Equal"))
+                    {
+                        target = row.TargetWebsite + "::" + row.r_element;
+                    }
                 }
-                else if (row.op.EndsWith("Equal"))
-                {
-                    target = row.TargetWebsite + "::" + row.r_element;
-                }
+                catch { target = ""; }
                 clist.Add(new ConditionView() { Type = row.op,
                                                 Source = source,
                                                 SourceAttribute = row.lhs_element_attr,
@@ -880,5 +889,31 @@ namespace awaDAL
             return result;
 
         }
+
+        public int GetScriptIdByName(string name)
+        {
+            try
+            {
+                return DB.script.Single(row => row.name == name).id;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
+        public string GetScriptNameById(int script_id)
+        {
+            try
+            {
+                return DB.script.Single(row => row.id == script_id).name;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+
     }
 }

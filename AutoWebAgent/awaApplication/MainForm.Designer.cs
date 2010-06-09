@@ -141,8 +141,8 @@
             this.radioButtonRecurrance = new System.Windows.Forms.RadioButton();
             this.labelScheduleUpdate = new System.Windows.Forms.Label();
             this.buttonUpdateSchedule = new System.Windows.Forms.Button();
-            this.textBox22 = new System.Windows.Forms.TextBox();
-            this.listBox16 = new System.Windows.Forms.BetterListBox();
+            this.textBoxReccurance = new System.Windows.Forms.TextBox();
+            this.listBoxPeriod = new System.Windows.Forms.BetterListBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -163,6 +163,7 @@
             this.scriptTableAdapterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.actionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.conditionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1.SuspendLayout();
             this.tabContainer.SuspendLayout();
             this.tabMap.SuspendLayout();
@@ -1245,8 +1246,8 @@
             this.tabSchedule.Controls.Add(this.radioButtonRecurrance);
             this.tabSchedule.Controls.Add(this.labelScheduleUpdate);
             this.tabSchedule.Controls.Add(this.buttonUpdateSchedule);
-            this.tabSchedule.Controls.Add(this.textBox22);
-            this.tabSchedule.Controls.Add(this.listBox16);
+            this.tabSchedule.Controls.Add(this.textBoxReccurance);
+            this.tabSchedule.Controls.Add(this.listBoxPeriod);
             this.tabSchedule.Controls.Add(this.label17);
             this.tabSchedule.Controls.Add(this.label16);
             this.tabSchedule.Controls.Add(this.dateTimePicker2);
@@ -1309,30 +1310,31 @@
             this.buttonUpdateSchedule.TabIndex = 13;
             this.buttonUpdateSchedule.Text = "Update";
             this.buttonUpdateSchedule.UseVisualStyleBackColor = true;
+            this.buttonUpdateSchedule.Click += new System.EventHandler(this.buttonUpdateSchedule_Click);
             // 
-            // textBox22
+            // textBoxReccurance
             // 
-            this.textBox22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.textBox22.Location = new System.Drawing.Point(307, 170);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(58, 20);
-            this.textBox22.TabIndex = 12;
+            this.textBoxReccurance.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.textBoxReccurance.Location = new System.Drawing.Point(307, 170);
+            this.textBoxReccurance.Name = "textBoxReccurance";
+            this.textBoxReccurance.Size = new System.Drawing.Size(58, 20);
+            this.textBoxReccurance.TabIndex = 12;
             // 
-            // listBox16
+            // listBoxPeriod
             // 
-            this.listBox16.FormattingEnabled = true;
-            this.listBox16.Items.AddRange(new object[] {
+            this.listBoxPeriod.FormattingEnabled = true;
+            this.listBoxPeriod.Items.AddRange(new object[] {
             "seconds",
             "minutes",
             "hours",
             "days",
             "weeks"});
-            this.listBox16.Location = new System.Drawing.Point(371, 170);
-            this.listBox16.Name = "listBox16";
-            this.listBox16.Size = new System.Drawing.Size(56, 69);
-            this.listBox16.TabIndex = 11;
-            this.listBox16.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
-            this.listBox16.SelectedIndexChanged += new System.EventHandler(this.listBox16_SelectedIndexChanged);
+            this.listBoxPeriod.Location = new System.Drawing.Point(371, 170);
+            this.listBoxPeriod.Name = "listBoxPeriod";
+            this.listBoxPeriod.Size = new System.Drawing.Size(56, 69);
+            this.listBoxPeriod.TabIndex = 11;
+            this.listBoxPeriod.Scroll += new System.Windows.Forms.BetterListBox.BetterListBoxScrollDelegate(this.listBox_Scroll);
+            this.listBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.listBox16_SelectedIndexChanged);
             // 
             // label17
             // 
@@ -1466,6 +1468,7 @@
             this.buttonForceStart.TabIndex = 1;
             this.buttonForceStart.Text = "Force Start";
             this.buttonForceStart.UseVisualStyleBackColor = false;
+            this.buttonForceStart.Click += new System.EventHandler(this.buttonForceStart_Click);
             // 
             // checkedListBoxScripts
             // 
@@ -1479,6 +1482,7 @@
             this.checkedListBoxScripts.Name = "checkedListBoxScripts";
             this.checkedListBoxScripts.Size = new System.Drawing.Size(544, 244);
             this.checkedListBoxScripts.TabIndex = 0;
+            this.checkedListBoxScripts.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxScripts_ItemCheck);
             // 
             // scriptDataTableBindingSource
             // 
@@ -1502,6 +1506,11 @@
             // 
             this.conditionBindingSource.DataMember = "condition";
             this.conditionBindingSource.DataSource = this.autoWebAgentDBDataSetBindingSource;
+            // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
             // MainForm
             // 
@@ -1663,8 +1672,8 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.BetterListBox listBox16;
+        private System.Windows.Forms.TextBox textBoxReccurance;
+        private System.Windows.Forms.BetterListBox listBoxPeriod;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckedListBox checkedListBoxScripts;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -1693,6 +1702,7 @@
         private System.Windows.Forms.RadioButton radioButtonCount;
         private System.Windows.Forms.RadioButton radioButtonRecurrance;
         private System.Windows.Forms.TextBox textBoxCount;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
 
     }
 }

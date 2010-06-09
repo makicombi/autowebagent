@@ -25,16 +25,20 @@ namespace awaApplication
         public bool Bind(DAL dal, IE ie)
         {
             //indicates a dummy object that only hold a scalar value
-            if (Name.Length + Website.Length == 0) return true;
+                        if (Name.Length + Website.Length == 0) return true;
             if ((dal == null) || (ie == null)) throw new Exception("a critical resource is missing (either DB or IE reference)");
             
             IEnumerable<DAL.RecognitionProperty> props = dal.GetElementRecogitionProperties(Website, Name);
             if (props.Count()==0) return false;
             else
             {
-                //IOrderedEnumerable<DAL.RecognitionProperty> sortedProps = props.OrderByDescending(p => p.Priority);
+                
                 Dictionary<Element, int> priorityMap = new Dictionary<Element, int>();
-
+                //if (! Website.Contains(ie.Uri.Host))
+                {
+                   ie.GoTo(Website);
+                   // Log.GetInstance().Write("navigating to " + Website);
+                }
                 try
                 {
                     foreach (var item in props)
@@ -118,6 +122,7 @@ namespace awaApplication
                         catch (Exception exc)
                         {
 
+                            Log.GetInstance().Write(exc.Message);
                             Console.WriteLine(exc.Message);
                         }
                     }
@@ -147,6 +152,7 @@ namespace awaApplication
                         string wUrl = dal.GetWebSiteUrlByName(Website);
                         if (wUrl.Length > 0)
                         {
+                            Log.GetInstance().Write(string.Format("navigating to {0}({1})" , Website,wUrl));
                             ie.GoTo(wUrl);
                             this.IsBound = false;
                             return this.Bind(dal, ie);
@@ -156,8 +162,9 @@ namespace awaApplication
                 }
                 catch (Exception exc)
                 {
-
+                    Log.GetInstance().Write(exc.Message);
                     Console.WriteLine(exc.Message);
+                    Log.GetInstance().Write(exc.StackTrace);
                     Console.WriteLine(exc.StackTrace);
                     this.IsBound = false;
                 }
