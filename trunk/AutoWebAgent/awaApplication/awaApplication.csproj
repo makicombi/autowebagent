@@ -89,6 +89,7 @@
     <Compile Include="ListViewEx.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Log.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>

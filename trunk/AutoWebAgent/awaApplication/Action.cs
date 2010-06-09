@@ -181,13 +181,18 @@ namespace awaApplication
         {
             if (Target.Bind(DAL, IE))
             {
-                TextField sl = new TextField(Target.WatinElement.DomContainer, Target.WatinElement.NativeElement);
+                //TextField sl = new TextField(Target.WatinElement.DomContainer, Target.WatinElement.NativeElement);
+                TextField sl =IE.TextField(Find.ByElement(e => e.OuterHtml == Target.WatinElement.OuterHtml));
+                //TextField sl = Target.WatinElement.GetAdapter<TextField>();
                 sl.TypeText(text);
+                //Target.WatinElement.SetAttributeValue("value",text);
+                
 
             }
             else
             {
                 //write error log
+                Log.GetInstance().Write("couldn't bind to " + Target.Website + Target.Name);
             }
 
         }

@@ -24,9 +24,11 @@ namespace awaApplication
             {
                 this.List.Add(script);
             }
+             
         }
 
         DAL dal;
+        IE ie;
         public bool Initialized { get; private set; }
         ScriptCollection scripts;
         Timer masterTimer;
@@ -36,6 +38,8 @@ namespace awaApplication
         {
            scripts = new ScriptCollection();
            masterTimer = new Timer(new TimerCallback(Poll), null, Timeout.Infinite, 1000);
+           ie = new IE();
+           
         }
         private static ScriptManager instance = null;
         public static ScriptManager GetInstance()
@@ -53,12 +57,31 @@ namespace awaApplication
             if (!Initialized) throw new Exception("ScriptManager Must Be Initialized");
             foreach (Script script in scripts)
             {
+                DateTime now = DateTime.Now;
+                
                 if (script.Activated && 
-                    (script.StartTime > DateTime.Now) &&
-                    (script.EndTime < DateTime.Now) &&
-                    (script.Count > 0))
+                    (script.StartTime > now) &&
+                    (script.EndTime < now) )
                 {
-                    script.Count--;
+
+                    if (script.Reccurance != TimeSpan.Zero)
+                    {
+                        if(((script.EndTime - script.StartTime).TotalSeconds % script.Reccurance.TotalSeconds)<=1)
+                        {
+                            if (!script.IsRunning)
+                                script.Run();
+                        }
+                    } else
+                    if (script.Count > 0)
+                    {
+                        script.Count--;
+                        if (!script.IsRunning)
+                            script.Run();
+                    }
+                    
+                }
+                if(script.Forced)
+                {
                     if(!script.IsRunning)
                         script.Run();
                 }
@@ -74,11 +97,46 @@ namespace awaApplication
 
         public void AddScript(int script_id, DateTime start, DateTime end, TimeSpan recurrance, int count)
         {
-            Script newScript = new Script(new IE(),dal,script_id);
-            newScript.IsRunning = false;
-            newScript.Activated = false;
-            scripts.Add(newScript);
 
+            if (script_id<0)
+            {
+                return;
+            }
+            foreach (Script script in scripts)
+            {
+                string name = dal.GetScriptNameById(script_id);
+                if ((name != null) && (name == script.Name))
+                {
+                    return;//script exists
+                } 
+            }
+            try
+            {
+                Script newScript = new Script(this.ie, dal, script_id);
+                newScript.IsRunning = false;
+                newScript.Activated = false;
+                scripts.Add(newScript);
+            }
+            catch (Exception e)
+            {
+
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+
+        }
+        public void RemoveScript(string scriptName)
+        {
+            for (int i = 0; i < scripts.Count; i++)
+            {
+                if (scripts[i].Name == scriptName)
+                {
+                    
+                    scripts[i].Kill();
+                    scripts.RemoveAt(i);
+                    return;
+                }
+            }
+            
         }
         public void ActivateScript(string ScriptName)
         {
@@ -92,5 +150,17 @@ namespace awaApplication
             }
         }
 
+
+        internal void ForceScript(string scriptName)
+        {
+            foreach (Script script in scripts)
+            {
+                if (script.Name == scriptName)
+                {
+                    script.Forced = true;
+                    return;
+                }
+            }
+        }
     }
 }

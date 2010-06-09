@@ -10,7 +10,7 @@ namespace awaApplication
         bool Eval();
     }
     
-    public abstract class ConditionBase : ICondition
+    public class ConditionBase : ICondition
     {
 
         public enum ConditionType
@@ -25,6 +25,18 @@ namespace awaApplication
             NOT_VALUE,
             CONTAINS
         }
+        static ConditionBase()
+        {
+            ConditionTypeEnum = new Dictionary<string, ConditionType>();
+            ConditionTypeEnum["Contains"] = ConditionType.CONTAINS;
+            ConditionTypeEnum["False"] = ConditionType.FALSE;
+            ConditionTypeEnum["NotEqual"] = ConditionType.NOT_EQUAL;
+            ConditionTypeEnum["NotSelected"] = ConditionType.NOT_SELECETED;
+            ConditionTypeEnum["NotValue"] = ConditionType.NOT_VALUE;
+            ConditionTypeEnum["Selected"] = ConditionType.SELECTED;
+            ConditionTypeEnum["True"] = ConditionType.TRUE;
+            ConditionTypeEnum["Value"] = ConditionType.VALUE;
+        }
         public SiteObject ConditionElement { get; set; }
         public awaDAL.DAL DAL { get; private set; }
         public WatiN.Core.IE IE { get; private set; }
@@ -35,6 +47,7 @@ namespace awaApplication
         }
         virtual public bool Eval()
         {
+            Log.GetInstance().Write("evaluating base condition"); 
             if ( ConditionElement.IsBound==false)
             {
                 if (!ConditionElement.Bind(DAL,IE))
@@ -42,17 +55,7 @@ namespace awaApplication
             }
             return true;
         }
-        public static Dictionary<string, ConditionType> ConditionTypeEnum = 
-            new Dictionary<string, ConditionType>() {{"Contains",ConditionType.CONTAINS},
-                {"Contains",ConditionType.EQUAL},
-                {"False",ConditionType.FALSE},
-                {"NotEqual",ConditionType.NOT_EQUAL},
-                {"NotSelected",ConditionType.NOT_SELECETED},
-                {"NotValue",ConditionType.NOT_VALUE},
-                {"Selected",ConditionType.SELECTED},
-                {"True",ConditionType.TRUE},
-                {"Value",ConditionType.VALUE}
-            };
+        public static Dictionary<string, ConditionType> ConditionTypeEnum;
     }
     public class ConditionCollection : System.Collections.CollectionBase
     {
@@ -76,6 +79,7 @@ namespace awaApplication
         }
         public override bool Eval()
         {
+            Log.GetInstance().Write("evaluating value condition"); 
             if (ConditionElement.IsBound == false)
             {
                     if (!ConditionElement.Bind(this.DAL, this.IE))
@@ -95,6 +99,7 @@ namespace awaApplication
         }
         public override bool Eval()
         {
+            Log.GetInstance().Write("evaluating contains condition"); 
             if (ConditionElement.IsBound == false)
             {
                 if (!ConditionElement.Bind(this.DAL, this.IE))
@@ -114,6 +119,7 @@ namespace awaApplication
         }
         public override bool Eval()
         {
+            Log.GetInstance().Write("evaluating not contains condition"); 
             if (ConditionElement.IsBound == false)
             {
                 if (!ConditionElement.Bind(this.DAL, this.IE))
@@ -133,6 +139,7 @@ namespace awaApplication
         }
         public override bool Eval()
         {
+            Log.GetInstance().Write("evaluating not value condition"); 
             if (ConditionElement.IsBound == false)
             {
                 if (!ConditionElement.Bind(this.DAL, this.IE))
@@ -159,6 +166,7 @@ namespace awaApplication
         public override bool Eval()
         {
             base.Eval();
+            Log.GetInstance().Write("evaluating equality condition"); 
             if ((AuxElement.IsBound == false))
             {
                 if (!AuxElement.Bind(DAL,IE))
@@ -206,6 +214,7 @@ namespace awaApplication
         public override bool Eval()
         {
             base.Eval();
+            Log.GetInstance().Write("evaluating not equal condition"); 
             if ((AuxElement.IsBound == false))
             {
                 if (!AuxElement.Bind(DAL, IE))
@@ -238,6 +247,7 @@ namespace awaApplication
 
     public class CheckedCondition : ConditionBase
     {
+        
         public CheckedCondition(awaDAL.DAL dal, WatiN.Core.IE ie)
             : base(dal, ie)
         {
@@ -245,7 +255,8 @@ namespace awaApplication
         }
         public override bool  Eval()
         {
- 	         if ((ConditionElement.IsBound == false) )
+            Log.GetInstance().Write("evaluating checked condition"); 
+            if ((ConditionElement.IsBound == false) )
             {
                 throw new SiteObjectNotBoundException(ConditionElement);
             }
@@ -272,6 +283,7 @@ namespace awaApplication
         }
         public override bool Eval()
         {
+            Log.GetInstance().Write("evaluating selected condition"); 
             if ((ConditionElement.IsBound == false))
             {
                 throw new SiteObjectNotBoundException(ConditionElement);
@@ -289,6 +301,7 @@ namespace awaApplication
         }
         public override bool Eval()
         {
+            Log.GetInstance().Write("evaluating not selected condition"); 
             if ((ConditionElement.IsBound == false))
             {
                 throw new SiteObjectNotBoundException(ConditionElement);
@@ -302,6 +315,7 @@ namespace awaApplication
         public TrueCondition() : base(null, null) { }
          public override bool Eval()
          {
+             Log.GetInstance().Write("evaluating true condition"); 
              return true;
          }
     }
@@ -310,6 +324,7 @@ namespace awaApplication
         public FalseCondition() : base(null, null) { }
         public override bool Eval()
         {
+            Log.GetInstance().Write("evaluating false condition"); 
             return false;
         }
     }

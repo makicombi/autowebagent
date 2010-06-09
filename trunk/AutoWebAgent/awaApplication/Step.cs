@@ -29,8 +29,8 @@ namespace awaApplication
                         continue;
                     }
                     
-                    var condElm = dal.DB.element.Single(row => row.id == condition.lhs_element_id);
-                    var auxElm = dal.DB.element.Single(row => row.id == condition.rhs_element_id);
+                    var condElm = dal.DB.element.SingleOrDefault(row => row.id == condition.lhs_element_id);
+                    var auxElm = dal.DB.element.SingleOrDefault(row => row.id == condition.rhs_element_id);
                     switch (ConditionBase.ConditionTypeEnum[condition.op])
                     {
                         case ConditionBase.ConditionType.CONTAINS:

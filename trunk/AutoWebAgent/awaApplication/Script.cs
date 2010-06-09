@@ -22,6 +22,7 @@ namespace awaApplication
         
         public Script(IE ie,awaDAL.DAL dal, int script_id)
         {
+            Steps = new StepCollection();
             this.ie = ie;
             if (script_id != -1)
             {
@@ -30,6 +31,8 @@ namespace awaApplication
                 this.Author = dal.DB.users.Single(row => row.id == scriptRow.user_id).name;
                 this.Activated = false;
                 this.Forced = false;
+                this.Count = 1;
+                this.Reccurance = TimeSpan.Zero;
                 this.LastModifiedTime = scriptRow.modified;
                 var steps = dal.GetStepsByScriptID(script_id);
                 foreach (var step in steps)
@@ -43,11 +46,15 @@ namespace awaApplication
         public void Run()
         {
             IsRunning = true;
+            Log.GetInstance().Write(string.Format("running script \"{0}\"", this.Name));
+            int step_num=1;
             foreach (Step step in Steps)
             {
+                Log.GetInstance().Write(string.Format("evaluating step [{0}]", step_num++));
                 bool res = true;
                 foreach (ICondition cond in step.Conditions)
                 {
+                    Log.GetInstance().Write("evaluating condition" );
                     if (cond.Eval() == false)
                     {
                         res = false;
@@ -61,18 +68,27 @@ namespace awaApplication
                     { 
                         try
                         {
+                            Log.GetInstance().Write("performing action");
                             action.Execute();
                         }
                         catch (Exception e)
                         {
-                            System.Windows.Forms.MessageBox.Show(e.Message);
-                            throw e;
+                            Log.GetInstance().Write(e.Message);
+                            Log.GetInstance().Write(e.StackTrace);
                         }
                        
                     }
                 }
             }
             IsRunning = false;
+            Forced = false;
+        }
+
+        internal void Kill()
+        {
+            ie.Close();
+            ie.Dispose();
+            ie = null;
         }
     }
 }
