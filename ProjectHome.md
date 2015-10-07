@@ -1,0 +1,10 @@
+The purpose of this document is to describe the requirement needed for the Automatic Web Agent System system.
+The document is divided to sections, where as each section will describe the requirements from a single module.
+1.2 Scope of the software
+Nowadays web use has become common to practically every household. The web enables to perform many diverse tasks, ranging from acquiring entertainment data (movies, songs, gossip etc…) to financial transactions.
+Most of the tasks a user might perform, require the user to authenticate his identity, track data on the website and perform actions based on knowledge acquired on other websites. These actions are very similar in most of the tasks regardless of their nature, all of which require the attention of the user and might be extremely time consuming.
+The Automatic Web Agent application project was devised to relieve the average/advanced user from these routine and time consuming tasks.
+The Automatic Web Agent will enable the user to compose a script of actions to be taken on specific websites according to data sampled on other sites and conditions that the users will set, and determine the scheduling of the script execution.
+For example, there can be a script that will sample the users favorite sky website every 4 hours and will monitor the snow depth of the sky track. Once a preset depth is detected the script will extract the prices of plane tickets to the sky track and email them to the user.
+Another example can be a script that will extend the lending period of a book in the Afeka college library, which is not equipped today with a built-in agent, once every 3 days.
+Alternatively, an example from the business sector could be a for a company which sells products via the web, a script can track the competitors web sites for price changes and update the prices of the products accordingly.
